@@ -186,7 +186,7 @@ Im der Implementation \texttt{Index-} beziehungsweise \texttt{DataServices}.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{PrototypeClassDiagram}
+    \includegraphics[width=1\textwidth]{ClassDiagrammGeneral}
     \caption{Prototype Klassendiagram}
     \label{fig:prototypeClassDiagram-easy}
     \end{figure}
@@ -210,18 +210,10 @@ Weiter sollen extrahierte \gls{Keyword}[s] klar getrennt von den bestehenden Pro
 
 Um die Schnittstellen des Prototype ideal zu verwenden und die obigen Oberflächenanpassungen umzusetzten, sind Anpassungen bzw. Erweiterungen in der Software Struktur des \gls{ikc-core} nötig. Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore-easy}) erläutert die wichstigsten Anpassungen:
 
-
-
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{ClassDiagrammIkcCore}
-    \caption{Klassendiagramm Integration}
-    \label{fig:classDiagrammIkcCore-easy}
-    \end{figure}
 %riesiges index.json, ungefähr 100k Files als Text-Dateien
 
-\subsection{Datenfreigabe}
-Für den Auftraggeber ist eine sichere Kommunikation und stetige Transparenz und Kontrolle über den Verbleib von benutzergenerierten Daten von hoher Wichtigkeit. Um diesen Anforderungen gerecht zu werden, wurde unter anderem ein Datenfreigabe-Konzept entwickelt. Dieses basiert auf \gls{Token}[s]. 
+\section{Datenfreigabe}
+Für den Auftraggeber ist eine sichere Kommunikation. stetige Transparenz und Kontrolle über den Verbleib von benutzergenerierten Daten von hoher Wichtigkeit. Um diesen Anforderungen gerecht zu werden, wurde unter anderem ein Datenfreigabe-Konzept entwickelt. Dieses basiert auf \gls{Token}[s]. 
 
 
 
@@ -232,7 +224,11 @@ Für den Auftraggeber ist eine sichere Kommunikation und stetige Transparenz und
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{SeqAccessSession}
+    \includegraphics[width=0.8\textwidth]{SeqAccessGeneral}
     \caption{Ablauf: Datenfreigabe}
     \label{fig:seqaccesssession-easy}
     \end{figure}
+
+
+
+\section{Auto-Indexierung}
