@@ -21,28 +21,139 @@
 \end{itemize}
 
 
-\section{Anforderungen}
+\section{Soll-Ist Vergleich}
+Durch einen Soll-Ist Vergleich anhand der definierten Anforderungen (\autoref{sec:anforderungen}) kann eine erste qualitative Evalutation vorgenommen werden.  
 
+\begin{longtable}{|p{1.5cm} | p{1.5cm} | p{8.1cm}|}
+  \hline
+    ID & Status & Bemerkung \\\hline
+    A1 & Erfüllt & Die Daten der externen Datenquelle (SFTP) kann mittels Volltext Index durchsucht werden. \\\hline
+    A2 &  & \\\hline
+    A3 &  & \\\hline
+    A4 & Erfüllt & Es können sowohl alle Knoten als auch alle Dokumente externer Datenquellen durchsucht werden. \\\hline
+    A5 & Erfüllt & Die Volltext Suche ist innerhalb des Suchfeldes integriert. \\\hline
+    A6 &  & \\\hline
+    A7 &  & \\\hline
+    A8 & Erfüllt & Generierte \gls{Keyphrase}[s] sind als Chip Liste dargestellt und können bei Bedarf gelöscht werden.\\\hline
+    A9 &  & \\\hline
+    A10 &  & \\\hline
+    A11 & Erfüllt & Die Knoten und Kanten werden während der Berechnung erstellt und in einem lokalen Cache gespeichert. Bei Änderungen werden diese permanent ins Wissensnetzwerk des Benutzers übertragen.\\\hline
+    A12 & Erfüllt & Tags werden als Chips dargestellt.\\\hline
+    A13 & Erfüllt & \gls{N-Gram}[s] werden ebenfalls als \gls{Keyphrase} beachtet\\\hline
+    A14 &  & \\\hline
+    A15 &  & \\\hline
+    A16 &  & \\\hline
+    \caption{Evaluation funktionale Anforderungen}
+  \label{tab:funktionale-anforderungen-eval}
+\end{longtable}
+
+
+\begin{longtable}{|p{1.5cm} | p{1.5cm} | p{8.1cm}|}
+  \hline
+    ID & Status & Beschreibung \\\hline
+    A1 & Erfüllt & Die Autoindexierung wird komplett auf dem \texttt{IndexService} ausgeführt, auch bei einem Fehlerfall wird der Benutzer nicht beeinträchtigt in der Bediehnung des \gls{ikc-core}. \\\hline
+    A2 & Erfüllt & Die Extraktion der \gls{Keyphrase}[s] geschieht innerhalb nützliche Frist. Die Dauer hängt dabei von der Grösse der Datenbasis. Bei extrem Grossen Datenmengen (>100k) kann dieser Prozess ca. 2 Sekunden in Anspruch nehmen.   \\\hline
+    A3 & Erfüllt & Durch die Anbindung an den \texttt{DataService} wird die externe Datenquelle für den \gls{ikc-core} abstrahiert.\\\hline
+    A4 & Erfüllt & \\\hline
+    A5 & Erfüllt & \\\hline
+    A5 & Erfüllt & \\\hline
+    \caption{Evaluation funktionale Anforderungen}
+  \label{tab:nicht-funktionale-anforderungen-eval}
+\end{longtable}
 \section{Experten-Feedback}
+Ein Teil der Qualitative Evaluation ist ein Experten Feedback zu dem entstandenen Prototypen. Dieses soll deren Objektive Meinung als auch Überlegungen zur möglichen Anwendungsfälle bzw. Optimierungen enthalten. Als Experten wurde Michael Kaufmann (Projektpartner) und Kevin Stadelmann (Student Wirtschaftsinformatik) ausgewählt. Sie wurden ausgewählt, da sie als Benutzer des \gls{ikc-core} bereits vertraut sind mit der Applikation und deren Möglichkeiten.
+Dazu wird das Feedback in drei Teile aufgeteilt:
+\begin{enumerate}
+    \item \textbf{Einleitung}: Im ersten Teil des Gespräches wird die Funktionalität des Prototypen kurz beschrieben. Anschliessend sollen die beiden Experten ihre Erwartungen formulieren. Dabei geht es darum von ihnen eine Vorstellung zu erhalten von ihren Erwartungen unabhängig von dem resultierenden Prototypen. Dies ist insbesondere für die Weiterentwicklung wertvoll sobald anstelle der Funktionalität der Benutzer in den Vordergrund Rückt.
+    \item \textbf{Demonstration}: Anschliessend wird den Experten der Prototyp vorgestellt. Dadurch sollen sie unsere Umsetzung kennen lernen und die Funktionalitäten genauer kennen lernen. Falls gewünscht kann der Prototyp auch von ihnen Bedient werden.
+    \item \textbf{Frage}:
+    \item \textbf{Diskussion}: Die offene Diskussion zum Schluss soll als Plattform dienen um einen Schritt weiter zu denken. Dabei soll es vor allem um mögliche Anwendungen, Erweiterungen oder Anpassungen gehen.
+\end{enumerate}
+\subsection{Vorbereitung}
+
+\subsection{Vorgang}
+
+\subsection{Resultate}
+
+\subsection{Fazit}
 
 \begin{itemize}
     \item Nutzen für Praxis
     
 \end{itemize}
 
-\subsection{Michael Kaufmann}
-
-\subsection{Kevin Stadelmann}
-
 \section{Diskussion}
 
-Michael oder wir
+\subsection{Zusammenfassung}
 
-\section{Case Space}
+\subsubsection{Stärken}
 
-Qualitative Analyse
+\begin{itemize}
+    \item \textbf{Wiederverwendbarkeit}: Der Prototyp ist modular aufgebaout, entwickelte Komponenten können darum wiederverwendet werden.
+    \item \textbf{Skalierbarkeit}: Die verschiedenen Services sind entkoppelt von einander und können theoretisch beliebig repliziert werden.
+    \item \textbf{Abstraktion der Anmeldenformationen}: Die Zugangsberechtigungen werden nur in abstrakter Form mittels Tokens weitergegeben. Der Zugriff berechtigt jeweils nur für eine benutzerdefinierte Ressource.
+    %\item Schlanke Implementation der Auto-Indexierung
+    \item \textbf{Search-Broker}: Die Abstraktion von Such-Services ermöglicht die Anbindung von beliebigen Quellen.
+    \item \textbf{Forschungsgrundlage}: Verschiedene Implementationen eines Sco\-ring-Algorithmus können auf Basis des entwickelten Prototypen ausgeführt und verglichen werden.
+    \item \textbf{Code-Sharing}: Sowohl client- als auch serverseitig wird Javascript eingesetzt. Deswegen ist es einfach erstellten Code wiederzuverwenden oder an einem anderen Ort auszuführen.
+\end{itemize}
+
+\subsubsection{Schwächen}
+
+\begin{itemize}
+    \item \textbf{Fehlende quantitative Evaluation}: Eine objektive Evaluation der Ergebnisse des Scoring-Algorithmus anhand von Testdaten vergleichbarer, renommierter Algorithmen sprengt den Zeitrahmen. Aufgrund dessen können lediglich subjektive Mutmassungen zur Qualität der Ergebnisse gemacht werden.
+    \item \textbf{Fehlende Sprachunabhängigkeit}: Der Prototyp funktioniert lediglich mit der englischen Sprache beziehungsweise wurde er nur entsprechend getestet.
+    \item \textbf{Algorithmus}: Sowohl die Position eines Wortes innerhalb eines Satzes oder Textes und auch eine semantische Analyse des Kontextes eines Wortes bleiben aus.
+%    \item \textbf{Hohe Korpusgrösse}: 
+    \item \textbf{Garbage-Collector}: Wie in \cite[S.~1-3]{cohen2015data} und \cite[S.~1-2]{nguyen2016yak} beschrieben, haben Programmiersprachen, welche Garbage-Collector verwenden, nicht nur Stärken, sondenr auch Schwächen. Diese Schwächen treten insbesondere bei grossen, komplexen Datenstrukturen zu Tage.
+    %\item \textbf{}: Die verwendete Grundlage für den Scoring-Algorithmus TF-IDF ist bekannt für die Suche nach ähnlichen Dokumenten. Hier wird er aber für die Bestimmung von relevanten Begriffen eines Textes genutzt.
+    
+\end{itemize}
+
+\subsubsection{Chance}
+
+\begin{itemize}
+    \item \textbf{Flexibilität}: Eingesetzte Konstrukte zur Entkopplung (beispielsweise das Trait-Pattern siehe \autoref{message-manager}) können an weiteren Orten ebenfalls eingesetzt werden. Ohne Aufwand er\-höht dies die Entkopplung zusätzlich. Denkbar ist der Einsatz bei der Implementation des Algorithmus. So können schnell und einfach verschiedenen Algorithmen eingesetzt, getestet und ausgewertet werden.
+\end{itemize}
+
+
+\subsubsection{Gefahren}
+
+\begin{itemize}
+    \item \textbf{Begrenzte Möglichkeiten der Parallelisierung}: In der vorliegenden Implementation wurde auf Code-Ebene nur bedingt auf die Parallelisierung und Nebenläufigkeit geachtet. Dies darum, da es bei der Entwicklung des Prototypen wiederum die zeitliche Begrenzung vorliegt und die Performance eine untergeordnete Rolle spielt. Auch ist zu erwähnen, dass die verwendete Laufzeitumgebung nodeJS und auch die Programmiersprache Javascript einen Prozess-basierten Ansatz für die Parallelisierung verwenden. Dies beispielsweise im Gegensatz zu Threads in Sprachen wie Java.
+    \item \textbf{Linguistischter Ansatz}: Die Implementation setzt beim Scoring-Algorithmus hauptsächlich auf statistische Verfahren. Wie in \cite[S.~1-2]{Zhang2006} angemerkt, verliert man durch die Extraktion eines Wortes aus dessen Kontext einen Grossteil der Informationen. Allerdings gibt es noch keine bekannten und effizienten Ansätze die lokalen Kontextinformationen eines Wortes zu nutzen.
+\end{itemize}
+
+\subsection{SO-Strategien-Ausbauen}
+Stärken einsetzen, um Chancen zu nutzen. Interne Stärken und externe Chancen sollen ausgenutzt und wenn möglich multipliziert werden.
+
+\subsection{WO-Strategien-Absichern}
+Schwächen minimieren, um Chancen zu nutzen.
+
+\subsection{ST-Strategien-Aufholen}
+Stärken einsetzen, um Gefahren zu minimieren.
+
+\subsection{WT-Strategien-Meiden}
+Schwächen minimieren, um Gefahren abzuwenden.
+
+
+\begin{itemize}
+    \item \textbf{Stärke-Chancen}: Wie auch der \gls{ikc-core} ist auch der resultierende Prototypen zum Grossen Teil Modular Aufgebaut. Dies ermöglicht es einfach verschiedenen Teile auszutauschen oder auch innerhalb dieses oder anderen Projekten wiederzuverwenden. Weiter bietet der resultierende Prototyp dem Benutzter weiter Möglichkeiten um sein Datenbasis seinens Wissensnetzwerks besser zu verstehen bzw. Beziehungen zu erkennen. 
+    \item \textbf{Stärke-Gefahren}:  
+    \item \textbf{Schwäche-Chancen}: 
+    \item \textbf{Schwäche-Gefahren}
+\end{itemize}
+
+% \section{Case Base} Qualitative Analyse, Fallstudie
 
 \section{Implikationen für die Praxis}
+
+Typescript?, Datenhaltung in DB?, Dokku / Docker, Index verteilt abspeichern, 
+
+
+\subsection{Bedeutung}
+
+Was ist wichtig, Lucene zu spezifisch
 
 kritisch, brauchbar?
 

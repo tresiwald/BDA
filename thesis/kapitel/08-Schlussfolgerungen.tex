@@ -7,12 +7,24 @@
 \end{itemize}
 
 \section{Erkenntnisse}
+
 \section{Lessons learned}
+
+npm, beta module, modul anpassen für den zweck
+
+Prozess
 
 \section{Ausblick}
 
-
 \begin{itemize}
+    \item Korpusgrösse? Ab wann ist die Extraktion von Schlüsselwörtern sinnvol?
     \item Skalierbarkeit, Docker, Load Balancing, 
     \item Optimierung Algorithmus (log, 2log, ln)
+    \item Auto-Indexierung: User bekommt im \gls{ikc-core} einen Hinweis, dass der Index neu berechnet werden muss. Erst auf dessen Wunsch wird dieser erstellt. Das hat den Grund, dass der User stets die Kontrolle über all seine Daten hat. Der \texttt{IndexService} ist somit nicht berechtigt im Hintergrund ohne die Zustimmung des Users auf den \texttt{DataService} zuzugreifen.
+    \item Ab wie vielen externen Änderungen ist es sinnvoll den Index neu zu berechnen.
+    \item Was passiert beim Löschen von Files.
+    \item Was passiert beim Löschen der Dateien? Überlegungen gemacht.
+    \item Solange keine Änderungen an einem Dokumente gemacht wird, wird diese dynamisch nachgeladen. --> agiles Vorgehen
+    \item Ableitung
+    \item Bootstrapping mit Grund-Korpus
 \end{itemize}

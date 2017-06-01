@@ -1,20 +1,30 @@
 \chapter{Lösungsdesign}
 
-Das Lösungsdesign beinhaltet die Grundlagen für die erfolgreiche Umsetzung des Prototypen. Basierend auf den Anforderungen und der Aufgabenstellung wird die Software-Architektur definiert. Wäh\-rend dies auf einer hohen Abstraktionsebene geschieht, erfolgt in einem nächsten Schritt der Entwurf und das Design der Software. Dabei dient die Architektur als Leitplanke, welche zusammen mit der Recherche über den aktuellen Stand der Technik (\autoref{literatur}) zu einem konkreten Entwurf führen.
+Das Lösungsdesign beinhaltet die Grundlagen für die erfolgreiche Umsetzung des Prototyps. Darin wird basierend auf den Anforderungen und der Aufgabenstellung die Software-Architektur definiert. Wäh\-rend dies auf einer hohen Abstraktionsebene geschieht, erfolgt in einem nächsten Schritt der Entwurf und das Design der Software. Dabei dient die Architektur als Leitplanke, welche zusammen mit der Recherche über den aktuellen Stand der Technik (\autoref{literatur}) zu einem konkreten Entwurf führt.
+
+% ----------------------------------------------------------------
 
 \section{Architektur}\label{architecture}
 
-Der Architektur-Entwurf betrachtet die zu entwickelnde Software aus einer abstrakten Sicht, wobei die tatsächliche verwendete Software, keinen Einfluss hat. Das Ziel ist eine grundsätzliche Übersicht über die Software, deren Komponenten, Schnittstellen und auch deren Verteilung.
+% ----------------------------------------------------------------
+
+Der Architektur-Entwurf betrachtet die zu entwickelnde Software aus einer abstrakten Sicht. Das Ziel ist eine grundsätzliche Übersicht über die Software, deren Komponenten, Schnittstellen und auch deren Verteilung.
 
 \input{kapitel/03-Architektur}
 % ----------------------------------------------------------------
 
 
-\section{Algorithmus}
-Der Kern des Prototypen bilden die verschiedene Algorithmen. Basierend auf den externen Datenquellen ermöglichen sie eine Volltext-Suche und die Extraktion der relevanten \gls{Keyword}[s]. Nachfolgend werden die Funktionsweise als auch wichtigsten Überlegungen dazu veranschaulicht. Basierend auf verschiedenen bestehenden Ansätzen wird die Lösungsfindung für den hier verwendeten Algorithmus dargelegt. 
 
 
-Um die relevanten \gls{Keyword}[s] für ein spezifisches Dokument zu extrahieren werden verschiedenen Methoden aus dem Feld von \hyperref[natural-language-processing]{\textit{Natural Language Processing}} kombiniert mit statistischen Analsysen und heuristischen Vorgaben. Für die Analyse der \gls{Keyword}[s] werden \gls{N-Gramm}[e] der grösse eins bis vier berücksichtigt. Nebst möglichst treffenden Resultaten liegt der Fokus auch auf der raschen Aussortierung von ungeeigneten Kandidaten. Da die Berchnung der Relvanz der Rechen- und Speicher-Intensivste Vorgang des Algorithmus ist.  Die Anzahl mögliche \gls{N-Gramm}[en] ist definiert als: 
+% ----------------------------------------------------------------
+
+\section{Algorithmus}\label{algo}
+
+% ----------------------------------------------------------------
+Der Kern des Prototyps bilden die verschiedenen Algorithmen. Basierend auf den externen Datenquellen ermöglichen sie eine Volltext-Suche und die Extraktion der relevanten \gls{Keyword}[s]. Nachfolgend wird die Funktionsweise als auch wichtigsten Überlegungen dazu veranschaulicht. Basierend auf verschiedenen bestehenden Ansätzen wird die Lösungsfindung für den hier verwendeten Algorithmus dargelegt. 
+
+
+Um die relevanten \gls{Keyword}[s] für ein spezifisches Dokument zu extrahieren werden verschiedenen Methoden aus dem Feld von \hyperref[natural-language-processing]{\textit{Natural Language Processing}} kombiniert mit statistischen Analsysen und heuristischen Vorgaben. Für die Analyse der \gls{Keyword}[s] werden \gls{N-Gramm}[e] der Grösse eins bis vier berücksichtigt. Nebst möglichst treffenden Resultaten liegt der Fokus auch auf der raschen Aussortierung von ungeeigneten Kandidaten. Da die Berechnung der Relevanz der Rechen- und Speicher-Intensivste Vorgang des Algorithmus ist.  Die Anzahl mögliche \gls{N-Gramm}[en] ist definiert als: 
 \[f(x)=\sum_{n=0}^N x - n  
 \begin{cases} 
    (x - n)  & \text{if } x > n \\
@@ -31,61 +41,91 @@ In der \autoref{fig:seq_keywordextraction} wird dafür Konzeptionelle Ablauf gra
     \label{fig:seq_keywordextraction}
     \end{figure}
  
+ 
+ 
+% ----------------------------------------------------------------
 
 \subsection{Eingabe}
-Als Eingabe in den Algorithmus wird eine Text erwartet. Im Fall dieses Prototypen handelt es sich ein Wikipedia Artikel aus den Trainings Daten. Um die verschiedenen folgenden Schritt besser zu illustrieren, wird der folgende Satz als Beispiel Text verwendete. Mit einer Länge von $19$ Wörter, besitzt er $70$ mögliche \gls{N-Gramm}[e] mit Länge eins bis vier.
+
+% ----------------------------------------------------------------
+
+Als Eingabe in den Algorithmus wird eine Text erwartet. Im Fall dieses Prototyps handelt es sich ein Wikipedia Artikel aus den Trainings Daten. Um die verschiedenen folgenden Schritt besser zu illustrieren, wird der folgende Satz als Beispiel Text verwendete. Mit einer Länge von $19$ Wörter, besitzt er $70$ mögliche \gls{N-Gramm}[e] mit Länge eins bis vier.
 
 \begin{quote}
 \textit{The Guardian newspaper was founded in 1821 as \glqq The Manchester Guardian\grqq, which head office is still located in Manchester.}
 \end{quote}
 Mit einer Länge von $19$ Wörter, besitzt er $70$ mögliche \gls{N-Gramm}[e] mit Länge eins bis vier.
 
+% ----------------------------------------------------------------
+
 \subsection{(1) Vorverarbeitung}
-Im ersten Schritt wird der Text anhand verschiedener Vorgaben vorbereitet. Dazu werden zu Beginn nach einem Punkt, einem Fragezeichen, Ausrufezeichen oder einem Zeilenschaltung, der nachfolgende Buchstaben in die Kleinschreibung umgewandelt. Dies dient dazu Wörter zu erkennen, welche als Nomen genutzt werden jedoch nicht aus diese Wortart stammen. Dadurch verändert sich der Beispiel Satz geringfügig. 
+
+% ----------------------------------------------------------------
+
+Im ersten Schritt wird der Text anhand verschiedener Vorgaben vorbereitet. Dazu werden zu Beginn nach einem Punkt, einem Fragezeichen, Ausrufezeichen oder einer Zeilenschaltung, der nachfolgende Buchstaben in die Kleinschreibung umgewandelt. Dies dient dazu Wörter zu erkennen, welche als Nomen genutzt werden jedoch nicht aus diese Wortart stammen. Dadurch verändert sich der Beispiel Satz geringfügig. 
 
 \begin{quote}
 \textit{\textbf{t}he Guardian newspaper was founded in 1821 as \glqq The Manchester Guardian\grqq, which head office is still located in Manchester.}
 \end{quote}
 
-Weiter wird nun der Text in Fragmente aufgeteilt. Dabei wird davon ausgegangen, dass sich relevante \gls{Keyword}[s] nicht über eine Satzzeichen erstrecken. Es entsteht eine Abfolge von Text Fragmenten.
+Weiter wird nun der Text in Fragmente aufgeteilt. Dabei wird davon ausgegangen, dass sich relevante \gls{Keyword}[s] nicht über ein Satzzeichen erstrecken. Es entsteht eine Abfolge von Text Fragmenten.
 \begin{quote}
 \textit{\textbf{(}the Guardian newspaper was founded in 1821 as\textbf{)} \textbf{(}The Manchester Guardian\textbf{)} \textbf{(}which head office is still located in Manchester\textbf{)}}
 \end{quote}
 Nach dem ersten Schritt wurde der Text mit $19+18+17+16=70$ möglichen \gls{N-Gramm}[en] in eine List von Text-Fragmente mit $(8+7+6+5)+(3+2+1)+(8+7+6+5)=58$ möglichen \gls{N-Gramm}[en] transformiert. Dadurch konnten bereis $12$ Kandidaten ausgeschlossen werden.
 
+% ----------------------------------------------------------------
 
-\subsection{(2) Text zerlegung}
-Bevor die eigendliche Kandidaten gebildetet werden, werden nun die Text-Fragmente durch das \hyperref[tokenization]{\textit{Tokenization}} aufgeteilt in eine List von einzelnen Wörter. Ebenfalls werden dabei unerwünscht Sonderzeichen am Anfang oder am Ende eines Wortes entfernt. Dabei handelt es sich in erster Linie um alle anderen Satzzeichen welche bei der Aufteilung des Textes in Text-Fragmente nicht berücksichtigt wurden.
+\subsection{(2) Text Zerlegung}
+
+% ----------------------------------------------------------------
+
+Bevor die eigentliche Kandidaten gebildet werden, werden nun die Text-Fragmente durch das \hyperref[tokenization]{\textit{Tokenization}} aufgeteilt in eine List von einzelnen Wörter. Ebenfalls werden dabei unerwünscht Sonderzeichen am Anfang oder am Ende eines Wortes entfernt. Dabei handelt es sich in erster Linie um alle anderen Satzzeichen welche bei der Aufteilung des Textes in Text-Fragmente nicht berücksichtigt wurden.
 
 \begin{quote}
 \textit{\textbf{[}the, Guardian, newspaper, was, founded, in, 1821, as\textbf{]}, \textbf{[}The, Manchester, Guardian\textbf{]}, \textbf{[}which, head, office, is, still, located, in, Manchester\textbf{]}}
 \end{quote}
 
+
+% ----------------------------------------------------------------
+
 \subsection{(3) Generierung möglicher Keywords}
+
+% ----------------------------------------------------------------
+
 Anhand der generierten Wort Listen können nun die verschiedenen \gls{N-Gramm}[e] generiert werden. Es entsteht eine List von \gls{N-Gramm}[en] der Länge von eins bis vier.
 
 \begin{quote}
 \textit{\textbf{[}the Guardian newspaper was, the Guardian newspaper, the Guardian, the, ... , located in Manchester, located in, located, in Manchester, in, Manchester\textbf{]}}
 \end{quote}
 
+
+% ----------------------------------------------------------------
+
 \subsection{(4) Filter mittels POS-Tagger}
+
+% ----------------------------------------------------------------
+
 Wie von \cite{parameswaran2010towards} beschrieben folgen Relevante \gls{Keyword}[s] bestimmten grammatikalischen Regeln. Diese sind wie folgt definiert:
 \begin{enumerate}
     \item Ein relevantes \gls{Keyword} besteht mindestens aus einem Nomen. Somit werden entfallen \gls{Keyword}[s] wie zum Beispiel \textit{was} oder \textit{located in}.
     \item Ein relevantes \gls{Keyword} beginnt nicht mit einem Pronomen, Verb oder Partikel. Diese Regel ist in der Lage \gls{Keyword}[s] wie \textit{the Guardian newspaper} auszusortieren.
     \item Ein relevantes \gls{Keyword} endet nicht mit einem Pronomen, Verb oder Partikel. Diese Regel ist in der Lage \gls{Keyword}[s] wie \textit{Guardian newspaper was} auszusortieren.
 \end{enumerate}
+
 Wie bereits erwähnt möchten auch Nicht-Nomen welche als solche verwendetet werden berücksichtigt werden. Dafür werden die zwei Regeln mit einer dritten erweitert:
+
 \begin{enumerate}
-    \item[4.] Ein relevantes \gls{Keyword} beginnt gross. Wie bereits erwähnt wurden vor gängig innerhalb des Textes Wörter nach bestimmten Satzzeichen in die Kleinschreibung umgewandelt, damit diese in diesem Schritt nicht beachtet werden. Dadurch wird zum Beispiel \textit{The Manchester Guardian} weiter beachtet auch wenn er grundsätzlich der zweiten Regel widerspricht da er mit einem Pronomon startet. 
+    \item[4.] Ein relevantes \gls{Keyword} beginnt gross. Wie bereits erwähnt wurden vor gängig innerhalb des Textes Wörter nach bestimmten Satzzeichen in die Kleinschreibung umgewandelt, damit diese in diesem Schritt nicht beachtet werden. Dadurch wird zum Beispiel \textit{The Manchester Guardian} weiter beachtet auch wenn er grundsätzlich der zweiten Regel widerspricht da er mit einem Pronomen startet. 
 \end{enumerate}
-Um diese Regeln zu Überprüfen wird ein \hyperref[part-of-speech]{Part-Of-Speech-Tagger} verwendet. Dabei handelt es sich um Algorithmus mit welchem die Worarten von gegebenen Wörter bestimmt werden kann. Um den Regeln zu entsprechen muss ein \gls{Keyword} sowohl Regeln 1\&3 folgend, zusätzlich entweder der Regel 2, Regel 4 oder beiden. Mittels dieser drei Regeln können alle möglichen Kandidaten ausser den folgenden ignoriert werden:
+
+Um diese Regeln zu Überprüfen wird ein \hyperref[part-of-speech]{Part-Of-Speech-Tagger} verwendet. Dabei handelt es sich um Algorithmus mit welchem die Wortarten von gegebenen Wörter bestimmt werden kann. Um den Regeln zu entsprechen muss ein \gls{Keyword} sowohl Regeln 1\&3 folgend, zusätzlich entweder der Regel 2, Regel 4 oder beiden. Mittels dieser drei Regeln können alle möglichen Kandidaten ausser den folgenden ignoriert werden:
 
 \begin{quote}
 \textit{\textbf{[}Guardian newspaper, Guardian, newspaper, 1821, The Manchester Guardian, The Manchester, The, Manchester Guardian, Manchester, Guardian, head office, head, office, Manchester\textbf{]}}
 \end{quote}
 
-Damit sind noch $14$ mögliche \gls{Keyword}[s] von ursprünglich $70$. Anschliessend werden gleiche \gls{Keyword}[s] zusammengfasst indem sie zusammen mit ihrer Anzahl Vorkomnisse kombiniert werden, somit reduziert sich die Anzahl unterschiedlichen \gls{Keyword}[s] auf $12$ (\autoref{keyword-with-count}). Ebenfalls wird jeweils das erste Wort eines \gls{Keyword}[s] kleingeschrieben falls es sich nicht um ein Nomen handelt. So kann sichergestellt werden, dass zum Beispiel das 1-Gramm "The" im nächsten Schritt tiefer gewertet wird. Da die Grosschreibung nur im Kontext des \gls{Keyword}[s] \textit{The Manchester Guardian} von Bedeutung ist.
+Damit sind noch $14$ mögliche \gls{Keyword}[s] von ursprünglich $70$. Anschliessend werden gleiche \gls{Keyword}[s] zusammengefasst indem sie zusammen mit ihrer Anzahl Vorkommnisse kombiniert werden, somit reduziert sich die Anzahl unterschiedlichen \gls{Keyword}[s] auf $12$ (\autoref{keyword-with-count}). Ebenfalls wird jeweils das erste Wort eines \gls{Keyword}[s] kleingeschrieben falls es sich nicht um ein Nomen handelt. So kann sichergestellt werden, dass zum Beispiel das 1-Gramm "The" im nächsten Schritt tiefer gewertet wird. Da die Grossschreibung nur im Kontext des \gls{Keyword}[s] \textit{The Manchester Guardian} von Bedeutung ist.
 
 \begin{longtable}{|p{4cm}| p{1cm}|}
   \hline
@@ -106,14 +146,20 @@ Damit sind noch $14$ mögliche \gls{Keyword}[s] von ursprünglich $70$. Anschlie
     \label{keyword-with-count}
 \end{longtable}
 
+
+% ----------------------------------------------------------------
+
 \subsection{(5) Berechnung der Relevanz}\label{calcrelevance}
+
+% ----------------------------------------------------------------
+
 Um die verschiedenen \gls{Keyword}[s] zu gewichten wird ein individueller Score pro \gls{Keyword} ausgerechnent. Dazu werden folgende Metriken benötigt (\autoref{metric-per-keyword}).
 
 \begin{longtable}{|p{2cm}| p{8cm}|}
   \hline
     Metrik & Erläuterung\\\hline
-    $numDocs$ & Anzahl Dokument im Korpus  \\\hline
-    $docFreq$ & Anzahl Dokument im Korpus welche diese \gls{Keyword}[s] enthalten  \\\hline
+    $numDocs$ & Anzahl Dokument im Korpus \\\hline
+    $docFreq$ & Anzahl Dokument im Korpus welche diese \gls{Keyword}[s] enthalten \\\hline
     $docLength$ & Anzahl Wörter des spezifischen Dokumentes \\\hline
     $freq$ & Haufigkeit des \gls{Keyword}[s] innerhalb des Dokuments. \\\hline
     \caption{Benötigte Metriken}
@@ -140,13 +186,25 @@ tfidf = tf * idf^2 * lengthNorm
 
 Neben der Häufigkeit innerhalb des Dokuments ist die inverse Häu\-fig\-keit (\autoref{idf}) ein wichtiger Wert. Dadurch wird die Einzigartigkeit des \gls{Keyword}[s] innerhalb des Korpus ausgedrückt. Dieser Wert sinkt je öfter das gleiche \gls{Keyword} in andere Dokumente enthalten ist. Mittels der Addition von $1$ im Nenner innerhalb der Logarithmus Funktion wird eine Division durch Null verhindert. 
 
-Würde mittels der \autoref{tf} \& \autoref{idf} der Score berechnet werden, so würden kurz und lange Dokumente Werte in andere Bereichen produzieren. Eine Verwendungen eines Schwellwerte für Begrenzung der \gls{Keyword}[s] wäre unmöglich. Dazu wird der Wert mit Hilfe der Dokumenten-Länge normalisiert. Dazu wird mittels der \autoref{lengthNorm} der Score normalisiert
+Würde mittels der \autoref{tf} \& \autoref{idf} der Score berechnet werden, so würden kurz und lange Dokumente Werte in andere Bereichen produzieren. Eine Verwendung eines Schwellwerte für Begrenzung der \gls{Keyword}[s] wäre unmöglich. Dazu wird der Wert mit Hilfe der Dokumenten-Länge normalisiert. Dazu wird mittels der \autoref{lengthNorm} der Score normalisiert
+
+
+% ----------------------------------------------------------------
 
 \subsection{(6) Auswahl}
+
+% ----------------------------------------------------------------
+
 Schlussendlich werden die berechneten \gls{Keyword}[s] mithilfe eines Schw\-el\-werts begrenzt, somit wird eine Sinnvolle Anzahl an Dokumenten zurückgegeben. Im Gegensatz zu einer Limitierung der Anzahl \gls{Keyword}[s] kann mit einem Schwellwert je nach Text eine Anzahl an \gls{Keyword}[s] zurückgegeben werden, welche für den Text ideal ist.
 
+
+% ----------------------------------------------------------------
+
 \subsection{Dokumente für Schlüsselwort}
-Die Gegenteilige Operation der \gls{Keyword} Extraktion ist Extraktion aller Dokument für ein bestimmtes  \gls{Keyword}. Dabei wird eine List an Dokumente erwartet, in welche ein bestimmtes \gls{Keyword} einen Höhen Score ausweisen kann. 
+
+% ----------------------------------------------------------------
+
+Die Gegenteilige Operation der \gls{Keyword} Extraktion ist Extraktion aller Dokument für ein bestimmtes \gls{Keyword}. Dabei wird eine List an Dokumente erwartet, in welche ein bestimmtes \gls{Keyword} einen Höhen Score ausweisen kann. 
 
     \begin{figure}[H]
     \centering
@@ -155,10 +213,10 @@ Die Gegenteilige Operation der \gls{Keyword} Extraktion ist Extraktion aller Dok
     \label{fig:seqdocforkeyword}
     \end{figure}
 \begin{enumerate}
-    \item  Dazu werden in einem ersten Schritt alle möglichen Dokumente ausgewählt. In dieser Menge an Dokumenten kommt das entsprechenden \gls{Keyword} mindestens einmal vor. Jedoch ungeachtet der Relvanz des \gls{Keyword}[s] für das jeweilige Dokument.
-    \item In einem nächsten Schritt wird für jedes Dokument den jeweiligen Score für das bestimmte \gls{Keyword} berechnent. Die Berechnung folgt dabei exakt der bereits gesehenen Berchnungen der Relevanz (\autoref{calcrelevance}).
+    \item Dazu werden in einem ersten Schritt alle möglichen Dokumente ausgewählt. In dieser Menge an Dokumenten kommt das entsprechenden \gls{Keyword} mindestens einmal vor. Jedoch ungeachtet der Relvanz des \gls{Keyword}[s] für das jeweilige Dokument.
+    \item In einem nächsten Schritt wird für jedes Dokument den jeweiligen Score für das bestimmte \gls{Keyword} berechnent. Die Berechnung folgt dabei exakt der bereits gesehenen Berechnungen der Relevanz (\autoref{calcrelevance}).
 
-    \item Nun werden ebenfalls die Anzahl an Resultate mit Hilfe eines Schwellwerts reduziert. Somit kann die Auswahl auf die wirklich Relevantet Dokumente für das entsprechende \gls{Keyword} vermindert werden.
+    \item Nun werden ebenfalls die Anzahl an Resultate mit Hilfe eines Schwellwerts reduziert. Somit kann die Auswahl auf die wirklich Relevanten Dokumente für das entsprechende \gls{Keyword} vermindert werden.
             
 \end{enumerate}
 
@@ -171,18 +229,23 @@ Die Gegenteilige Operation der \gls{Keyword} Extraktion ist Extraktion aller Dok
 % ----------------------------------------------------------------
 
 \section{Integration des Prototypen}
-Basierend auf der ausgeführten Architektur (\autoref{architecture}) werden im folgenden Abschnitt die wichtigsten Software-Konzepte erläutert. Dazu werden als erstes die grundlegenden Algorithmen ausgeführt. In einem zweiten Schritt wird deren Integration in den Prototypen dargelegt.
 
-Im Gegensatz zum Architektur-Entwurf befasst sich der Software-Entwurf neben den tatsächlich verwendeten Software-Lösungen auch mit der Recherche nach geeigneten Möglichkeiten.
+% ----------------------------------------------------------------
+
+Basierend auf der ausgeführten Architektur (\autoref{architecture}) werden im folgenden Abschnitt die wichtigsten Software-Konzepte erläutert. Diese werden kurz erläutert, anschliessend folgt eine Beschreibung der Integration des Prototyps in den bestehenden \gls{ikc-core}.
+
+% ----------------------------------------------------------------
 
 \subsection{Übersicht}
+
+% ----------------------------------------------------------------
 
 
 Im Klassendiagramm auf \autoref{fig:prototypeClassDiagram-easy} sieht man einen Überblick über den zu entwickelnden Prototypen. Abgebildet sind die wichtigsten Klassen und deren Beziehungen untereinander. Zunächst liegen die beiden Teile \gls{ikc-core} und \texttt{Prototype} vor. Der \gls{ikc-core} ist der aus dem Forschungsprojekt \gls{IKC} herausgehende bestehende Prototyp. Dieser nimmt Gebrauch von den beiden vom \texttt{Prototypen} zur Verfügung gestellten Schnittstellen des \texttt{Index-} und des \texttt{DataServices}.
 
 Grundsätzlich besteht der \texttt{Prototyp} aus den zwei Komponenten \texttt{Index-} und des \texttt{DataService}. Diese verwenden die von ausserhalb ver\-füg\-bar\-en Models, das \texttt{In\-dex-} und das \texttt{DataModel}. Diese enthalten die Protokolle für die jeweilige Kommunikation, werden somit auch vom \gls{ikc-core} in Anspruch genommen.
 
-Im der Implementation \texttt{Index-} beziehungsweise \texttt{DataServices}.
+Die genauen Abläufe und auch die Implementation des \texttt{Index-} beziehungsweise \texttt{DataServices} ist unter dem Abschnitt technische Umsetzung () zu finden.
 
     \begin{figure}[H]
     \centering
@@ -195,25 +258,34 @@ Der Kern der Software bildet der Algorithmus, dieser ist, neben der Suchfunktion
 
 
 \subsection{Schnittstellen}
-Der Prototyp soll sich möglichst nahtlos in den \gls{ikc-core} integrieren. Um dies zu erreichen sollen in keiner Situation Funktionen des \gls{ikc-core} blockiert werden durch den Prototypen. 
+Der Prototyp soll sich möglichst nahtlos in den \gls{ikc-core} integrieren. Um dies zu erreichen sollen in keiner Situation Funktionen des \gls{ikc-core} blockiert werden durch den Prototyp. 
 
-So werden Suchresultate des Index innerhalb der bestehenden Suche integriert und bei Bedarf aktualisiert. Die verschieden Resultate der verschiedenen Quellen sollen in Echtzeit nach ihrem Eintreffen dargestellt werden. Somit wird sich die Liste mit Resultate trotz gleichem Suchbegriff über die Zeit verändern, da weitere Resultate von entfernten Quellen eintreffen. 
+So werden Suchresultate des Index innerhalb der bestehenden Suche integriert und bei Bedarf aktualisiert. Die verschiedenen Resultate der verschiedenen Quellen sollen in Echtzeit nach ihrem Eintreffen dargestellt werden. Somit wird sich die Liste mit Resultate trotz gleichem Suchbegriff über die Zeit verändern, da weitere Resultate von entfernten Quellen eintreffen. 
 
-Weiter sollen extrahierte \gls{Keyword}[s] klar getrennt von den bestehenden Properties des Nodes als \textit{Chips} oberhalb des Titel dargestellt werden. Sowohl ein Dokument mit entsprechenden \gls{Keyword}[s] als auch eine \gls{Keyword} mit den verknüpften Dokumenten werden als Node dargestellt. \autoref{fig:bda_ui} zeigt einen Entwurf dieser Integration. 
+Weiter sollen extrahierte \gls{Keyword}[s] klar getrennt von den bestehenden Properties des Nodes als \textit{Chips} oberhalb des Titel dargestellt werden. Sowohl ein Dokument mit entsprechenden \gls{Keyword}[s] als auch eine \gls{Keyword} mit den verknüpften Dokumenten werden als Node dargestellt. \autoref{fig:bda-integration} zeigt einen Entwurf dieser Integration. 
 
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{BDA_UI}
     \caption{Entwurf Intgeration Benutzeroberfläche}
-    \label{fig:bda_ui}
+    \label{fig:bda-integration}
     \end{figure}
 
-Um die Schnittstellen des Prototype ideal zu verwenden und die obigen Oberflächenanpassungen umzusetzten, sind Anpassungen bzw. Erweiterungen in der Software Struktur des \gls{ikc-core} nötig. Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore-easy}) erläutert die wichstigsten Anpassungen:
+Um die Schnittstellen des Prototyps ideal zu verwenden und die obigen Oberflächenanpassungen umzusetzten, sind Anpassungen bzw. Erweiterungen in der Software-Struktur des \gls{ikc-core} nötig. 
+
+Auf obigen Klassendiagramm (\autoref{fig:prototypeClassDiagram-easy}) ist ersichtlich, dass sowohl der \texttt{IndexService}, als auch der \texttt{DataService} externe Schnittstellen bereit halten.
 
 %riesiges index.json, ungefähr 100k Files als Text-Dateien
 
 \section{Datenfreigabe}
-Für den Auftraggeber ist eine sichere Kommunikation. stetige Transparenz und Kontrolle über den Verbleib von benutzergenerierten Daten von hoher Wichtigkeit. Um diesen Anforderungen gerecht zu werden, wurde unter anderem ein Datenfreigabe-Konzept entwickelt. Dieses basiert auf \gls{Token}[s]. 
+Für den Auftraggeber ist eine sichere Kommunikation. stetige Transparenz und Kontrolle über den Verbleib von benutzergenerierten Daten von hoher Wichtigkeit. Um diesen Anforderungen gerecht zu werden, wurde unter anderem ein Datenfreigabe-Konzept entwickelt. Dieses basiert auf Einweg \gls{Token}[s], welche als Schlüssel für die Freigabe verwendet werden.  Dabei fordert einen \textit{Accessor} beim \textit{Provider} den Zugriff auf eine Ressource. Der \textit{Provider} hält dabei die Informationen für den Zugriff auf die Ressourcen und der \texttt{DataService} regelt den tasächlichen Zugriff auf die Ressource. In \autoref{fig:seqaccesssession-easy} ist der Ablauf genauer aufgezeigt:
+\begin{itemize}
+    \item Als erster Schritt fordert der \textit{Accessor} beim \textit{Provider} Zugriff auf eine Ressource.
+    \item Der \textit{Provider} sendet nun die nötigen Informationen für die Verbindung auf die Ressource an den \textit{DataService} und fordert einen Token.
+    \item Sobald der Token generiert wurde, erhält der \textit{Provider} dieser und sendet ihn an den \textit{Accessor}.
+    \item Anschliessend kann der \textit{Accessor} mithilfe des Token beim \texttt{DataService} den Inhalt der Ressource anfragen.
+    \item Beim Erhalt eines Token überprüft nun den \texttt{DataService} den Token auf deren Gültigkeit überprüft. Ist der Token gültig werden die Daten anhand der Informationen zur Verbindungen von der externen Datenquelle bezogen und an den \textit{Accessor} geliefert. Anschliessend wird der Token gelöscht, so dass er nicht wiederholt verwendet werden kann.
+\end{itemize}
 
 
 
@@ -232,3 +304,79 @@ Für den Auftraggeber ist eine sichere Kommunikation. stetige Transparenz und Ko
 
 
 \section{Auto-Indexierung}
+
+
+\section{Variantendiskussion}
+
+Welche Libraries werden aus welchen Gründen verwendert?
+
+\subsection{Algorithmus}
+
+Die Berechnung der Relevanz (\autoref{calcrelevance}) ist eine der zentralsten Aufgaben des Algorithmus. Die Schwierigkeit dabei liegt in der benötigten Ausgewogenheit der gesuchten Formel. Relevante \gls{Keyphrase}[s] sollen sowohl spezifische sein für den jeweiligen Text, jedoch auch ein gewisse Generalisierung aufweisen.  Dazu wurden verschiedenen Varianten geprüft:
+
+\begin{itemize}
+    \item Die Standard \textit{tfidf} (\autoref{default}) ist ein der verbreitetsten Formeln zur Relevanz Berechnung. Sie ist einfach zu berechnen und ist gut geeignet für eine Suche oder einen Dokumenten Ähnlichkeit. Jedoch ist nicht normalisiert und somit der Vergleich von Dokumenten unterschiedlicher Längen eher schwer. Dies wird benötigt um einen einheitlichen Schwellwert für relevante \gls{Keyphrase}[s] zu definieren. Weiter können sehr spezifische Begriffe extrem hoch gewertete \gls{Keyphrase}[s] werden. Obwohl sie nicht optimal sind für ein Abstraktion des Textes. 
+    \begin{equation}\label{default}
+    \underbrace{termDocFreq}_\text{\textbf{TF}} * \underbrace{ (1 +log( \frac{numDocs}{1 + docFreq}))}_\text{\textbf{IDF}}
+    \end{equation}
+    \item Basierend auf \autoref{default} wird bei der \autoref{default-modified} der \textit{IDF} Wert mit der Häufigkeit (\textit{termFreq}) des \gls{Keyphrase} innerhalb des Korpus berechnet und nicht mit der Anzahl Dokumente (\textit{docFreq}) welcher dieser \gls{Keyphrase} enthält. 
+    \begin{equation}\label{default-modified}
+    \underbrace{termDocFreq}_\text{\textbf{TF}} *  \underbrace{ (1 +log( \frac{numDocs}{1 + termFreq}))}_\text{\textbf{IDF}} 
+    \end{equation}
+    \item Die \autoref{default-modified-norm} erweitert die \autoref{default-modified} mit einer Normalisierung. Dadurch werden \gls{Keyphrase}[s] von Dokumenten, verschiedener Längen, vergleichbar. Dabei wird der \textit{TF} Wert durch die Länge des jeweiligen Dokument dividiert.
+    \begin{equation}\label{default-modified-norm}
+    \underbrace{ \frac{1}{length} }_\text{\textbf{norm}}  * \underbrace{termDocFreq}_\text{\textbf{TF}} *  \underbrace{ (1 +log( \frac{numDocs}{1 + termFreq}))}_\text{\textbf{IDF}}
+    \end{equation}
+    \item \autoref{lucene} beschreibt eine von \gls{Lucene} verwendete Formel zur Relevanz Berechnung. Dazu wurde die \textit{tfidf} als Grundlage verwendet und angepasst. Dazu wurde Anstelle von des \textit{TF} Wertes, die Wurzel davon und Anstelle des \textit{IDF} Wertes das Quadrat des \textit{IDF} Wertes verwendet. Weiter wurde eine Normalisierung eingeführt, dazu wird der Ganz Term mit der Wurzel der Textlänge dividiert. Mit diesen Anpassungen wurde der Stellenwert des \textit{IDF} Wertes erhöht, damit werden automatisch \gls{Keyphrase}[s] welche sehr selten in anderen Dokumenten vorkommen höher gewichtet. Dies geschieht durch die Quadrierung des \textit{IDF} Wertes und der Radizierung des \textit{TF} Wertes.
+    \begin{equation}\label{lucene}
+    \underbrace{ \frac{1}{sqrt(length)} }_\text{\textbf{norm}} * sqrt(\underbrace{termDocFreq}_\text{\textbf{TF}}) *  (\underbrace{(1 +log( \frac{numDocs}{1 + termFreq}))}_\text{\textbf{IDF}})^{2}
+    \end{equation}
+\end{itemize}
+
+
+\subsection{Kommunikation}
+
+\subsubsection{Websocket}
+
+Für den Transport über das Netzwerk sind \gls{Websocket}[s] eine erste Möglichkeit. Im Umgang mit kleinen Dateien sind \gls{Websocket}[s] eine einfache und schlanke Lösung. Für grosse Dateien sind sie alleine aber nicht ausreichend, da man schnell den verfügbaren Arbeitsspeicher überschreitet und auch die maximale String-Länge begrenzt ist. Für den Umgang mit grossen Dateien ist somit die Verwendung von \gls{Stream}[s] und \gls{Buffer}[s] Pflicht. 
+
+
+\subsubsection{Stream}
+
+% Für einen asynchronen Datentransfer von grossen Dateien über das Netzwerk sind \gls{Stream}[s] eine Möglichkeit. Sie funktionieren prinzipiell analog zu grundlegenden Streams in Unix-Systemen. Streams teilen die Gesamtheit der zu sendenden oder zu empfangenden Daten in eine Sequenz von kleineren Daten auf. Die Übertragung verläuft kontinuierlich ab.
+
+Die Verwendung von \gls{Stream}[s] auf Basis von \gls{Websocket}[s] führ\-te mit der Bi\-blio\-thek \textit{websocket-stream}\footnote{\url{https://github.com/maxogden/websocket-stream}} leider ebenfalls nicht zum Erfolg. Da die Verwendung der verschiedenen \gls{Stream}[s] Probleme mit sich führte, wessen Ursprung nicht gefunden werden konnte.
+
+Zu diesem Zeitpunkt war festgelegt, dass für die Übermittlung definitiv Streams verwendet werden müssen. Also konnte die Recherche weiter eingeschränkt werden.
+
+
+\subsubsection{Bibliotheken}
+
+
+\textit{Delivery.js}\footnote{\url{https://github.com/liamks/Delivery.js}} war die nächste interessante Bibliothek. Der Status \glqq Experimental\grqq war nicht der Grund für den Entscheid gegen diese Bibliothek. Vielmehr ist sie für eine Verwendung direkt mit \texttt{FileStreams}, also direkt mit der \texttt{I/O} vorgesehen. Zwar werden im Prototypen auch \texttt{FileStream} verwendet, jedoch werden die \gls{Stream}[s] nicht direkt über das Netzwerk weitergeleitet, sondern die einzulesenden Daten müssen zusätzlich noch verändert werden. \textit{Delivery.js} basiert auf \texttt{node-streams} und \texttt{socket.io}.
+
+
+% https://github.com/nkzawa/socket.io-stream
+% http://msgpack.org
+% https://nodejs.org/api/stream.html
+% https://github.com/substack/stream-handbook
+% https://books.google.ch/books?hl=de&lr=&id=YgdbZbkTDkoC&oi=fnd&pg=PT9&dq=socket.io&ots=TVDh5nhPCQ&sig=kcHauykErOKQuNAtqxfNs5JahxM#v=onepage&q=socket.io&f=false
+
+%streams, pakete, Protokoll
+
+% https://allesagil.net/category/projektmanagement/
+
+
+\subsubsection{JSON}
+
+Ein oft gesehenes weiteres Problem ist die Verwendung von \texttt{JSON\-.parse} und oder \texttt{JSON.stringify}.
+Die Bibliothek \textit{bfj}\footnote{\url{https://github.com/philbooth/bfj}} kündigt an mit grossen Dateien arbeiten zu können, verwendet im Hintergrund aber die oben genannten Funktionen, welche nicht performant im Umgang mit grossen Dateien sind und zusätzlich ebenfallls auf die maximale String-Länge beschränkt sind.
+
+\subsubsection{MessagePack}
+
+Wie auch in\cite{msgpack-conf}[S.69-70] angemerkt erzielt man mit MessagePack für die Serialisierung ähnlich Resultate. Diese sind aber kleiner als mit JSON. Darum wurde auch hier MessagePack bevorzugt.
+
+
+\subsection{Persistenz}
+
+% begrenzt von API, grosse Datenmenge, viele Files
