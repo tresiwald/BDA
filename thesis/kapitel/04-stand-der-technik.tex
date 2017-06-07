@@ -1,6 +1,12 @@
+
+
+%---------------------------------------------------------------------
+
 \chapter{Stand der Technik} \label{literatur}
 
-Folgend werden bestehende literarische Grundlagen für die vorliegende Arbeit aus Forschung und Entwicklung kurz zusammengefasst und die wichtigsten Punkte aufgezeigt. Der Inhalt befasst sich vorwiegend mit Konzepten, Theorien und Begrifflichkeiten, welche für das tiefere Verständnis der vorliegenden Thematik unabdingbar sind. Auch wurden bestehende Verfahren, welche ähnliche Ziele haben, genauer untersucht.
+%---------------------------------------------------------------------
+
+Im Folgenden werden bestehende literarische Grundlagen für die vorliegende Arbeit aus Forschung und Entwicklung kurz zusammengefasst und die wichtigsten Punkte aufgezeigt. Der Inhalt befasst sich vorwiegend mit Konzepten, Theorien und Begrifflichkeiten, welche für das tiefere Verständnis der vorliegenden Thematik unabdingbar sind. Auch wurden bestehende Verfahren, welche ähnliche Ziele haben, genauer untersucht.
 
 
 %\url{http://www2.hawaii.edu/~lipyeow/ics624/2011spr/extracting-concepts-1.pdf}\\
@@ -8,11 +14,17 @@ Folgend werden bestehende literarische Grundlagen für die vorliegende Arbeit au
 %\url{https://www.burakkanber.com/blog/machine-learning-full-text-search-in-javascript-relevnce-scoring/}\\
 
 
+%---------------------------------------------------------------------
+
 \section{Wissensmanagement}
+
+%---------------------------------------------------------------------
+
+
 Die Grundlage dieser Arbeit bilden die Daten eines Nutzers. Diese alleine sind aber noch von keinem grossen Nutzen. Wie \cite{bellinger2004data}
- zeigen, beschäftigt man sich häufig mit der Übertragung und dem Empfang von Information. Viel weniger befasst man sich aber mit demselbigen mit der Grundlage von Wissen oder gar Verständnis. 
+ zeigen, beschäftigt man sich häufig mit der Übertragung und dem Empfang von Informationen. Viel weniger befasst man sich aber mit derselbigen mit der Grundlage von Wissen oder gar Verständnis. 
  
- Auch die Unterscheidung von Daten, Information und Wissen ist selten explizit festgelegt. Für ein tieferes Verständnis hilft folgendes Zitat  aus \cite{ackoff1989data}. Es stellt die Dimensionen zwischen den verschiedenen Ausdrücken her: Daten bilden die Grundlage. Informationen basieren auf Daten, besitzen aber bereits einen grossen Mehrwert. Der nächste Schritt ist der Aufbau von Wissen, auf diese basiert wiederum auf Informationen und somit Daten. Versteht man nun das Wissen zusätzlich ist man am Ziel angelangt. Die Daten sind vollkommen genutzt, man erlangt den grössten Mehrwert. Eine Definition der Ausdrücke folgt im nächsten Absatz.
+ Auch die Unterscheidung von Daten, Informationen und Wissen ist selten explizit festgelegt. Für ein tieferes Verständnis hilft folgendes Zitat  aus \cite{ackoff1989data}. Es stellt die Dimensionen zwischen den verschiedenen Ausdrücken her: Daten bilden die Grundlage. Informationen basieren auf Daten, besitzen aber bereits einen grossen Mehrwert. Der nächste Schritt ist der Aufbau von Wissen, und dieses basiert wiederum auf Informationen und somit Daten. Versteht man nun das Wissen zusätzlich, ist man am Ziel angelangt. Die Daten sind vollkommen genutzt, man erlangt den grössten Mehrwert. Eine Definition der Ausdrücke folgt im nächsten Absatz.
 
 \begin{quote}\label{wissen-zitat}
 \textit{An ounce of information is worth a pound of data.}\\
@@ -21,11 +33,16 @@ Die Grundlage dieser Arbeit bilden die Daten eines Nutzers. Diese alleine sind a
 \end{quote}
 
  \cite{bellinger2004data} definieren diese Ausdrücke folgendermassen:
- Daten sind Zeichen oder Symbole, welche Eigenschaften von Inhalten repräsentieren. Information besteht aus aufbereiteten oder verarbeiteten Daten. Diese Vorgänge haben das Ziel die Bedeutung und den Nutzen der Daten zu erhöhen. Wissen ist eine Sammlung an Information. Es ist ein Prozess, welcher zum Ziel hat die Informationen nützlich zu gestalten.
+ Daten sind Zeichen oder Symbole, welche Eigenschaften von Inhalten repräsentieren. Informationen bestehen aus aufbereiteten oder verarbeiteten Daten. Diese Vorgänge haben das Ziel, die Bedeutung und den Nutzen der Daten zu erhöhen. Wissen ist eine Sammlung an Informationen. Es ist ein Prozess, welcher zum Ziel hat, die Informationen nützlich zu gestalten.
  
- Nach \cite{chen2005information} ist der Wert von Information geben durch Zeitlosigkeit, Zugänglichkeit, Zuverlässigkeit und Verfügbarkeit. Ähnlich wichtig in \cite{choo1996knowing} sind aber die Bedürfnisse des Nutzers. Eine weitere, offenere Definition stammt von \cite{bierly2000organizational}: Informationen sind bedeutungsvolle und nützliche Daten, welche das Verständnis von Informationen klarer machen. Wissen (nach \cite{barlas2005self}) ist eine Aggregation von ähnlichen oder zusammen gehörigen Informationen. 
+ Nach \cite{chen2005information} ist der Wert von Informationen gegeben durch Zeitlosigkeit, Zugänglichkeit, Zuverlässigkeit und Verfügbarkeit. Ähnlich wichtig in \cite{choo1996knowing} sind aber die Bedürfnisse des Nutzers. Eine weitere, offenere Definition stammt von \cite{bierly2000organizational}: Informationen sind bedeutungsvolle und nützliche Daten, welche das Verständnis von Informationen klarer machen. Wissen nach \cite{barlas2005self} ist eine Aggregation von ähnlichen oder zusammengehörigen Informationen. 
+
+%---------------------------------------------------------------------
 
 \subsection{Bedeutung in dieser Arbeit}
+
+%---------------------------------------------------------------------
+
 
 %Für die Definition von Information gibt es verschiedene Quellen: Nach \cite{chen2005information} ist der Wert von Information geben durch Zeitlosigkeit, Zugänglichkeit, Zuverlässigkeit und Verfügbarkeit. Ähnlich wichtig in \cite{choo1996knowing} sind aber die Bedürfnisse des Nutzers. Eine weitere, offenere Definition stammt von \cite{bierly2000organizational}: Informationen sind bedeutungsvolle und nützliche Daten.
 
@@ -44,13 +61,32 @@ In der vorliegenden Arbeit wird alles als Information verstanden, was auf Nutzer
 
 %http://geoffreyanderson.net/capstone/export/37/trunk/research/ackoffDiscussion.pdf
 
+
+%---------------------------------------------------------------------
+
+\section{Intuitive Knowledge Connectivity}\label{s-ikc}
+
+%---------------------------------------------------------------------
+
+Das Forschungsprojekt Intuitive Knowledge Connectivity (IKC)\footnote{\url{https://www.hslu.ch/en/lucerne-university-of-applied-sciences-and-arts/research/projects/detail/?pid=3631}} der Hochschule Luzern Informatik ist die Grundlage für diese Bachelor-Arbeit. Aus diesem Grund ist hier für das tiefere Verständnis der Thematik eine kurze Einführung zu finden (siehe auch \cite{kaufmann2016intuitive}).
+
+Wie auch zu sehen in \cite{manyika2011big} bringt Big Data Herausforderungen mit sich. Das steigende Volumen und die immer detaillierten Informationen, zusammen mit Trends wie Social Media und Internet Of Things, führen schnell zu exponentiellem Wachstum der Daten. Die immense Flut gilt es auszuwerten und mit einem Mehrwert produktiv zu nutzen.
+
+Im unternehmerischen Umfeld gibt es diverse Möglichkeiten für die Verarbeitung und die Analyse der Daten. Diese agieren immer im Kontext der Unternehmung als Ganzes. Vor ähnlichen Problemen, wie grosse Unternehmungen, stehen aber auch immer mehr Einzelpersonen. IKC befasst sich darum mit dem persönlichen Datenmanagement in Zusammenhang mit Big Data und Cloud Computing.
+
+Die bestehenden Ansätze der Verarbeitung bilden die Grundlage. IKC geht aber einen Schritt weiter, indem es Verbindungen über die Grenzen von verschiedenen Cloud-Dienstleistern ermöglicht. Einzelpersonen können so ihr persönliches, plattformübergreifenden Wis\-sens\-netz\-werkes aufbauen. Durch die Verknüpfung von Daten aus den verschieden Quellen entsteht neues und wertvolles Wissen. Gleichzeitig ermöglicht die Aggregation eine einheitliche Verwaltung und Suche der eigentlich verteilten Informationen.
+
+Aus der Forschung ging ein \gls{PoC} hervor, welcher die vorgeschlagenen Konzepte anhand von Dropbox, Evernote und Weblinks erfolgreich umsetzt. Dieser Prototyp bildet die Grundlage für die Implementation dieser Arbeit.
+
+
+
 %---------------------------------------------------------------------
 
 \section{Artifical Intelligence}
 
 %---------------------------------------------------------------------
 
-Wie \cite{Russell:2009:AIM:1671238} aufzeigen ist \gls{Artifical Intelligence} im Allgemeinen als Versuche eines Systems menschliches Verhalten beziehungsweise Intelligenz zu automatisieren oder zu simulieren definiert. Die Definition solcher Systeme kann grundsätzlich in vier Kategorien aufgeteilt werden: 
+Wie \cite{Russell:2009:AIM:1671238} aufzeigen, ist \gls{Artifical Intelligence} im Allgemeinen als Versuch eines Systems, menschliches Verhalten beziehungsweise Intelligenz zu automatisieren oder zu simulieren, definiert. Die Definition solcher Systeme kann grundsätzlich in vier Kategorien aufgeteilt werden: 
 
 \begin{itemize}
     \item Systeme, die wie Menschen denken.
@@ -59,8 +95,7 @@ Wie \cite{Russell:2009:AIM:1671238} aufzeigen ist \gls{Artifical Intelligence} i
     \item Systeme, die rational denken.
 \end{itemize}
 
-Menschliche Systeme unterscheiden sich von rationalen, indem sie versuchen Entscheidung mit dem Menschen gleichen oder ähnlichen Prozessen zu fällen. Während rationale Systeme Entscheidungen basierend auf den vorliegenden Daten treffen. Diese Unterschiede zeigen gleichzeitig auch die Evolution in der Forschung im Bereich von \gls{Artifical Intelligence} an. Bis 1970 wurde versucht ein System zu entwickeln, welches wie ein Mensch denkt und handelt. Von 1970 an gelangten jedoch Systeme mit einer rationalen Intelligenz in den Fokus, welche jederzeit die richtige Entscheidung treffen können.
-
+Menschliche Systeme versuchen Entscheidungen mit dem Menschen ähnlichen Prozessen zu fällen. Während rationale Systeme Entscheidungen basierend auf den vorliegenden Daten treffen. Diese Unterschiede zeigen gleichzeitig auch die Evolution in der Forschung im Bereich von \gls{Artifical Intelligence} an. Bis 1970 wurde versucht, ein System zu entwickeln, welches wie ein Mensch denkt und handelt. Von 1970 an gelangten jedoch Systeme mit einer rationalen Intelligenz, welche jederzeit die richtige Entscheidung treffen können, in den Fokus.
 
 Systeme, welche Verfahren aus dem Feld von \gls{Artifical Intelligence} anwenden, werden auch Agenten genannt. Abhängig vom gewählten Verfahren, entscheiden solche Agenten, auf Grund unterschiedlicher Argumentation, wie auf ein Ereignis zu reagieren ist. Dabei werden drei unterschiedliche Ebenen der Argumentation unterschieden:
 \begin{itemize}
@@ -70,11 +105,11 @@ Systeme, welche Verfahren aus dem Feld von \gls{Artifical Intelligence} anwenden
 \end{itemize}
 Diese verschiedenen Ebenen unterstützen die Entscheidung zur Auswahl von Teildaten, welche für den jeweiligen Anwendungsfall wichtig sind.
 
-So beeinflussen sich die Anzahl von Verbindungen einer Mobilantenne neben einem Autobahnabschnitt und das Stau-Aufkommen auf dem gleichen Abschnitt gegenseitig. Während der Wochentag und der Geburtstag des Beifahrers keinen Einfluss auf das Stauaufkommen haben. Dies obwohl sie zu diesem Zeitpunkt in einer Beziehung zu einander stehen.
+So beeinflussen sich beispielsweise die Anzahl von Verbindungen einer Mobilantenne neben einem Autobahnabschnitt und das Stau-Aufkommen auf dem gleichen Abschnitt gegenseitig. Während der Wochentag und der Geburtstag des Beifahrers keinen Einfluss auf das Stauaufkommen haben. Dies obwohl sie zu diesem Zeitpunkt in einer Beziehung zu einander stehen.
 
 %---------------------------------------------------------------------
 
-\section{\gls{Machine Learning}}
+\section{\glsentrytext{Machine Learning}}
 
 %---------------------------------------------------------------------
 
@@ -84,22 +119,22 @@ Neben \gls{Natural Language Processing} oder \gls{Computer Vision} ist \gls{Mach
 \begin{itemize}
     \item \textbf{Supervised learning}: Anhand von beobachteten und beschrifteten Ereignissen und den dazugehörigen Aktionen lernt der Agent eine Funktion, mit welcher er auf zukünftige Ereignisse reagieren kann. Zum Beispiel die Erkennung von Früchten auf Bildern, anhand einer Bildmenge, welche mit der jeweiligen Frucht beschriftet ist.
     \item \textbf{Unsupervised learning}: Innerhalb von beobachteten und unbeschrifteten Daten erkennt der Agent Muster, welche er nutzt, um auf zukünftige Ereignisse zu reagieren. So erkennt beispielsweise ein Navigationssystem Tage mit viel Stau anhand der Fahrzeit für eine zurückgelegte Strecke. Dies funktioniert ohne Datensätze, welche einen Tag mit viel Stau beschreiben.
-    \item \textbf{Reinforcement learning}, basierend auf einer Belohnung lernt ein Agent, mit welcher Reaktion er eine bestimmte Situation entgegnen muss. So kann zum Beispiel ein lauffähiger Roboter lernen, wie er Hindernisse im Gelände bewältigen kann. Dabei ist es denkbar, dass die Aktion durch die verschiedenen Winkel seiner Gelenke und der Geschwindigkeit gegeben ist. Diese optimiert er anschliessend anhand der Belohnung. Die Belohnung ist ein Indikator für den Erfolg oder den Nichterfolg.
+    \item \textbf{Reinforcement learning}: Basierend auf einer Belohnung lernt ein Agent, mit welcher Reaktion er eine bestimmte Situation entgegnen muss. So kann zum Beispiel ein lauffähiger Roboter lernen, wie er Hindernisse im Gelände bewältigen kann. Dabei ist es denkbar, dass die Aktion durch die verschiedenen Winkel seiner Gelenke und der Geschwindigkeit gegeben ist. Diese optimiert er anschliessend anhand der Belohnung. Die Belohnung ist ein Indikator für den Erfolg oder den Nichterfolg.
 \end{itemize}
 
 %---------------------------------------------------------------------
 
-\section{\gls{Natural Language Processing}}\label{natural-language-processing}
+\section{\glsentrytext{Natural Language Processing}}\label{natural-language-processing}
 
 %---------------------------------------------------------------------
 
 Unter \gls{Natural Language Processing} wird die maschinelle Verarbeitung von natürlicher Sprache (Wort und Schrift) verstanden. Dabei werden Methoden und Erkenntnisse aus der klassischen \gls{Linguistik} angewendet. So können Wortarten bestimmt, Wortstämme gebildet oder Satzstrukturen analysiert werden. Mit Hilfe solcher Informationen können Algorithmen formuliert werden. Diese können zum Beispiel eine Stimmungsanalyse von Texten durchzuführen. 
 
 \begin{quote}
-Generally speaking, systems based entirely on natural language concepts are not at all competitive with systems based on statistical analysis of texts.
-\\\cite{kantor2001foundations}\end{quote}
+Generally speaking, systems based entirely on natural language concepts are not at all competitive with systems based on statistical analysis of texts.\\\cite{kantor2001foundations}
+\end{quote}
 
-Grundsätzlich sind Algorithmen, welche ausschliesslich auf Konzepten der natürlichen Sprache aufbauen, nicht vergleichbar mit denjenigen, welche lediglich auf statistischen Analysen beruhen. Aber sprachwissenschaftliche Konzepte als zusätzliche Basis einer Analyse sind durchaus wertvoll.
+Grundsätzlich sind Algorithmen, welche ausschliesslich auf Konzepten der natürlichen Sprache aufbauen, nach \cite{kantor2001foundations} nicht vergleichbar mit denjenigen, welche lediglich auf statistischen Analysen beruhen. Aber sprachwissenschaftliche Konzepte als zusätzliche Basis einer Analyse sind durchaus wertvoll.
 
 %---------------------------------------------------------------------
 
@@ -107,7 +142,7 @@ Grundsätzlich sind Algorithmen, welche ausschliesslich auf Konzepten der natür
 
 %---------------------------------------------------------------------
 
-Ein wichtiger Begriff in diesem Kontext ist \textit{Tokenization} im Sinne von \cite{grefenstette1994word}. Ein zu verarbeitender Text ist in diesem Stadium repräsentiert durch einen langen String, welcher aus einer aneinandergereihten Zeichen besteht. Der Vorgang des \textit{Tokenization} teilt diesen Text zunächst nach Satz- und Sonderzeichen auf. Anschliessend werden die Sätze und Satzteile (beispielsweise nach Leerschlägen) in einzelne Einheiten (Tokens) auf gesplittet. Diese können in einem späteren Schritt in bestimmte syntaktische Klassen eingeteilt werden.
+Ein wichtiger Begriff in diesem Kontext ist \textit{Tokenization} im Sinne von \cite{grefenstette1994word}. Ein zu verarbeitender Text ist in diesem Stadium repräsentiert durch einen langen String. Er besteht aus aneinandergereihten Zeichen. Der Vorgang des \textit{Tokenization} teilt den Text zunächst nach Satz- und Sonderzeichen auf. Anschliessend werden die Sätze und Satzteile (beispielsweise nach Leerschlägen) in einzelne Einheiten (Tokens) aufgesplittet. Diese können in einem späteren Schritt in bestimmte syntaktische Klassen eingeteilt werden.
 
 %---------------------------------------------------------------------
 
@@ -115,10 +150,9 @@ Ein wichtiger Begriff in diesem Kontext ist \textit{Tokenization} im Sinne von \
 
 %---------------------------------------------------------------------
 
-Beim \textit{Stemming} geht es um die Entfernung von Suffixen eines Wortes. Wörter die grundsätzlich eine ähnliche Bedeutung oder einen ähnlichen Ursprung haben, besitzen oftmals einen gemeinsamen Wortstamm. Durch den Verzicht auf Suffix können gemeinsame Wort\-stäm\-me gefunden werden.
-\\\cite{porter1980algorithm}
+Beim \textit{Stemming} geht es nach \cite{porter1980algorithm} um die Entfernung von Suffixen eines Wortes. Wörter, die grundsätzlich eine ähnliche Bedeutung oder einen ähnlichen Ursprung haben, besitzen oftmals einen gemeinsamen Wortstamm. Durch den Verzicht auf Suffixe können gemeinsame Wort\-stäm\-me gefunden werden.
 
-Dies kann beispielsweise soweit gehen, dass Nomen und Verben auf einen gemeinsamen Wortstamm reduziert werden können. Dies ist aber nicht das in jeder Situation gewünschte Endergebnis, denn oftmals ist es wichtig die Wortarten unterscheiden zu können. Mit \textit{Stemming} ist immer auch ein Informationsverlust verbunden. 
+Dies kann beispielsweise soweit gehen, dass Nomen und Verben auf einen gemeinsamen Wortstamm reduziert werden können. Dies ist aber nicht das in jeder Situation gewünschte Endergebnis, denn oftmals ist es wichtig, die Wortarten unterscheiden zu können. Mit \textit{Stemming} ist immer auch ein Informationsverlust verbunden. 
 
 %---------------------------------------------------------------------
 
@@ -127,7 +161,7 @@ Dies kann beispielsweise soweit gehen, dass Nomen und Verben auf einen gemeinsam
 %---------------------------------------------------------------------
 
 % https://nlp.stanford.edu/IR-book/pdf/irbookonlinereading.pdf
-Als \textit{Stopwords} bezeichnet man, wie beschrieben in \cite{manning2008introduction}, üblicherweise sehr häufig vorkommende Wörter, welche zwar eine grammatikalische Funktion aber für die Gewinnung von Informationen keine weitere Bedeutung haben. Deren Funktion ist eher von syntaktischer anstelle semantischer Natur. Für die Ermittlung dieser \textit{Stopwords} gibt es nach \cite{manning2008introduction} und \cite{wilbur1992automatic} sowohl statistische als auch heuristische (regelbasierte) Verfahren.
+Als \textit{Stopwords} bezeichnet man, wie beschrieben in \cite{manning2008introduction}, üblicherweise sehr häufig vorkommende Wörter, welche zwar eine grammatikalische Funktion aber für die Gewinnung von Informationen keine weitere Bedeutung haben. Deren Funktion ist eher von syntaktischer als semantischer Natur. Für die Ermittlung dieser \textit{Stopwords} gibt es nach \cite{manning2008introduction} und \cite{wilbur1992automatic} sowohl statistische als auch heuristische (regelbasierte) Verfahren.
 
 %---------------------------------------------------------------------
 
@@ -137,7 +171,11 @@ Als \textit{Stopwords} bezeichnet man, wie beschrieben in \cite{manning2008intro
 
 % http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.121.2604&rep=rep1&type=pdf
 
-\cite{manning1999foundations,brill1992simple,brill1994some}
+Wie in \cite{manning1999foundations,brill1992simple,brill1994some} erläutert, ordnet der Prozess des \textit{Part of Speech Tagging} einem Wort eine entsprechenden Wortart zu. Dabei werden die verschiedenen Algorithmen in regelbasierte und stochastische Algorithmen unterschieden. 
+
+Regelbasierte nutzten eine Menge an Regeln, welche zur Bestimmung der Wortart verwendet werden. Solche Regeln können zum Beispiel, ein Wort einer Wortart, eine Endung einer Wortart oder einem Wort anhand von den umliegenden Wörter eine Wortart zuweisen. Diese Regeln sind fix im Algorithmus Codiert. 
+
+Bei der Verwendung einem stochastischen Algorithmus werden als erstes Wörter in Trainingsdaten manuell einer Wortart zugeordnet. Anhand diese Trainingsdaten können nun Regeln berechnet werden, welche sich der Wortabfolge orientieren. Bei der Verwendung des Algorithmus wird pro Wort die Wahrscheindlichste Wortart verwendet.
 
 
 % http://www.dtic.mil/dtic/tr/fulltext/u2/a460532.pdf
@@ -154,7 +192,7 @@ Als \textit{Stopwords} bezeichnet man, wie beschrieben in \cite{manning2008intro
 
 %---------------------------------------------------------------------
 
-\section{\gls{Textanalyse}}
+\section{\glsentrytext{Textanalyse}}
 
 %---------------------------------------------------------------------
 
@@ -164,27 +202,37 @@ Durch den Prozess der \gls{Textanalyse} (oder Text Mining nach \cite{tan1999text
 
 %---------------------------------------------------------------------
 
-\subsection{\gls{Volltextsuche}}
+\subsection{\glsentrytext{Volltextsuche}}
 
 %---------------------------------------------------------------------
 
-Unter \gls{Volltextsuche} versteht man die Funktionalität eine Menge von Wörtern innerhalb eines Dokumentenkorpus zu suchen und bei Erfolg auch zu finden und dann die entsprechenden Dokumente aufzuzeigen. Die Grundlage für die \gls{Volltextsuche} bildet der Volltextindex, welcher alle in einem Text vorhandenen Wörter beinhaltet.
+Unter \gls{Volltextsuche} versteht man die Funktionalität eine Menge von Wörtern innerhalb eines Dokumentenkorpus zu suchen und bei Erfolg auch zu finden. Die Grundlage für die \gls{Volltextsuche} bildet der Volltextindex, welcher alle in einem Text vorhandenen Wörter beinhaltet.
 
  % http://link.springer.com/chapter/10.1007%2F11775300_8
 
 
 %---------------------------------------------------------------------
 
-\subsection{\gls{Extraction}}\label{keyword-extraction}
+\subsection{\glsentrytext{Extraktion}}\label{keyword-extraction}
 
 %---------------------------------------------------------------------
 
-Ein mögliches Resultat der \gls{Textanalyse} stellen Schlüsselwörter (\gls{Keyword}[s]) dar. Sie fassen im Idealfall den zugrundeliegenden Text kurz und prägnant zusammen, stellen damit wichtigste semantische Informationen dar. Weiter bilden sie eine wichtige Grundlage für Dokumentenanalyse und -klassifizierung. 
-\\\cite[S.~85]{Zhang2006}
+Ein mögliches Resultat der \gls{Textanalyse} stellen Schlüsselwörter (\gls{Keyword}[s]) dar. Sie fassen im Idealfall, wie gesehen in \cite[S.~85]{Zhang2006}, den zugrundeliegenden Text kurz und prägnant zusammen, stellen damit wichtige semantische Informationen dar. Weiter bilden sie eine fundamentale Grundlage für Dokumentenanalyse und -klassifizierung.
 
 
-Für die Generierung dieser \gls{Keyword}[s] benutzt man Verfahren der \gls{Keyword Extraction}. Hierbei geht es um die Auswahl einer kleinen Menge an Wörter / Begriffe aus einem Text, welche den Inhalt oder die Bedeutung dieses möglichst gut widerspiegeln.
-\\\cite{hulth2004}
+Für die Generierung dieser \gls{Keyword}[s] benutzt man Verfahren der \gls{Keyword Extraction}. Hierbei geht nach  es \cite{hulth2004} um die Auswahl einer kleinen Menge an Wörtern oder Begriffen aus einem Text, welche den Inhalt oder die Bedeutung möglichst gut widerspiegeln.
+
+Diese \gls{Keyword}[s] bestehen aus einem oder mehreren \gls{Konzept}[en]. Konzepte beziehen sich auf Objekte, Entitäten, Ereignisse und Themen, welche für suchende Benutzer interessant sein könnten (\cite{dalvi2009web}). Die Definition ist bewusst offen gewählt, da sich eine genauere Eingrenzung schwierig gestaltet. Eine weiterführende Definition geht in Richtung Nutzen für Menschen: Sobald eine gewisse Anzahl von Personen etwas als Konzept erkennt, kann dieses als Konzept angesehen werden (\cite{parameswaran2010towards}). Das Nutzung von \gls{Konzept}[en] findet unter anderen bei Suchmaschinen, automatischem Tagging statt.
+
+Nach der Auswahl aller potentiellen \gls{Keyword}[s] wird zunächst versucht, semantisch nicht wertvolle Begriffe auszuschliessen. Dies ist ein wichtiger Schritt, denn die anschliessende Berechnung der Relevanz ist ein sehr aufwändiger Prozess. 
+
+% https://people.dsv.su.se/~hulth/thesis_hulth.pdf
+% ähnliche Arbeit? http://ceur-ws.org/Vol-706/poster13.pdf 
+
+
+% Web of Concepts http://s3.amazonaws.com/academia.edu.documents/33513575/A_Web_of_Concepts.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1493217891&Signature=bpzInfxK7UR6S%2FFuOGsr4nJCdG8%3D&response-content-disposition=inline%3B%20filename%3DA_Web_of_Concepts.pdf
+
+Vorgeschlagene Methoden für diesen Vorgang nehmen nach \cite[S.~85]{Zhang2006} oftmals sogenannte globale Kontext-Informationen zum Gebrauch. Diese beinhalten unter anderem die Häufigkeit eines Begriffes innerhalb eines Dokuments und auch die Häufigkeit eines Begriffes innerhalb des gesamten Dokumentenkorpus. %
 
 %---------------------------------------------------------------------
 
@@ -219,17 +267,7 @@ Für die Generierung dieser \gls{Keyword}[s] benutzt man Verfahren der \gls{Keyw
 
 %---------------------------------------------------------------------
 
-Diese \gls{Keyword}[s] bestehen aus einem oder mehreren \gls{Konzept}[en]. Konzepte beziehen sich auf Objekte, Entitäten, Ereignisse und Themen, welche für suchende Benutzer interessant sein könnten (\cite{dalvi2009web}). Die Definition ist bewusst offen gewählt, da sich eine genauere Eingrenzung schwierig gestaltet. Eine weiterführende Definition geht in Richtung Nutzen für Menschen: Sobald eine gewisse Anzahl von Personen etwas als Konzept erkennt, kann dieses als Konzept angesehen werden (\cite{parameswaran2010towards}). Das Nutzung von \gls{Konzept}[en] findet unter anderen bei Suchmaschinen, automatischem Tagging statt.
-
-Nach der Auswahl aller potentiellen \gls{Keyword}[s] wird zunächst versucht semantisch nicht wertvolle Begriffe auszuschliessen. Dies ist ein wichtiger Schritt, denn die anschliessende Berechnung der Relevanz ist ein sehr aufwändiger Prozess. 
-
-% https://people.dsv.su.se/~hulth/thesis_hulth.pdf
-% ähnliche Arbeit? http://ceur-ws.org/Vol-706/poster13.pdf 
-
-
-% Web of Concepts http://s3.amazonaws.com/academia.edu.documents/33513575/A_Web_of_Concepts.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1493217891&Signature=bpzInfxK7UR6S%2FFuOGsr4nJCdG8%3D&response-content-disposition=inline%3B%20filename%3DA_Web_of_Concepts.pdf
-
-Vorgeschlagene Methoden für diesen Vorgang nehmen nach \cite[S.~85]{Zhang2006} oftmals sogenannte globale Kontext-Informationen in Gebrauch. Diese beinhalten unter anderem die Häufigkeit eines Begriffes innerhalb eines Dokuments und auch die Häufigkeit eines Begriffes innerhalb des gesamten Dokumentenkorpus. % http://link.springer.com/chapter/10.1007%2F11775300_8
+% http://link.springer.com/chapter/10.1007%2F11775300_8
 % This kind of global information ignores the term's local context information and makes the extraction performance limited.
 
 %---------------------------------------------------------------------
@@ -238,13 +276,13 @@ Vorgeschlagene Methoden für diesen Vorgang nehmen nach \cite[S.~85]{Zhang2006} 
 
 %---------------------------------------------------------------------
 
-Ein Dokument, welches einen gesuchten Begriff öfters enthält als andere, ist mit grosser Wahrscheinlichkeit von grösserer Bedeutung als eines, welches den Begriff weniger oft enthält. Die Häufigkeit eines gesuchten Begriffes innerhalb eines Dokumentes ist somit ein wichtiger Teil der Gewichtung. Die Gewichtung ist die Grundlage zum Vergleich der Relevanz der verschiedenen Begriffen. Der einfachste Ansatz der Bestimmung dieser Gewichtung besteht darin diese mit der Vorkommens Häufigkeit innerhalb eines Dokumentes gleichzusetzen. Diesen Gewichtung bezeichnet man als \textit{term frequency}. In der Notation als $\text{tf}_{t,d}$ zu finden, wobei $\text{t}$ für einen Begriff (term) innerhalb eines Dokumentes $\text{d}$ steht.
+Ein Dokument, welches einen gesuchten Begriff öfters enthält als andere, ist mit grosser Wahrscheinlichkeit von grösserer Bedeutung als eines, welches den Begriff weniger oft enthält. Die Häufigkeit eines gesuchten Begriffes innerhalb eines Dokumentes ist somit ein wichtiger Teil der Gewichtung. Die Gewichtung ist die Grundlage zum Vergleich der Relevanz der verschiedenen Begriffe. Der einfachste Ansatz der Bestimmung dieser Gewichtung besteht darin, diese mit der Vorkommenshäufigkeit innerhalb eines Dokumentes gleichzusetzen. Diese Gewichtung bezeichnet man als \textit{term frequency}. In der Notation als $\text{tf}_{t,d}$ zu finden, wobei $\text{t}$ für einen Begriff (term) innerhalb eines Dokumentes $\text{d}$ steht.
 
 Die alleinige Beachtung der Häufigkeit zur Bestimmung der Relevanz bringt aber Probleme, alle Begriffe werden als gleichermassen wichtig eingestuft. Bestimmte Begriff können aber von vornherein direkt als weniger wichtig eingestuft werden. Kommt ein Begriff in einem Korpus durchgängig in allen Dokumenten häufig vor, ist es für ein einzelnes Dokument keine geeignete Grundlage für die Bestimmung der Relevanz. Denn dieses Wort hebt einen Text gegenüber dem Korpus nicht ab, ist somit keine ausreichende Repräsentation des Inhaltes.
 
-Ein erster Ansatz nach Manning (\cite{manning2008introduction}) ist die Gewichtung auf Grund der Vorkommens Häufigkeit eines Begriffes innerhalb des Korpus zu skalieren. Dieser Wert wird als \textit{collection frequency} (cf) bezeichnet. Je häuf\-iger der Begriff, umso tiefer die Gewichtung. Begriffe, welche im Allgemeinen häufig auftauchen würden so in ihrer Relevanz niedriger. 
+Ein erster Ansatz nach (\cite{manning2008introduction}) ist die Gewichtung auf Grund der Vorkommenshäufigkeit eines Begriffes innerhalb des Korpus zu skalieren. Dieser Wert wird als \textit{collection frequency} (cf) bezeichnet. Je häuf\-iger der Begriff, umso tiefer die Gewichtung. Begriffe, welche im Allgemeinen häufig auftauchen würden, so in ihrer Relevanz niedriger. 
 
-\begin{longtable}{|p{2cm}| p{1cm} | p{1cm}|}
+\begin{longtable}{|p{2cm}| p{1.2cm} | p{1cm}|}
   \hline
     Wort & cf & df \\\hline
     try & 10422 & 8760 \\\hline
@@ -256,11 +294,11 @@ Ein erster Ansatz nach Manning (\cite{manning2008introduction}) ist die Gewichtu
 \footnotetext{\cite[S.~118]{manning2008introduction}}
 
 
-Da aber versucht wird mit einer Gewichtung auf Basis von unterschiedlichen Dokumenten zu arbeiten, macht es Sinn ebenfalls einen Wert auf selber Basis zu verwenden. Darum wird die Anzahl Dokumente verwendet, welche einen bestimmten Begriff enthalten. Dieser Wert wird als Dokumentenhäufigkeit (\textit{document frequency}, df) bezeichnet und mit $\text{df}$ notiert.
+Da aber versucht wird, mit einer Gewichtung auf Basis von unterschiedlichen Dokumenten zu arbeiten, macht es Sinn ebenfalls einen Wert auf derselber Basis zu verwenden. Darum wird die Anzahl Dokumente verwendet, welche einen bestimmten Begriff enthalten. Dieser Wert wird als Dokumentenhäufigkeit (\textit{document frequency}, df) bezeichnet und mit $\text{df}$ notiert.
 
 Der Grund, warum die \textit{document frequency} bevorzugt wird, ist in \autoref{tab:vergleich-cf-df} aufgezeigt. Der cf-Wert der beiden Wörter 'insurance' und 'try' ist in etwa identisch. Doch beim df-Wert gibt es einen erheblichen Unterschied. Die beiden Werte können sich somit also durchaus sehr unterschiedlich verhalten. Zusätzlich kann man noch anmerken, dass der df-Wert mehr dem intuitiv erwarteten Resultat entspricht. Ein Schlüsselwort 'insurance' sollte relevanter sein als ein Schlüsselwort 'try'.
 
-Um nun die Gewichtung mit Basis der Dokumentenhäufigkeit zu skalieren, wird folgende Formel eingeführt:
+Um nun die Gewichtung mit der Basis der Dokumentenhäufigkeit zu skalieren, wird folgende Formel eingeführt:
 
 \[
 \text{idf}_{t}=\text{log}\frac{N}{\text{df}_{t}}
@@ -276,7 +314,7 @@ Diese bezeichnet man als inverse Dokumentenhäufigkeit (\textit{inverse document
 
 %---------------------------------------------------------------------
 
-TF-IDF ist ein Gewichtungsalgorithmus zur Bestimmung der Relevanz eines Begriffes. Wie obig schon erwähnt, nimmt er Bezug auf globale Kontext-Informationen. Er kombiniert die auf den im \autoref{gewichtung} definierten Werte.
+TF-IDF ist ein Gewichtungsalgorithmus zur Bestimmung der Relevanz eines Begriffes. Wie oben bereits erwähnt, nimmt er Bezug auf globale Kontext-Informationen. Er kombiniert die auf den im \autoref{gewichtung} definierten Werte.
 
 \[
     \text{tf-idf}_{\text{t,d}} = \text{tf}_{\text{t,d}}\times\text{idf}_\text{f}
@@ -333,9 +371,9 @@ Zur selben Zeit veröffentlichte Facebook auf eine Design-Architektur namens Flu
 %---------------------------------------------------------------------
 
 \begin{itemize}
-    \item \textbf{Microservices}: Das Microservice-Pattern gehört zufolge  \cite{microservices}[S. 1-33] zu den Service-basierten Architekturen. Services bilden die Grundlage der einzelnen Komponenten. Service-basierte Architekturen sind immer auch verteilte Architekturen. Das bedeutet weiter, dass Zugriffe über remote-access-Protkoll beispielsweise REST vorgenommen werden. Services laufen entkoppelt und eigenständig, das bedeutet weiter, dass diese einfach skaliert oder modular neu genutzt werden können.
-    \item \textbf{Message Passing}: Wie in \cite{message-passing}[S.5] beschrieben versteht man unter Message Passing das Senden und Empfangen von Nachrichten zwischen Prozessen.
-    \item \textbf{Message oriented middleware}: Message oriented Middleware (MoM) ist nach \cite{mim}[S.77-100] ein Konzept, welches sich mit der Übermittlung von Daten zwischen Applikationen oder Prozessen beschäftigt. Dies passiert über einen Kommunikationskanal, worüber unabhängige Informationseinheiten (Messages) üb\-er\-mit\-telt werden. Die Kommunikation zwischen zwei Teilnehmern funktioniert asynchron. Durch die Message-basierte Kommunikation ist eine abstrakte Entkopplung gewährleistet. Die Sender und Empfänger wissen nichts voneinander. Das Messaging System ist verantwortlich für die fehlerlose Übermittlung an die jeweiligen Empfänger.
+    \item \textbf{Microservices}: Das Microservice-Pattern gehört zufolge  \cite{microservices}[S. 1-33] zu den Service-basierten Architekturen. Services bilden die Grundlage der einzelnen Komponenten. Ser\-vice-bas\-ierte Architekturen sind immer auch verteilte Architekturen. Das bedeutet weiter, dass Zugriffe über remote-access-Protkolle, beispielsweise REST, vorgenommen werden. Services laufen entkoppelt und eigenständig. Das bedeutet weiter, dass diese einfach skaliert oder modular neu genutzt werden können.
+    \item \textbf{Message Passing}: Wie in \cite[S.~5]{message-passing} beschrieben, versteht man unter Message Passing das Senden und Empfangen von Nachrichten zwischen Prozessen.
+    \item \textbf{Message oriented middleware}: Message oriented Middleware (MoM) ist nach \cite[S.~77-100]{mim} ein Konzept, welches sich mit der Übermittlung von Daten zwischen Applikationen oder Prozessen beschäftigt. Dies erfolgt über einen Kommunikationskanal, worüber unabhängige In\-for\-ma\-tions\-ein\-hei\-ten (Messages) üb\-er\-mit\-telt werden. Die Kommunikation zwischen zwei Teilnehmern funktioniert asynchron. Durch die Mes\-sage-\-ba\-sier\-te Kommunikation ist eine abstrakte Entkopplung gewährleistet. Die Sender und Empfänger wissen nichts voneinander. Dieses Mess\-aging-System ist verantwortlich für die fehlerlose Üb\-er\-mit\-tlung an die jeweiligen Empfänger.
     
     %Message Oriented Middleware is a concept that involves the passing of data between applications using a communication channel that carries self-contained units of infor- mation (messages). In a MOM-based communication environment, messages are usu- ally sent and received asynchronously. Using message-based communications, applications are abstractly decoupled; senders and receivers are never aware of each other. Instead, they send and receive messages to and from the messaging system. It is the responsibility of the messaging system (MOM) to get the messages to their intended destinations.
  %   \item Messaging vgl MoM
@@ -357,10 +395,10 @@ Die Kommunikation beschäftigt sich mit den grundlegenden Technologien zum Austa
 
 %---------------------------------------------------------------------
 
-Representational State Transfer (REST) ist, nach einer Vielzahl an Autoren, ein Architekturstil zum Aufbau eines Web-Services. Es baut auf den Grundlagen des Webs, insbesondere dem HTTP-Protokoll, auf und ist optimiert für Web-Services. 
+Representational State Transfer (REST) ist, nach einer Vielzahl von Autoren (\cite{Fielding17:online, WebServi33:online, richardson2008restful}), ein Architekturstil zum Aufbau eines Web-Services. Es baut auf den Grundlagen des Webs, insbesondere dem HTTP-Protokoll, auf und ist optimiert für Web-Services. 
 
 
-Die Anfragen an den Server sind zustandslos, das bedeutet, sie sind komplett unabhängig von anderen Anfragen. Auch geben sie bei mehrmaliger Ausführung stets dieselbe Antwort zurück. Das bedeutet weiter, dass jede Anfrage alle für die auf dem Server für die Verarbeitung notwendigen Informationen enthält.\\\cite{Fielding17:online, WebServi33:online, richardson2008restful}
+Die Anfragen an den Server sind zustandslos. Das bedeutet, sie sind komplett unabhängig von anderen Anfragen. Zusätzlich geben sie bei mehrmaliger Ausführung stets dieselbe Antwort zurück. Das bedeutet weiter, dass jede Anfrage alle für die auf dem Server für die Verarbeitung notwendigen Informationen enthält.
 
 %\footnote{\url{http://expressjs.com}}
 
@@ -371,7 +409,7 @@ Die Anfragen an den Server sind zustandslos, das bedeutet, sie sind komplett una
 
 %---------------------------------------------------------------------
 
-Websockets bieten eine asynchrone bidirektionale (full duplex) Kommunikation zwischen Client und Server über einen Kanal, welcher über einen einzigen Socket läuft. Dies bedeutet eine enorme Reduktion von unnötigem Netzwerkverkehr und Latenz im Vergleich (Long-)Polling-Lösungen. Dies vor allem, da versucht wird mittels zwei Verbindungen das Verhalten von Websockets zu simulieren. Websockets können automatisch mit netzwerkspezifischen Umständen, wie Proxy-Server oder Firewalls, umgehen und machen so eine Verbindung praktisch überall möglich.\\\cite{AboutHTM97:online, RFC6455T98:online}
+Websockets (siehe \cite{AboutHTM97:online, RFC6455T98:online}) bieten eine asynchrone bidirektionale (full duplex) Kommunikation zwischen Client und Server. Dies funktioniert über einen Kanal, welcher über einen einzigen Socket läuft. Dies bedeutet eine enorme Reduktion von un\-nöt\-igem Netzwerkverkehr und Latenz im Vergleich zu (Long-)Polling-Lösungen. Das vor allem, da versucht wird mittels zwei Verbindungen das Verhalten von Websockets zu simulieren. Websockets können automatisch mit netzwerkspezifischen Umständen, wie beispielsweise Pro\-xy-\-Ser\-vern oder Firewalls, umgehen und machen so eine Verbindung praktisch überall möglich.
 % http://websocket.org/aboutwebsocket.html
 
 % https://davidwalsh.name/websocket
@@ -382,7 +420,7 @@ Websockets bieten eine asynchrone bidirektionale (full duplex) Kommunikation zwi
 
 %---------------------------------------------------------------------
 
-Socket.io ist eine WebSocket API, welche den Umgang mit Websockets unterstützt. Beispielsweise erkennt socket.io selbstständig, ob Web\-So\-cket in der verwendeten Umgebung unterstützt werden und sucht gegebenenfalls Alternativen:
+Socket.io ist eine WebSocket API, welche die Verwendung von Websockets unterstützt (siehe \cite{WebSocke14:online, prusty2016modern, rai2013socket}). Beispielsweise erkennt socket.io selbstständig, ob Web\-So\-cket in der verwendeten Umgebung unterstützt werden und sucht gegebenenfalls Alternativen:
 
 \begin{itemize}
     \item WebSocket
@@ -393,7 +431,7 @@ Socket.io ist eine WebSocket API, welche den Umgang mit Websockets unterstützt.
     \item JSONP polling
 \end{itemize}
 
-Diese Auswahl funktioniert automatisch im Hintergrund über eine gemeinsame API. Der Entwickler kann aber auch explizit angeben, welchen Transport er verwenden  will. Es sind diverse Bibliotheken zur Erweiterung der Funktionalität verfügbar.\\\cite{WebSocke14:online, prusty2016modern, rai2013socket}
+Diese Auswahl funktioniert automatisch im Hintergrund über eine gemeinsame API. Der Entwickler kann aber auch explizit angeben, welchen Transport er verwenden  will. Ein grosser Vorteil ist auch, dass diverse Bibliotheken zur Erweiterung der Funktionalität verfügbar sind.
 
 
 %---------------------------------------------------------------------
@@ -416,45 +454,45 @@ Nach der Sicherstellung einer Verbindung zwischen zwei Instanzen, gilt es einen 
 \subsection{JSON}\label{JSON}
 
 %---------------------------------------------------------------------
-   JavaScript Object Notation (JSON) ist ein schmales, text-basiertes und sprachunabhängiges Datenübertragungsformat. Nach \cite{bray2014json} ist es ein anerkannter Standard. Abgeleitet ist es vom Javascript-Standard (ECMA Script). Eine kleine Menge an Formatierungsregeln ist verantwortlich für die Repräsentation von strukturierten Daten.
+   JavaScript Object Notation (JSON) ist ein schmales, text-basiertes und sprachunabhängiges Datenübertragungsformat. Nach \cite{bray2014json} ist es ein anerkannter Standard. Abgeleitet ist es von Javascript (ECMA Script). Eine kleine Menge an Formatierungsregeln ist verantwortlich für die Repräsentation von strukturierten Daten.
    
    
 %---------------------------------------------------------------------
 
 \subsection{MessagePack}
 
-MessagePack\footnote{\url{http://msgpack.org}} ist ein weiteres Format zur binären Serialisierung von Daten (ähnich \autoref{JSON}). Nach \cite{izzo2016biomedical} ist es flexibler und in bestimmen Fällen leistungsfähiger als andere Lösungen wie JSON oder XML. Dies auch in Fällen der Übermittlung über das Netzwerk, wo es im vorliegenden Projekt auch Anwendung findet.
+%---------------------------------------------------------------------
+
+MessagePack\footnote{\url{http://msgpack.org}} ist ein weiteres Format zur binären Serialisierung von Daten (ähnich \autoref{JSON}). Nach \cite{izzo2016biomedical} ist es flexibler und in bestimmen Fällen leistungsfähigerer als andere Lösungen wie JSON oder XML. Dies auch in Fällen der Übermittlung über das Netzwerk, wo es im vorliegenden Projekt auch Anwendung findet.
+
 
 
 %---------------------------------------------------------------------
 
-
-
-%---------------------------------------------------------------------
-
-\section{Persistenz}
+\section{Persistenz}\label{s-persistenz}
 
 %---------------------------------------------------------------------
 
-Daten, wie der Dokumentenkorpus und die berechneten Indizes müssen persistiert werden. Dafür wurden folgende Möglichkeiten in Betracht gezogen. Von grosser Wichtigkeit ist, dass der Benutzer volle Transparenz über den Inhalt und auch den Speicherort seiner Daten hat. Zusätzlich sind Datensicherheit, Verschlüsselung und Integrität essentiell.
+Daten, wie der gesamte Dokumentenkorpus und die berechneten Indizes, müs\-sen persistiert werden. Dafür wurden folgende Mö\-glich\-kei\-ten in Betracht gezogen. Von grosser Wichtigkeit ist, dass der Benutzer stets volle Transparenz über den Inhalt und auch den Speicherort seiner Daten hat. Zusätzlich sind Datensicherheit, Verschlüsselung und Integrität essentiell.
 
 %---------------------------------------------------------------------
 
 \subsection{Dropbox}
 
 %---------------------------------------------------------------------
-Bis anhin speichert der \gls{ikc-core} die Daten in einem dafür vorgesehenen Ordner auf der Dropbox des Benutzers. Dies hat den Grund, da Dropbox ebenfalls als Datenquelle verwendet wird und so bereits eine ähnliche Anbindung verfügbar ist. Der Benutzer hat so einfach und jederzeit Einblick in die Daten seines Wissensnetzwerks.
 
-Die Anbindung ist umgesetzt mit der Javascript Implementation der Dropbox API V2\footnote{\url{https://www.dropbox.com/developers/documentation/http/documentation}}. Die Autorisierung funktioniert mittels der oauth-Bibliothek\footnote{\url{https://www.dropbox.com/developers/reference/oauth-guide}}. Zu beachten ist, dass die API gewisse Limitationen hat\footnote{https://www.dropbox.com/developers/reference/data-ingress-guide}: Unter anderem ist die Anzahl einzelner Anfragen in einer gewissen Zeitspanne begrenzt. Dem kann mittels Stapel-Methoden aber entgegengewirkt werden.
+Bis anhin speichert der \gls{ikc-core} die Daten in einem dafür vorgesehenen Ordner auf der Dropbox des Benutzers. Dies hat den Grund, das Dropbox ebenfalls als Datenquelle verwendet wird und bereits eine ähnliche Anbindung verfügbar ist. Der Benutzer hat so einfach und jederzeit Einblick in die Daten seines Wissensnetzwerks.
+
+Die Anbindung ist umgesetzt mit der Javascript Implementation der Dropbox API V2\footnote{\url{https://www.dropbox.com/developers/documentation/http/documentation}}. Die Autorisierung funktioniert mittels der oauth-Bibliothek\footnote{\url{https://www.dropbox.com/developers/reference/oauth-guide}}. Zu beachten ist, dass die API gewisse Limitationen hat\footnote{\url{https://www.dropbox.com/developers/reference/data-ingress-guide}}: Unter anderem ist die Anzahl einzelner Anfragen in einer gewissen Zeitspanne begrenzt. Dem kann mittels Stapel-Methoden aber entgegengewirkt werden.
 
 %---------------------------------------------------------------------
 
 \subsection{storj}
 
 %---------------------------------------------------------------------
-Cloud-Storage oder allgemein der Begriff Cloud ist allgegenwärtig. Der Markt ruft nach Cloud-Lösungen. Wie in \cite[S.~1-3]{wilkinson2014metadisk} dargelegt, steckt hinter dem Begriff Cloud viel Marketing um eine schon seit langem existierende Technologie. Werden Daten in der Cloud gespeichert, werden sie vom Client über TCP/IP zu einem Server in einem Datencenter übermittelt. Dies passiert schon seit den Anfängen der Informatik auf dem selben Weg. Viele dieser Cloud-Services funktionieren über zentrale Server, dies birgt Sicherheitsrisiken.
+Cloud-Storage oder allgemein der Begriff Cloud ist allgegenwärtig. Der Markt ruft nach Cloud-Lösungen. Wie in \cite[S.~1-3]{wilkinson2014metadisk} dargelegt, steckt hinter dem Begriff Cloud aber häufig viel Marketing, um eine schon seit langem existierende Technologie. Werden Daten in der Cloud gespeichert, werden sie vom Client über TCP/IP zu einem Server eines Datencenters übermittelt. Dies passiert schon seit den Anfängen der Informatik auf dem selben Weg. Viele dieser Cloud-Services funktionieren über zentrale Server, dies birgt Sicherheitsrisiken.
 
-Storj strebt ein dezentralisiertes Speichernetzwerk an, welches sich nicht auf Vertrauen zwischen Client und Host verlässt. Vor jeglicher Übermittlung werden die Daten verschlüsselt. Um dieses Ziel zu erreichen und gleichzeitig Skalierbarkeit, Kosteneffizienz und die gewünschte Sicherheit zu erreichen ist viel technisches Wissen notwendig. 
+Storj strebt ein dezentralisiertes Speichernetzwerk an, welches sich nicht auf Vertrauen zwischen Client und Host verlässt. Vor jeglicher Übermittlung werden die Daten verschlüsselt. Um dieses Ziel zu erreichen und gleichzeitig Skalierbarkeit, Kosteneffizienz und die ge\-wün\-schte Sicherheit zu erreichen, ist viel technisches Wissen notwendig. 
 
 
     \begin{figure}[H]
@@ -471,10 +509,10 @@ Das Prinzip des verteilten Netzwerks funktioniert, wie \cite[S.~2-16]{wilkinson2
 
 %---------------------------------------------------------------------
 
-\subsection{\gls{SFTP}}
+\subsection{\glsentrytext{SFTP}}
 
 %---------------------------------------------------------------------
-Über das Protokoll SFTP ist ein sicherer Datentransfer, gleichzeitig auch ein Systemzugriff, möglich. Die Spezifikation nach \cite[S.~3]{galbraith2006ssh} sagt weiter aus, das eine bereits aktive SSH-Verbindung und die entsprechende Authentifizierung vorausgesetzt wird. Grundsätzlich funktioniert es nach einem simplen Anfrage-Antwort-Modell.
+Über das Protokoll SFTP ist ein sicherer Datentransfer, gleichzeitig auch ein Systemzugriff, möglich. Die Spezifikation nach \cite[S.~3]{galbraith2006ssh} sagt weiter aus, dass eine bereits aktive SSH-Verbindung und die entsprechende Authentifizierung vorausgesetzt wird. Grundsätzlich funktioniert es nach einem simplen Anfrage-Antwort-Modell.
 
-Alle für den Prototypen notwendigen Operationen wie beispielsweise den Inhalt eines Verzeichnisses lesen und das Lesen und Schreiben von Dateien ist möglich. Weiter bietet das unterliegende SSH-Protokoll viele weitere Funktionen.
+Alle für den Prototypen notwendigen Operationen, wie beispielsweise den Inhalt eines Verzeichnisses lesen und das Lesen und Schreiben von Dateienm, ist möglich. Weiter bietet das unterliegende SSH-Protokoll viele weitere Funktionen.
 

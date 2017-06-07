@@ -1,4 +1,10 @@
+
+%---------------------------------------------------------------------
+
 \chapter{Einleitung}
+
+%---------------------------------------------------------------------
+
 
 Mit dem Forschungsprojekt \gls{IKC} als Grundlage beschäftigt sich die vorliegende Arbeit vertieft mit der Analyse von Datenquellen und der Extraktion von relevanten Informationen. Aktuell werden Datenquellen verknüpft, jedoch wird deren Inhalt noch nirgends genutzt. 
 
@@ -8,11 +14,16 @@ Mit der Analyse dieser Inhalte werden zusätzliche Informationen Teil des Wissen
 
 %Die Auswertung der Datenquellen ermöglicht dem Benutzer eine plattformübergreifende Volltextsuche und präsentiert ihm, anhand des jeweiligen Inhalts, eine Auswahl der relevanten Begriffe. Dadurch wird aus einer reinen Verknüpfung von Datenquellen eine tatsächliche Integration der Informationen.
 
-Zum besseren Verständnis werden potentiell unbekannte oder projekt-spezifische Begriffe kursiv und fett dargestellt. Zu jedem Begriff ist eine kurze Beschreibung im Glossar (\autoref{glossar}) am Ende der Dokumentation zu finden. Im Anhang sind neben der Aufgabenstellung (\autoref{aufgabenstellung}) auch die wichtigsten Sitzungsprotokolle (\autoref{protokolle}) und das Arbeitsjounrnal (\autoref{arbeitsjournal}) beigelegt. Der dokumentierte Sourcecode\footnote{\url{https://gitlab.enterpriselab.ch/ikc}} ist auf dem entsprechenden Repository der Hochschule Luzern verfügbar.
+Zum besseren Verständnis werden potentiell unbekannte oder pro\-jekt-spezifische Begriffe kursiv und fett dargestellt. Zu jedem Begriff ist eine kurze Beschreibung im Glossar (\hyperref[glossar]{Kapitel Glossar}) am Ende der Dokumentation zu finden. Im Anhang sind neben der Aufgabenstellung (\autoref{aufgabenstellung}) auch die wichtigsten Sitzungsprotokolle (\autoref{protokolle}) und das Arbeitsjounrnal (\autoref{arbeitsjournal}) beigelegt. Der dokumentierte Sourcecode\footnote{\url{https://gitlab.enterpriselab.ch/ikc}} ist auf dem entsprechenden Repository der Hochschule Luzern verfügbar.
+
+%---------------------------------------------------------------------
 
 \section{Ausgangslage}
 
-\autoref{fig:kontextdiagramm} zeigt den Kontext des zu entwicklenden Prototypen. Der Benutzer arbeitet wie anhin mit dem \gls{ikc-core}. Dieser wurde aber vor allem im Hintergrund aber auch in der Benutzeroberfläche auf die neue Funktionalität hin angepasst und optimiert. Der Prototyp nimmt Anfragen für \gls{Keyphrase}[s] und für Suchresultate für den entsprechenden Begriff entgegen und liefert die angeforderten Resultate zurück.
+%---------------------------------------------------------------------
+
+
+\autoref{fig:kontextdiagramm} zeigt den Kontext des zu entwicklenden Prototypen. Der Benutzer arbeitet wie anhin mit dem \gls{ikc-core}. Dieser wird aber vor allem im Hintergrund aber auch in der Benutzeroberfläche auf die neue Funktionalität hin angepasst und optimiert. Der Prototyp nimmt Anfragen für \gls{Keyphrase}[s] und für Suchresultate für den entsprechenden Begriff entgegen und liefert die angeforderten Resultate zurück.
 
 \begin{figure}[H]
 \centering
@@ -21,14 +32,14 @@ Zum besseren Verständnis werden potentiell unbekannte oder projekt-spezifische 
 \label{fig:kontextdiagramm}
 \end{figure}
 
-\gls{Keyphrase}[s] sind Begriffe, welche aus einem oder mehreren Wörtern bestehend und den zugrunde liegenden Text kurz und prägnant für den Benutzer zusammenfassen. Für weitere Informationen steht der Glossar zur Verfügung (\autoref{glossar}).
+\gls{Keyphrase}[s] sind Begriffe, welche aus einem oder mehreren Wörtern bestehend und den zugrunde liegenden Text kurz und prägnant für den Benutzer zusammenfassen. Für weitere Informationen steht das Glossar zur Verfügung (\hyperref[glossar]{Kapitel Glossar}).
 
 Basierend auf der Aufgabenstellung, dem Projekt-Kontext und den bestehenden Systemen definieren die folgenden Punkte die Ausgangslage:
 \begin{itemize}
     \item Der bestehende Prototyp \gls{ikc-core} dient als Grundlage für diese Bachelorarbeit. Mit dem Fokus der reinen Datenanalyse wird auf die Datenquellen Dropbox und Evernote verzichtet. Der resultierende Prototyp baut auf der bestehenden Umgebung auf.
-    \item Aufgrund der bisherigen Erfahrungen und dem bestehenden Code wird als Programmiersprache weiterhin auf \gls{Typescript} eingesetzt. Dies hat den Vorteil, dass \gls{Typescript} sowohl client- als auch serverseitig lauffähig ist.
-    \item Der Prototyp soll weiterhin im Browser ausgeführt werden. Jegliche Daten werden nur an benutzerdefinierten Orten gespeichert. Es wird keine zusätzlich Persistenz eingeführt.
-    \item Als Plattform wird weiterhin das Docker-basierte \gls{Dokku} eingesetzt. Diese wird bereits für den Proof of Concept (\gls{PoC}) und für das Prototyping verwendet.
+    \item Aufgrund der bisherigen Erfahrungen und dem bestehenden Code wird als Programmiersprache weiterhin \gls{Typescript} eingesetzt. Dies hat unter anderem den Vorteil, dass \gls{Typescript} sowohl client- als auch serverseitig lauffähig ist.
+    \item Der Prototyp soll nach wie vor im Browser ausgeführt werden. Jegliche Daten werden nur an benutzerdefinierten Orten gespeichert. Es wird keine zusätzlich Persistenz eingeführt.
+    \item Als Plattform wird weiterhin das Docker-basierte \gls{Dokku} eingesetzt. Dieses wird bereits für den Proof of Concept (\gls{PoC}) und für das Prototyping verwendet.
 \end{itemize}
 
 \section{Scope}\label{sec:scope} 
@@ -43,13 +54,11 @@ Zur Abgrenzung definiert der Scope den Inhalt und den Umfang eines Projektes. F�
 \section{Projektstrukturplan}
 Die \autoref{fig:projektstrukturplan} gewährt einen Überblick über das Projekt. Sie stellt die wichtigsten Bereiche und Phasen dar, in welche die Arbeit grob eingegliedert werden kann:
 \begin{enumerate}
-    \item Die \textbf{Projektführung} beinhaltet die Planung des Vorhabens über den gegebenen Zeitraum. Ständige Kontrolle des Ist- gegenüber dem Soll-Zustand kann gegebenenfalls zur Steuerung oder Anpassungen des Zeitplans führen. Da das Projekt agil organisiert ist, liegt das Augenmerk auf der Priorisierung der Anforderungen.
-    %Im Gegensatz zu den anderen Bereichen wird die Projektführung über die volle Projektdauer ausgeführt.
-    \item In der \textbf{Konzeption} werden neben den Anforderungen auch mög\-li\-che Lös\-ungs\-an\-sätz\-e in den Bereichen Architektur und Schnittstellen geprüft.
-    \item Nach einer anfänglichen Recherchephase werden zu Testzwecken bereits erste Prototypen entwickelt. So sollen mögliche Optionen überprüft und gegebenenfalls implementiert oder weiterentwickelt werden. Nach einer \textbf{Evaluation} werden die geeigneten Lösungen ausgewählt.
-    \item In der \textbf{Entwicklung} werden die gesammelten Erkenntnisse gesammelt und analysiert. Grundsätzlich soll auf den zuvor entwickelten Prototypen aufgebaut werden. Zunächst wird eigenständig, ohne Einbindung in den \gls{ikc-core} entwickelt.
-    %Wichtige Faktoren für eine erfolgreiche Umsetzung sind die Performance, die Benutzeroberfläche und die Interaktion.
-    \item Sobald die Implementierung die erforderlichen Anforderungen reibungslos erfüllt, wird sie in den bestehenden \gls{ikc-core} \textbf{integriert}. Nach letzten Optimierungen sind nun alle Anforderungen erfüllt und intensivere Tests können durchgeführt werden.
+    \item Die \textbf{Projektführung} beinhaltet die Planung des Vorhabens über den gegebenen Zeitraum. Ständige Kontrolle des Ist- gegenüber dem Soll-Zustand kann gegebenenfalls jederzeit zur Steuerung oder Anpassungen des Zeitplans führen. Da das Projekt agil organisiert ist, liegt das Augenmerk auf der Priorisierung der Anforderungen.
+    \item In der \textbf{Konzeption} werden neben den Anforderungen auch vorstellbare Lös\-ungs\-an\-sätz\-e in den Bereichen Architektur sowie Schnittstellen geprüft.
+    \item Nach einer anfänglichen Recherchephase werden zu Testzwecken bereits erste Prototypen entwickelt. So sollen mögliche Optionen überprüft und gegebenenfalls später implementiert oder weiterentwickelt werden. Nach einer \textbf{Evaluation} werden die geeigneten Lösungen ausgewählt.
+    \item In der \textbf{Entwicklung} werden die gesammelten Erkenntnisse gesammelt und analysiert. Grundsätzlich soll auf den zuvor entwickelten Prototypen aufgebaut werden. Zunächst wird ei\-gen\-stän\-dig, ohne Einbindung in den \gls{ikc-core} entwickelt.
+    \item Sobald die Implementierung die erforderlichen Anforderungen reibungslos erfüllt, wird sie in den bestehenden \gls{ikc-core} \textbf{integriert}. Nach letzten Optimierungen sind nun alle Anforderungen erfüllt und intensivere Tests können durchgeführt werden. Für die Entwicklung werden hauptsächlich Integrationstests verwendet.
     \item Nachdem die Entwicklungsarbeit abgeschlossen ist, folgt der \textbf{Projektabschluss}. Dabei wird die endgültige Version des Projektreports erstellt und die Abschlusspräsentation gehalten.
 \end{enumerate}
 
@@ -88,7 +97,7 @@ Projektziele werden definiert, um den Erfolg an ausgewählten Punkten zu überpr
 
 \section{Anforderungen} \label{sec:anforderungen}
 
-Für die weitere Unterteilung in Arbeitspakete und \textit{Stories} werden die Anforderungen zunächst in Prosa gesammelt. Diese entstammen dem Kundenworkshop und der Aufgabenstellung. Sie widerspiegeln die Projektziele (\autoref{projektziele}). Die Anforderungen werden in funktionale und nicht-funktionale Anforderungen unterschieden. Die funktionalen Anforderungen definieren direkt die Eigenschaften, (\autoref{tab:funktionale-anforderungen}). Im Gegensatz dazu definieren nicht-funktionale Anforderungen die Leistung und die Randbedingungen. Diese sind in der Tabelle \autoref{tab:funktionale-anforderungen}, beziehungsweise \autoref{tab:nicht-funktionale-anforderungen} zu finden.
+Für die weitere Unterteilung in Arbeitspakete und \textit{Stories} werden die Anforderungen zunächst in Prosa gesammelt. Diese entstammen dem Kundenworkshop und der Aufgabenstellung. Sie widerspiegeln die Projektziele (\autoref{projektziele}). Die Anforderungen werden in funktionale und nicht-funktionale Anforderungen unterschieden. Die funktionalen Anforderungen definieren direkt die Eigenschaften. Im Gegensatz dazu definieren nicht-funktionale Anforderungen die Leistung und die Randbedingungen. Diese sind in der Tabelle \autoref{tab:funktionale-anforderungen}, beziehungsweise \autoref{tab:nicht-funktionale-anforderungen} zu finden.
 
 Die Priorisierung erfolgt nach dem \gls{MoSCoW-System}:
 
@@ -104,4 +113,3 @@ Die Priorisierung erfolgt nach dem \gls{MoSCoW-System}:
 
 
 Neben den in der Aufgabenstellung vorgegebenen Lieferobjekte (\autoref{tab:set-lieferobjekte}) sind noch zusätzliche, interne Lieferobjekte (\autoref{tab:add-lieferobjekte}) festlegt. Diese sind lediglich als Unterstützung der Projektkontrolle, eine Art Orientierungshilfe, gedacht.
-

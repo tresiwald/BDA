@@ -29,7 +29,7 @@
 
 \usepackage{csvsimple}
 
-% \usepackage[landscape]{geometry}
+%\usepackage[landscape]{geometry}
 
 %% Babel provides support for languages.  'english' uses British
 %% English hyphenation and text snippets like "Figure" and
@@ -102,6 +102,8 @@
 
 %% longtable
 \usepackage{longtable}
+\usepackage{subfiles}
+ 
 
 %% sourcecode
 \usepackage{minted}
@@ -132,7 +134,7 @@
 
 \addto\captionsngerman{% 
  \renewcommand{\abstractname}{Abstract}}
-\renewcommand*\listingautorefname{Code Ausschnitt}
+\renewcommand*\listingautorefname{Codeausschnitt}
 
 %% Document information
 %% ====================
@@ -190,7 +192,7 @@ Patrick Siegfried
 
 %% The abstract of your thesis.  Edit the file as needed.
 \input{abstract}
-
+The project Intuitive Knowledge Connectivity provides a technical web interface giving the user the possibility to interconnect and label external data sources. Based on this project the following provides a full-text index to search all the user-defined data sources. Additionally it presents an algorithm to extract important phrases inside a text based on an entire corpus of documents. It combines stochastic approaches with rule-based natural language processing methods. Furthermore, it embeds the resulting business logic into two separate services to support.
 %% TOC with the proper setup, do not change.
 \cleartorecto
 \setcounter{tocdepth}{2}

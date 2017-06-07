@@ -1,7 +1,8 @@
+% ----------------------------------------------------------------
 \chapter{Evaluation}
+% ----------------------------------------------------------------
 
-
-
+Die entstandenen Resultate und die erworbenen Erkenntnisse gilt es nun zu evaluieren.
 
 \begin{itemize}
     \item Idealer Lucene-Score ist nicht zwingend ideal für Tagging.
@@ -20,29 +21,31 @@
     
 \end{itemize}
 
-
+% ----------------------------------------------------------------
 \section{Soll-Ist Vergleich}
+% ----------------------------------------------------------------
+
 Durch einen Soll-Ist Vergleich anhand der definierten Anforderungen (\autoref{sec:anforderungen}) kann eine erste qualitative Evalutation vorgenommen werden.  
 
 \begin{longtable}{|p{1.5cm} | p{1.5cm} | p{8.1cm}|}
   \hline
     ID & Status & Bemerkung \\\hline
-    A1 & Erfüllt & Die Daten der externen Datenquelle (SFTP) kann mittels Volltext Index durchsucht werden. \\\hline
-    A2 &  & \\\hline
-    A3 &  & \\\hline
+    A1 & Erfüllt & Die Daten der externen Datenquelle (\gls{SFTP}) kann mittels Volltext-Index durchsucht werden.\\\hline
+    A2 &  & Auto-Indexierung?\\\hline
+    A3 & Erfüllt & Der Benutzer kann seinen \gls{SFTP}-Zugang und den Pfad des zu indexierenden Ordners in der Benutzeroberfläche angeben. \\\hline
     A4 & Erfüllt & Es können sowohl alle Knoten als auch alle Dokumente externer Datenquellen durchsucht werden. \\\hline
-    A5 & Erfüllt & Die Volltext Suche ist innerhalb des Suchfeldes integriert. \\\hline
-    A6 &  & \\\hline
-    A7 &  & \\\hline
-    A8 & Erfüllt & Generierte \gls{Keyphrase}[s] sind als Chip Liste dargestellt und können bei Bedarf gelöscht werden.\\\hline
-    A9 &  & \\\hline
-    A10 &  & \\\hline
+    A5 & Erfüllt & Die Volltextsuche ist innerhalb des Suchfeldes in der bestehenden integriert. \\\hline
+    A6 & Erfüllt & Die Resultate aus der externen Quelle werden optisch differenziert mit einem neuen Icon angezeigt. \\\hline
+    A7 & Erfüllt & Berechnete gls{Keyphrase}[s] zum jeweiligen Dokument auf Basis des verfügbaren Korpus werden dem Benutzer oberhalb des Titels vorgeschlagen. \\\hline
+    A8 & Erfüllt & Generierte \gls{Keyphrase}[s] sind als Chip-Liste dargestellt und können bei Bedarf gelöscht werden.\\\hline
+    A9 & Erfüllt & Der Benutzer kann sein Wissensnetzwerk mit Tags erweitern.\\\hline
+    A10 &  & Bestehende Tags\\\hline
     A11 & Erfüllt & Die Knoten und Kanten werden während der Berechnung erstellt und in einem lokalen Cache gespeichert. Bei Änderungen werden diese permanent ins Wissensnetzwerk des Benutzers übertragen.\\\hline
     A12 & Erfüllt & Tags werden als Chips dargestellt.\\\hline
-    A13 & Erfüllt & \gls{N-Gram}[s] werden ebenfalls als \gls{Keyphrase} beachtet\\\hline
-    A14 &  & \\\hline
-    A15 &  & \\\hline
-    A16 &  & \\\hline
+    A13 & Erfüllt & \gls{N-Gramm}[s] werden ebenfalls als \gls{Keyphrase} beachtet\\\hline
+    A14 & Erfüllt & In der Konfiguration kann ein beliebiger \gls{SFTP}-Server angegeben werden.  \\\hline
+    A15 &  & Dropbox Persistenz (DB), Index, Konfiguration\\\hline
+    A16 &  & Evernote Index, Konfiguration\\\hline
     \caption{Evaluation funktionale Anforderungen}
   \label{tab:funktionale-anforderungen-eval}
 \end{longtable}
@@ -51,42 +54,103 @@ Durch einen Soll-Ist Vergleich anhand der definierten Anforderungen (\autoref{se
 \begin{longtable}{|p{1.5cm} | p{1.5cm} | p{8.1cm}|}
   \hline
     ID & Status & Beschreibung \\\hline
-    A1 & Erfüllt & Die Autoindexierung wird komplett auf dem \texttt{IndexService} ausgeführt, auch bei einem Fehlerfall wird der Benutzer nicht beeinträchtigt in der Bediehnung des \gls{ikc-core}. \\\hline
-    A2 & Erfüllt & Die Extraktion der \gls{Keyphrase}[s] geschieht innerhalb nützliche Frist. Die Dauer hängt dabei von der Grösse der Datenbasis. Bei extrem Grossen Datenmengen (>100k) kann dieser Prozess ca. 2 Sekunden in Anspruch nehmen.   \\\hline
+    A1 & Erfüllt & Die Autoindexierung wird komplett auf dem \texttt{IndexService} ausgeführt, selbst bei einem Fehlerfall wird der Benutzer in der Nutzung des \gls{ikc-core}[s] nicht beeinträchtigt.\\\hline
+    A2 & Erfüllt & Die Extraktion der \gls{Keyphrase}[s] geschieht innerhalb nützlicher Frist. Die Dauer hängt dabei von der Grösse der Datenbasis. Bei extrem grossen Datenmengen (>100k) kann dieser Prozess circa zwei Sekunden in Anspruch nehmen.\\\hline
     A3 & Erfüllt & Durch die Anbindung an den \texttt{DataService} wird die externe Datenquelle für den \gls{ikc-core} abstrahiert.\\\hline
-    A4 & Erfüllt & \\\hline
-    A5 & Erfüllt & \\\hline
-    A5 & Erfüllt & \\\hline
+    A4 & Erfüllt & Die zu leistenden Stunden sind abgearbeitet.\\\hline
+    A5 & Erfüllt & Das Arbeitsjournal wurde entsprechend der geleisteten Stunden ausgefüllt.\\\hline
+    A6 & Erfüllt & Der \gls{ikc-core} wurde in seiner Funktionalität erweitert. Auch bilden die Resultate dieser Arbeit eine gute Grundlage für weitere Forschung.\\\hline
     \caption{Evaluation funktionale Anforderungen}
   \label{tab:nicht-funktionale-anforderungen-eval}
 \end{longtable}
-\section{Experten-Feedback}
-Ein Teil der Qualitative Evaluation ist ein Experten Feedback zu dem entstandenen Prototypen. Dieses soll deren Objektive Meinung als auch Überlegungen zur möglichen Anwendungsfälle bzw. Optimierungen enthalten. Als Experten wurde Michael Kaufmann (Projektpartner) und Kevin Stadelmann (Student Wirtschaftsinformatik) ausgewählt. Sie wurden ausgewählt, da sie als Benutzer des \gls{ikc-core} bereits vertraut sind mit der Applikation und deren Möglichkeiten.
-Dazu wird das Feedback in drei Teile aufgeteilt:
+
+% ----------------------------------------------------------------
+\section{Experten-Workshop}
+% ----------------------------------------------------------------
+
+Ein Teil der qualitativen Evaluation ist ein Experten Workshop zu dem entstandenen Prototypen und den Resultaten dieser Arbeit. Er soll deren objektive Meinung, als auch Überlegungen zu möglichen Anwendungsfällen oder Optimierungen enthalten. Als Experten wurden Michael Kaufmann (Projektpartner) und Kevin Stadelmann (Student Wirtschaftsinformatik) ausgewählt. Da sie bereits mit den Mög\-lich\-keit\-en und der Anwendung des \gls{ikc-core}[s] vertraut sind, stellen sie ideale Teilnehmer dar. Zu Herrn Stadelmann gilt es anzumerken, dass er seine Bachelor-Arbeit ebenfalls zum Projekt \gls{IKC} verfasst. Diese befasst sich insbesondere mit den wirtschaftlichen Aspekten. Zusätzlich hat er Befragungen zum Projekt durchgeführt.
+
+Der Workshop ist in drei Teile gegliedert:
 \begin{enumerate}
-    \item \textbf{Einleitung}: Im ersten Teil des Gespräches wird die Funktionalität des Prototypen kurz beschrieben. Anschliessend sollen die beiden Experten ihre Erwartungen formulieren. Dabei geht es darum von ihnen eine Vorstellung zu erhalten von ihren Erwartungen unabhängig von dem resultierenden Prototypen. Dies ist insbesondere für die Weiterentwicklung wertvoll sobald anstelle der Funktionalität der Benutzer in den Vordergrund Rückt.
-    \item \textbf{Demonstration}: Anschliessend wird den Experten der Prototyp vorgestellt. Dadurch sollen sie unsere Umsetzung kennen lernen und die Funktionalitäten genauer kennen lernen. Falls gewünscht kann der Prototyp auch von ihnen Bedient werden.
-    \item \textbf{Frage}:
+    \item \textbf{Einleitung}: Im ersten Teil des Gespräches wird die Funktionalität des Prototypen kurz umschrieben. Anschliessend sollen die beiden Experten ihre Erwartungen formulieren. Dabei geht es darum, von ihnen eine Vorstellung ihrer Erwartungen unabhängig von dem resultierenden Prototypen zu erhalten. Dies ist insbesondere für die Weiterentwicklung wertvoll, sobald anstelle der Funktionalität der Benutzer in den Vordergrund rückt.
+    \item \textbf{Demonstration}: Anschliessend wird den Experten der Prototyp vorgestellt. Dadurch sollen sie unsere Umsetzung und die Funktionalität genauer kennenlernen. Falls gewünscht, kann der Prototyp auch von ihnen bedient werden.
+    \item \textbf{Details zur Umsetzung}: Nach der Demonstration werden einzelne Punkte der Umsetzung aber auch der Resultate genauer erläutert.
+    \item \textbf{Rückmeldungen}: Nun werden Rückmeldungen, Anregungen und Kritik der Teilnehmer entgegengenommen. Diese können sowohl den Prototypen, die Resultate und auch das Projekt an sich betreffen.
     \item \textbf{Diskussion}: Die offene Diskussion zum Schluss soll als Plattform dienen um einen Schritt weiter zu denken. Dabei soll es vor allem um mögliche Anwendungen, Erweiterungen oder Anpassungen gehen.
 \end{enumerate}
-\subsection{Vorbereitung}
 
-\subsection{Vorgang}
-
+% ----------------------------------------------------------------
 \subsection{Resultate}
+% ----------------------------------------------------------------
 
+Aus dem Workshop gingen viele interessante Resultate hervor. Die wichtigsten sind nachfolgend kurz zusammengefasst.
+
+\subsubsection{Prototyp}
+
+\begin{itemize}
+    \item Die automatische Kategorisierung (Tagging) von Daten wurde als sehr wertvolle Funktion genannt. Oftmals liegen viele alte, un\-struk\-tu\-rier\-te Daten vor. Die Aufbereitung dieser ist mit grossem Aufwand verbunden. Eine automatische Lösung ist darum wünsch\-ens\-wert und bedeutet einen grossen Mehrwert.
+    \item Die automatische Generierung von Wissen wird allgemein als sehr wertvoll erachtet. Insbesondere dann, wenn es Möglichkeiten aufzeigt, welche der Benutzer selbst nicht erachtet oder erwartet hätte.
+    \item Neben der automatischen Kategorisierung ist das manuelle Tagging eine weitere wichtige Funktion. Damit es einfach, beispielsweise Projektzugehörigkeiten anzugeben. Ordnung und Struktur sind so effizient und leicht zu schaffen.
+    \item Die Anzahl der angezeigten Tags wurde bemängelt: Für die Benutzer ist weniger mehr. Es sollen besser wenige gute, als viele eher schlechte Tags vorgeschlagen werden. Ganz allgemein sollen Zusatzfunktionen zwar sichtbar aber nicht zu präsent in der Benutzeroberfläche sein. Beispielsweise sollen Tags und Verknüpfungen standardmässig zugeklappt / versteckt sein. So hat der Benutzer direkt einen besseren Überblick und wird gleichzeitig nicht mit Informationen überflutet.
+    \item Eine Suchfunktion, welche im Volltext der verknüpften Dokumente sucht, ist das wahrscheinlich grösste Wertangebot des Prototypen. Sie ermöglicht ein effizienteres Arbeiten und spart Zeit, da schnell und einfach über alle verknüpften Datenquelle gesucht werden kann.
+    \item Die Suchfunktionalität dient nicht nur dem Finden von Gesuchtem. Oftmals wird es als Navigation benutzt, indem gesucht wird, was betrachtet werden will. Ein mühselige Durchklicken wird tritt immer mehr in den Hintergrund.
+\end{itemize}
+
+\subsubsection{Fragen, Unklarheiten}
+
+\begin{itemize}
+    \item Differenzierung: Tag entspricht Verknüpfung?
+    \item mehrere Algorithmen
+    \item Löschen von Tags
+\end{itemize}
+
+\subsubsection{Weiterentwicklung}
+
+\begin{itemize}
+    \item Wichtige Begriffe, welche aber nur selten im Text oder Korpus vorkommen.
+    \item Priorisierung der Tags.
+    \item Die Integration der neuen Funktionen und die Benutzeroberfläche des \gls{ikc-core}[s] ganz generell (User Interface - und User Experience Design) ist benutzbar und in Ordnung. Allerdings gibt es dort sicherlich noch viel Optimierungspotential. Dies liegt in der Verantwortung von Folgeprojekten.
+    \item Das automatische Tagging ist, wie gesehen, ein Wertangebot. Es gibt aber noch grossen Forschungsbedarf für einen Beweis, dass es wirklich funktioniert und auch diesen erwarteten Mehrwert bieten kann. Die Definition der Relevanz und dem Sinn (oder Unsinn) von extrahierten Inforamtionen ist nicht trivial.
+    \item Precision: Welche Tags sind relevant? Peak: Wieviele der relevanten Tags wurden gefunden?
+    \item Named Entity Recognition, White- \& Blacklist
+    \item Priorisierung in Vernetzung und Inhalt: Reihenfolge als Mass der Priorität. Benutzerdefiniert + durch den Algorithmus bestimmt.
+    \item Intelligente Suche: Sobald eine Menge von bestimmten Begriffen enthalten ist, wird das Dokument mit definierten Tag versehen.
+    \item Die Suchfunktion steht klar im Zentrum der Weiterentwicklung. Zusatzfunktionen, wie beispielsweise die autmatische Extraktion von Informationen, können das Wertangebot aber zusätzlich erheblich steigern.
+    \item X-MAS
+    \item Aus Kundensicht muss der Mehrwert eines Produkts ganz klar im Vordergrund stehen und sofort ersichtlich sein. Andernfalls wird das Interesse gar nicht erst geweckt.
+    \item Daten- und Persönlichkeitsschutz
+    \item Insbesondere im B2B-Kontext hat das persönliche Datenmanagement und damit der persönliche Index einen hohen Stellenwert. 
+\end{itemize}
+
+klarer Usecase bzw. mehrwert
+bestehende Daten sollen möglichst ohne Aufwand indexiert werden
+Manuelles Tagging um spezifische Keyphrases zu priorisieren => Black- Whitelisting
+einzelne Keyphrases wichtigkeit z.b. häufigkeit
+Mehrere Algorithmen für unterschiedliche Resultaten
+Besser wenig Keyphrases dafür richtige 
+
+% ----------------------------------------------------------------
 \subsection{Fazit}
+% ----------------------------------------------------------------
+
 
 \begin{itemize}
     \item Nutzen für Praxis
     
 \end{itemize}
 
+% ----------------------------------------------------------------
 \section{Diskussion}
+% ----------------------------------------------------------------
 
+
+% ----------------------------------------------------------------
 \subsection{Zusammenfassung}
+% ----------------------------------------------------------------
 
+% ----------------------------------------------------------------
 \subsubsection{Stärken}
+% ----------------------------------------------------------------
 
 \begin{itemize}
     \item \textbf{Wiederverwendbarkeit}: Der Prototyp ist modular aufgebaout, entwickelte Komponenten können darum wiederverwendet werden.
@@ -98,7 +162,9 @@ Dazu wird das Feedback in drei Teile aufgeteilt:
     \item \textbf{Code-Sharing}: Sowohl client- als auch serverseitig wird Javascript eingesetzt. Deswegen ist es einfach erstellten Code wiederzuverwenden oder an einem anderen Ort auszuführen.
 \end{itemize}
 
+% ----------------------------------------------------------------
 \subsubsection{Schwächen}
+% ----------------------------------------------------------------
 
 \begin{itemize}
     \item \textbf{Fehlende quantitative Evaluation}: Eine objektive Evaluation der Ergebnisse des Scoring-Algorithmus anhand von Testdaten vergleichbarer, renommierter Algorithmen sprengt den Zeitrahmen. Aufgrund dessen können lediglich subjektive Mutmassungen zur Qualität der Ergebnisse gemacht werden.
@@ -110,30 +176,44 @@ Dazu wird das Feedback in drei Teile aufgeteilt:
     
 \end{itemize}
 
+% ----------------------------------------------------------------
 \subsubsection{Chance}
+% ----------------------------------------------------------------
 
 \begin{itemize}
-    \item \textbf{Flexibilität}: Eingesetzte Konstrukte zur Entkopplung (beispielsweise das Trait-Pattern siehe \autoref{message-manager}) können an weiteren Orten ebenfalls eingesetzt werden. Ohne Aufwand er\-höht dies die Entkopplung zusätzlich. Denkbar ist der Einsatz bei der Implementation des Algorithmus. So können schnell und einfach verschiedenen Algorithmen eingesetzt, getestet und ausgewertet werden.
+    \item \textbf{Flexibilität}: Eingesetzte Konstrukte zur Entkopplung (beispielsweise das Trait-Pattern (siehe \autoref{s-message-manager}) können an weiteren Orten ebenfalls eingesetzt werden. Ohne Aufwand er\-höht dies die Entkopplung zusätzlich. Denkbar ist der Einsatz bei der Implementation des Algorithmus. So können schnell und einfach verschiedenen Algorithmen eingesetzt, getestet und ausgewertet werden. Dadurch birgt der Prototyp als Forschungsgrundlage viel Potential. Verschiedene Ansätze für den Algorithmus können ohne viel Aufwand getestet und evaluiert werden.
 \end{itemize}
 
 
+% ----------------------------------------------------------------
 \subsubsection{Gefahren}
+% ----------------------------------------------------------------
 
 \begin{itemize}
     \item \textbf{Begrenzte Möglichkeiten der Parallelisierung}: In der vorliegenden Implementation wurde auf Code-Ebene nur bedingt auf die Parallelisierung und Nebenläufigkeit geachtet. Dies darum, da es bei der Entwicklung des Prototypen wiederum die zeitliche Begrenzung vorliegt und die Performance eine untergeordnete Rolle spielt. Auch ist zu erwähnen, dass die verwendete Laufzeitumgebung nodeJS und auch die Programmiersprache Javascript einen Prozess-basierten Ansatz für die Parallelisierung verwenden. Dies beispielsweise im Gegensatz zu Threads in Sprachen wie Java.
     \item \textbf{Linguistischter Ansatz}: Die Implementation setzt beim Scoring-Algorithmus hauptsächlich auf statistische Verfahren. Wie in \cite[S.~1-2]{Zhang2006} angemerkt, verliert man durch die Extraktion eines Wortes aus dessen Kontext einen Grossteil der Informationen. Allerdings gibt es noch keine bekannten und effizienten Ansätze die lokalen Kontextinformationen eines Wortes zu nutzen.
 \end{itemize}
 
+% ----------------------------------------------------------------
 \subsection{SO-Strategien-Ausbauen}
+% ----------------------------------------------------------------
 Stärken einsetzen, um Chancen zu nutzen. Interne Stärken und externe Chancen sollen ausgenutzt und wenn möglich multipliziert werden.
 
+
+% ----------------------------------------------------------------
 \subsection{WO-Strategien-Absichern}
+% ----------------------------------------------------------------
+
 Schwächen minimieren, um Chancen zu nutzen.
 
+% ----------------------------------------------------------------
 \subsection{ST-Strategien-Aufholen}
+% ----------------------------------------------------------------
 Stärken einsetzen, um Gefahren zu minimieren.
 
+% ----------------------------------------------------------------
 \subsection{WT-Strategien-Meiden}
+% ----------------------------------------------------------------
 Schwächen minimieren, um Gefahren abzuwenden.
 
 
@@ -146,15 +226,33 @@ Schwächen minimieren, um Gefahren abzuwenden.
 
 % \section{Case Base} Qualitative Analyse, Fallstudie
 
+% ----------------------------------------------------------------
 \section{Implikationen für die Praxis}
+% ----------------------------------------------------------------
+
+Übermittlung grosser Daten per Websocket problematisch
+JSON keine Option da alles via String geparst wird, string würde limite sprengen
+TS Object geparst verlieren ihren Type somit wird zusätzlicher enumerator für den Type benötigt
+Standard TFIDF Formel sowie viel angepasst optimiert für suche und vergleich von dokumente. liefern zu spezifische resultate
+
+
 
 Typescript?, Datenhaltung in DB?, Dokku / Docker, Index verteilt abspeichern, 
 
-
+% ----------------------------------------------------------------
 \subsection{Bedeutung}
+% ----------------------------------------------------------------
+
+Grundsätzlich Sinnvoll
+schwer sinnvoll keyphrases zu identifzieren bzw. überprüfen
+prototype bestätigt machbarkeit, jedoch noch nicht ausgereift hinsichtlich performance und usability
+
 
 Was ist wichtig, Lucene zu spezifisch
 
 kritisch, brauchbar?
 
+% ----------------------------------------------------------------
 \subsection{Bedeutung der Schlüsselwörter}
+% ----------------------------------------------------------------
+
