@@ -28,6 +28,11 @@
 \usepackage[OT1]{fontenc}
 
 \usepackage{csvsimple}
+%\usepackage{enumitem,amssymb}
+%\setlist{noitemsep}
+%\newlist{todolist}{itemize}{2}
+%\setlist[todolist]{label=$\square$}
+%\usepackage{geometry}
 
 %\usepackage[landscape]{geometry}
 
@@ -110,7 +115,12 @@
 
 \providecommand*{\listingautorefname}{Listing}
 
+
 \usepackage{subcaption}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+
 
 \usepackage{array}
 
@@ -142,7 +152,7 @@
 \title{Automatisierte Generierung von plattformübergreifenden Wissensnetzwerken mit Metadaten und Volltextindexierung}
 \author{Andreas Waldis, Patrick Siegfried}
 \thesistype{Bachelorarbeit}
-\advisors{Projektpartner \& Betreuer: Prof. Dr. sc. inf. Michael Kaufmannn\\ Experte: Urs Zumstein}
+\advisors{Projektpartner \& Betreuer: Prof. Dr. sc. inf. Michael Kaufmann\\ Experte: Urs Zumstein}
 \department{Departement Informatik}
 \date{\today}
 
@@ -164,31 +174,13 @@
   \begin{adjustwidth*}{\unitlength-24pt}{-\unitlength-24pt}
     \maketitle
   \end{adjustwidth*}
+
 \end{titlingpage}
 
-\section*{Eigenständigkeitserklärung}
-
-\vspace{25mm}
-
-Hiermit erklären wir, dass wir die vorliegende Arbeit selbstständig angefertigt und keine anderen als die angegebenen Hilfsmittel verwendet haben. Sämtliche verwendeten Textausschnitte, Zitate oder Inhalte anderer Verfasser wurden ausdrücklich als solche gekennzeichnet.
-
-\vspace{25mm}
-
-\begin{minipage}[t]{0.4\textwidth}
-Luzern, \today
-\end{minipage}
-\hspace{1cm}
-\begin{minipage}[t]{0.5\textwidth}
-\vspace{5mm}
-\hrule
-Andreas Waldis
-\vspace{20mm}
-\hrule
-Patrick Siegfried
-\vspace{10mm}
-\end{minipage}
-
 \clearpage
+
+\includepdf[pages={2,3}]{todo-bda}
+
 
 %% The abstract of your thesis.  Edit the file as needed.
 \input{abstract}
@@ -212,8 +204,6 @@ The project Intuitive Knowledge Connectivity provides a technical web interface 
 \include{kapitel/07-Evaluation}
 
 \include{kapitel/08-Schlussfolgerungen}
-
-Keywords vs. Tags, zu spezifisch, zu generisch, ....
 
 \bibliography{refs}
 

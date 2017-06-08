@@ -79,7 +79,7 @@
 \def\@thesistype{}
 \newcommand{\thesistype}[1]{\def\@thesistype{#1}}
 
-\renewcommand{\maketitlehooka}{\noindent\HSLUlogo[2in]}
+\renewcommand{\maketitlehooka}{\hspace{11.5cm}\HSLUlogo[2in]}
 
 \renewcommand{\maketitlehookb}{\vspace{1in}%
   \par\begin{center}\Large\sffamily\@thesistype\end{center}}
@@ -91,6 +91,9 @@
     \@advisors\par
     \@department, Hochschule Luzern
   \end{flushright}
+  \vfill
+  \par\hfill\makebox[0pt]{\includegraphics{efqm}} 
+
 }
 
 \checkandfixthelayout

@@ -472,7 +472,7 @@ Neben der Extraktion von \gls{Keyphrase}[s] sollen pro \gls{Keyphrase} auch pass
 
 % ----------------------------------------------------------------
 
-Eine Volltextsuche macht macht die ganzen Dantenquellen durchsuchbar. Mit Hilfe der folgenden \autoref{fig:seqsearch} wird der Ablauf der Suche aufgezeigt:
+Eine Volltextsuche macht die ganzen Dantenquellen durchsuchbar. Mit Hilfe der folgenden \autoref{fig:seqsearch} wird der Ablauf der Suche aufgezeigt:
 \begin{itemize}
     \item Innerhalb des \gls{ikc-core} wird eine Suchanfrage abgesetzt. Diese erreicht den \texttt{IndexService} eingebettet in einer \texttt{SearchRequest}-Nachricht. 
     \item Intern arbeitet der \texttt{SearchService} die Suche ab und liefert die entsprechenden Resultate. \autoref{search} zeigt den Ablauf innerhalb des \texttt{SearchService}:
@@ -1045,20 +1045,25 @@ breaklines=true
 
 % ----------------------------------------------------------------
 
-Der Prototyp soll sich möglichst nahtlos in den \gls{ikc-core} integrieren. Um dies zu erreichen, darf der Prototyp in keiner Situation Funktionen des \gls{ikc-core} blockieren. 
 
-So werden Suchresultate des Indexes innerhalb der bestehenden Suche integriert und bei Bedarf aktualisiert. Die Resultate der verschiedenen Quellen sollen in Echtzeit nach ihrem Eintreffen dargestellt werden. Somit wird sich die Liste der Resultate trotz gleichem Suchbegriff über die Zeit verändern, da weitere Resultate von entfernten Quellen eintreffen. 
-
-Weiter sollen extrahierte \gls{Keyphrase}[s] klar getrennt von den bestehenden Properties des Nodes als \textit{Chips} oberhalb des Titel dargestellt werden. Sowohl ein Dokument mit entsprechenden \gls{Keyphrase}[s] als auch eine \gls{Keyphrase} mit den verknüpften Dokumenten werden als Node dargestellt. \autoref{fig:bda_ui} zeigt einen Entwurf dieser Integration. 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{BDA_UI}
-    \caption{Entwurf Integration Benutzeroberfläche}
-    \label{fig:bda_ui}
+    \includegraphics[width=1\textwidth]{Keyphrase-2}
+    \caption{Ausschnitt Integration }
+    \label{fig:partintegration}
     \end{figure}
 
-Um die Schnittstellen des Prototyps ideal zu verwenden und die obigen Oberfläche umzusetzen, sind Anpassungen beziehungsweise Erweiterungen in der Software-Struktur des \gls{ikc-core} nötig. Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore}) erläutert die wichtigsten Anpassungen:
+\autoref{fig:partintegration} zeigt einen Auschnitt der Integration des Prototypen in den \gls{ikc-core}, dafür sind einige Anpassungen nötig. Diese setzten die Konzeption der Integration (\autoref{Integration}) um. Der Prototyp wird dabei in den folgenden Situtation verwendet:
+\begin{itemize}
+    \item \textbf{Suche}: Innerhalb der Suche werden Resultate aus dem \gls{ikc-core}, als auch aus den  externen Datenquellen kombiniert. Diese werden vom \textit{IndexService} auf Anfrage berechnet und geliefert. 
+    \item \textbf{Auswahl eines Dokuments}: Bei der Darstellung eines Dokuments werden sowohl dessen Inhalt als auch die relevanten \gls{Keyphrase}[s] geladen. Dazu wird der Inhalt vom \textit{DataService} und die \gls{Keyphrase}[s] vom \textit{IndexService} geladen.
+    \item \textbf{Auswahl einer \gls{Keyphrase}}: Bei der Auswahl einer \gls{Keyphrase} aus dem Index wird diese zusammen mit allen verbunden Dokumenten dargestellt. Die Dokumente werden vom \textit{IndexService} berechnet und zurückgegeben.
+\end{itemize}
+
+\subsubsection{Strukturelle Integration}
+
+Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore}) zeigt die strukturellen Integration des Prototypen in den \gls{ikc-core}: 
 
 \begin{itemize}
     \item Um lokale Suchresultate mit denen des Volltext-Indexes zu kombinieren, wird die \texttt{SearchBroker}-Klasse verwendet. Darin werden Resultate beider Quellen entgegengenommen und für die Darstellung verarbeitet. Mit Hilfe des Interfaces \texttt{SearchResult} und dessen beiden Implementationen \texttt{IndexSearchResult} und \texttt{LocalSearchResult} kann für den jeweiligen Umgang unterschieden werden. Sobald die ersten Suchresultate eintreffen, werden diese verarbeitet und der Benutzeroberfläche weitergegeben. Mit Hilfe der Generalisierung durch das Interface ist es möglich, beliebige Suchquellen in unbegrenzter Anzahl zu integrieren.\\ 
@@ -1162,24 +1167,11 @@ Für die Bereitstellung von benötigten Informationen und die Abarbeitung von sp
     \item Der Tag-Node ist weder im \texttt{NodeModel} noch im \texttt{ElementCache} vorhanden und muss komplett neu erstellt werden. Dazu wird ein neuer Node des Typs \texttt{CONCEPT} erstellt, gespeichert und die benötigten Verbindungen erstellt.
 \end{itemize}
     
-
-% ----------------------------------------------------------------
-
-\subsection{SearchBroker}
-
-% ----------------------------------------------------------------
-
-
-
-% ----------------------------------------------------------------
-
-\subsection{Auto-Indexierung} \label{auto-indexierung}
-
-% ----------------------------------------------------------------
-
-Da SSH Zugriff, ls -a und TimeStamp mit Map vergleichen.
-
     
+\subsection{Konfiguration}
+
+
+
 % ----------------------------------------------------------------
 
 \section{Deployment}
@@ -1202,6 +1194,32 @@ Die Basis für die Entwicklungs- beziehungsweise Produktionsumgebungen bildet je
 Prinzipiell laufen die Projekte in \gls{Docker}-Container. \gls{Dokku} erleichtert die Handhabung und den Umgang mit dem Netzwerk zusätzlich. Innerhalb vom \gls{Dokku} laufen somit die entwickelten Services wie der \texttt{Index-}, \texttt{DataService} und auch der \texttt{Prototyp}. 
 
 Der \texttt{Prototyp} ist Teil vom bestehenden \gls{ikc-core} und wird clientseitig im Browser ausgeführt. Der \texttt{DataService} nimmt via \gls{SFTP} zusätzlich Gebrauch von einer externen Datenquelle.
+
+
+    \begin{listing}[H]
+    \inputminted[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos,
+    breaklines=true
+    ]{bash}{sourcecode/gitlab-ci.yaml}
+    \caption{Continuous Integration Pipeline}
+    \label{gitlabci}
+    \end{listing}
+    
+    
+    \begin{listing}[H]
+    \inputminted[
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    linenos,
+    breaklines=true
+    ]{bash}{sourcecode/dockerfile}
+    \caption{Dockerfile}
+    \label{dockerfile}
+    \end{listing}
 
 % ----------------------------------------------------------------
 

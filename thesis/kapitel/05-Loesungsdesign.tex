@@ -26,7 +26,7 @@ Der Architektur-Entwurf betrachtet die zu entwickelnde Software aus einer abstra
 Der Kern des Prototyps bilden die verschiedenen Algorithmen. Basierend auf den externen Datenquellen ermöglichen sie eine Volltext-Suche und die Extraktion der relevanten \gls{Keyphrase}[s]. Nachfolgend werden die Funktionsweise als auch wichtigsten Überlegungen dazu veranschaulicht. Basierend auf verschiedenen bestehenden Ansätzen wird die Lösungsfindung für den hier verwendeten Algorithmus dargelegt. 
 
 Um die relevanten \gls{Keyphrase}[s] für ein spezifisches Dokument zu extrahieren, werden verschiedene Methoden aus dem Feld von \hyperref[natural-language-processing]{\textit{Natural Language Processing}} kombiniert mit statistischen Analsysen und heuristischen Vorgaben. Für die Analyse der \gls{Keyphrase}[s] werden \gls{N-Gramm}[e] der Grösse eins bis vier berücksichtigt. Nebst möglichst treffenden Resultaten liegt der Fokus auch auf der raschen Aussortierung von ungeeigneten Kandidaten. Da die Berechnung der Relevanz der Rechen- und Speicher-intensivste Vorgang des Algorithmus ist, kann die Gesamtleistung des Algorithmus durch frühe Aussscheidung unnötiger Kandidaten enorm gesteigert werden. Die Anzahl möglicher \gls{N-Gramm}[e] ist definiert als: 
-\[f(x)=\sum_{n=0}^N x - n  
+\[f(x)=\sum_{n=0}^N x - n  =
 \begin{cases} 
    (x - n)  & \text{if } x > n \\
    0      & \text{if } x \leq n
@@ -160,7 +160,7 @@ Um die verschiedenen \gls{Keyphrase}[s] zu gewichten, wird ein individueller \gl
   \hline
     Metrik & Erläuterung\\\hline
     $numDocs$ & Anzahl Dokumente im Korpus. \\\hline
-    $docFreq$ & Anzahl Dokumente im Korpus, welche diese \gls{Keyphrase}[s] enthalten. \\\hline
+    $corpFreq$ & Häufigkeit des \gls{Keyphrase}[s] innerhalb des Korpus. \\\hline
     $docLength$ & Anzahl Wörter des spezifischen Dokumentes. \\\hline
     $freq$ & Häufigkeit der \gls{Keyphrase} innerhalb des Dokuments. \\\hline
     \caption{Benötigte Metriken}
@@ -171,16 +171,16 @@ Um die verschiedenen \gls{Keyphrase}[s] zu gewichten, wird ein individueller \gl
 Basierend auf den eingeführten Metriken wird mit Hilfe einer angepassten Version der \textit{Similarity}-Formel\footnotemark \footnotetext{\cite{TFIDFSim65:online}} des \textit{Apache Lucene} Projekts gearbeitet. Die verwendet Formel für die Berechnung des \gls{Score}[s] sieht folgendermassen aus:
 
 \begin{equation}\label{tf}
-tf = \sqrt{freq} 
+tf = freq
 \end{equation}
 \begin{equation}\label{idf}
-idf  =  1 +log( \frac{numDocs}{1 + docFreq})
+idf  =  1 +log( \frac{numDocs}{1 + corpFreq})
 \end{equation}
 \begin{equation}\label{lengthNorm}
-lengthNorm =\frac{1}{\sqrt[3]{docLength}} 
+lengthNorm =\frac{1}{docLength} 
 \end{equation}
 \begin{equation}\label{tfidf}
-tfidf = tf * idf^2 * lengthNorm
+tfidf = tf * idf * lengthNorm
 \end{equation}
 
 \autoref{tf} repräsentiert die Häufigkeit der \gls{Keyphrase} innerhalb des gegebenen Dokuments. Wenn sich Anzahl erhöht, steigt auch der \textit{tf}-Wert. Um den Einfluss diese Faktors zu reduzieren, wird der Wert mittels der Wurzelfunktion etwas gedämpft.
@@ -225,7 +225,7 @@ Die gegenteilige Operation der \gls{Keyphrase}-Extraktion ist die Extraktion all
 
 % ----------------------------------------------------------------
 
-\section{Integration des Prototypen}
+\section{Integration des Prototypen}\label{Integration}
 
 % ----------------------------------------------------------------
 

@@ -19,34 +19,6 @@
 
 
 
-\section{User-Stories}
-
-\begin{longtable}{|p{1cm} | p{10.8cm} |}
-\hline
-ID  & Description\\ \hline
-S1  & Die Schnittstellen und die Model-Klassen für die Implementierung definieren.     \\ \hline
-S2  & Das Projektteam erhält einen Überblick über den aktuellen Stand der Technik. Es soll eine Auswahl von vier möglichen Frameworks getroffen werden.\\ \hline
-S3  & Detail Beurteilung zweier Frameworks anhand des Standard-Szenarios.\\ \hline
-S4  & Detail Beurteilung zweier Frameworks anhand des Standard-Szenarios. \\ \hline
-S5  & Definition des Standard-Szenarios zur genaueren Beurteilung der vier möglichen Frameworks. \\ \hline
-S6  & Mock-up aller Benutzeroberflächen erstellen \\ \hline
-S7  & Anbindung des Interface-Paket (\textit{ikc-visual}) via NPM Setup. Typescript- und React-Setup des Projekts im Gitlab \\ \hline
-S8  & Der Benutzer kann einen \gls{Node} z.B. aus der Suche von ausserhalb in die Visualisierung ziehen. Wird der \gls{Node} an einer freien Position losgelassen, wird dieser der Visualisierung an dieser Stelle hinzugefügt. Wird er jedoch über einem bestehenden \gls{Node} losgelassen, wird ein neuer Link zu diesem erstellt und der neue \gls{Node} in seiner Umgebung platziert. Dies soll sowohl im mobilen als auch im Desktop-Umfeld möglich sein. Der entsprechende \gls{Node} wird immer zusammen mit all seinen Kindern angezeigt. Sind es mehr als sieben, werden nur sieben angezeigt und der Rest über das Kontext-Menü zugänglich gemacht.\\ \hline
-S9  & Einen \gls{Node} in der Visualisierung kann per \gls{Drag'n'Drop} positioniert werden. Diese Position muss gespeichert werden.    \\ \hline
-S10 & Werden zwei \gls{Node}[s] in der Visualisierung aufeinander gezogen, sollen zwei beschriftete Links entstehen, jeweils in eine Richtung.       \\ \hline
-S11 & Mittels eines Kontext-Menüs kann der Benutzer neue \gls{Node}[s] erstellen und die Visualisierung hinzufügen oder einen bestehenden hinzufügen. Dies geschieht an der Stelle, wo das Menü aufgerufen wurde. Das Menü öffnet sich durch einen Rechtsklick oder einen langen Tap. Das Suchfeld wird vom \gls{ikc-core} geliefert werden. \\ \hline
-S12 & Der Benutzer kann durch einen Rechtsklick auf einen \gls{Node} oder einen langen Tap das \gls{Node} Kontext-Menü aufrufen. Dort soll er die folgenden Möglichkeiten haben: \textit{Edit Node}, \textit{Hide Node} \textit{LinkToExistingNode}, \textit{LinkToNewNode} (Link zu einem bestehenden \gls{Node} erstellen oder einen neuen \gls{Node} erstellen und dann verlinken, der entsprechende \gls{Node} wird in der Umgebung angezeigt), \textit{CollapseAllLinks} (alle ausgehenden Links verstecken), \textit{ExpandAllLinks} (alle ausgehenden Links anzeigen) \textit{SearchLinks} (cersteckte Links durchsuchen und einzeln anzeigen können, die Suche soll sowohl den Titel des Ziel \gls{Node}[s] als auch das Label des Links verwenden) Das Suchfeld wird vom \gls{ikc-core} geliefert werden. \\ \hline
-S13 & Links können separat ausgewählt und ausgeblendet werden.  \\ \hline
-S14 & Die Labels der Visualisierung sollen versteckt oder angezeigt werden können.\\ \hline
-S15 & Die Visualisierung soll in den bestehenden \gls{ikc-core} integriert werden. \\ \hline
-S16 & Änderungen in der Visualisierung sollen in den \gls{ikc-core} als auch umgekehrt vom \gls{ikc-core} in die Visualisierung übernommen werden. \\ \hline
-S17 & \gls{View}[s] sollen dauerhaft gespeichert werden. Ebenfalls sollen neue erstellt werden können.          \\ \hline
-S18 & Es müssen die folgenden Dialoge bereitgestellt werden, \textit{SearchExistingNodeToConnect}, \textit{NewNodeToConnect} und \textit{NewNode}.\\ \hline
-S19 & Es müssen zwei Suchfelder zur Verfügung gestellt werden: (\textit{NodeSearch} und \textit{LinkSearch})\\ \hline
-    \caption{User Stories Beschreibung}
-\label{user-stories-desc}
-\end{longtable}
-
 \section{Wichtigste Protokolle}
 \label{protokolle}
 
@@ -209,21 +181,21 @@ Die User-Stories repräsentieren alle Arbeitspakete, welche über die gesamte Pr
 \begin{longtable}{|p{0.6cm}|P{4.5cm}|p{1.4cm}|p{1.4cm}|p{2.4cm}|}
 \hline
 ID  & Name & Geplant & Effektiv &Sprint\\ \hline
-S1 & Technologierecherche           & 40 pt             &  pt              & 1, 2 \\ \hline
-S1 & Definition Projektrahmen           & 40 pt             &  pt              & 1  \\ \hline
-S1 & Entwurf Anforderungen           & 40 pt             &  pt              & 1 \\ \hline
-S1 & Setup Dokumentation           & 40 pt             &  pt              & 1 \\ \hline
-S1 & Prototype Keyword Extraktion            & 40 pt             &  pt              & 2 \\ \hline
-S1 & Tokenauthentifizierung           & 40 pt             &  pt              & 2 \\ \hline
-S1 & Keyword Extraktion grosser Index          & 40 pt             &  pt              & 2, 3 \\ \hline
-S1 & Integration Suche in Index in Benutzeroberfläche           & 40 pt             &  pt              & 3 \\ \hline
-S1 & Keyword Extraktion für bestimmtes Dokument         & 40 pt             &  pt              & 3 \\ \hline
-S1 & Extraktion aller Dokumente für ein Keyword       & 40 pt             &  pt              & 3 \\ \hline
-S1 & Optimierung Keyword Extraktion Algorithmus    & 40 pt             &  pt              & 3,4,6 \\ \hline
-S1 & Begrenzung der extrahierten Keywords    & 40 pt             &  pt              & 3,4,6 \\ \hline
-S1 & Begrenzung Dokumente für Keywords    & 40 pt             &  pt              & 3,4,6 \\ \hline
+S1 & Technologierecherche           & 70 pt             &  80pt              & 1, 2 \\ \hline
+S2 & Definition Projektrahmen           & 20 pt             &  10pt              & 1  \\ \hline
+S3 & Entwurf Anforderungen           & 20 pt             &  10pt              & 1 \\ \hline
+S4 & Setup Dokumentation           & 20 pt             &  25pt              & 1 \\ \hline
+S5 & Prototype Keyword Extraktion            & 80 pt             &  75pt              & 2 \\ \hline
+S6 & Tokenauthentifizierung           & 35 pt             &  50pt              & 2 \\ \hline
+S7 & Keyword Extraktion grosser Index          & 45 pt             &  50pt              & 2, 3 \\ \hline
+S8 & Integration Suche in Index in Benutzeroberfläche           & 20 pt             &  20pt             & 3 \\ \hline
+S9 & Keyword Extraktion für bestimmtes Dokument         & 20 pt             &  15pt              & 3 \\ \hline
+S10 & Extraktion aller Dokumente für ein Keyword       & 20 pt             &  20pt              & 3 \\ \hline
+S11 & Optimierung Keyword Extraktion Algorithmus    & 150 pt             &  160pt              & 3,4,6 \\ \hline
+S12 & Begrenzung der extrahierten Keywords    & 60 pt             &  50pt              & 3,4,6 \\ \hline
+S13 & Begrenzung Dokumente für Keywords    & 20 pt             &  15pt              & 3,4,6 \\ \hline
 \hline
- & \textbf{Total}                       & \textbf{256 pt}& \textbf{276 pt}&   \\\hline
+ & \textbf{Total}                       & \textbf{560 pt}& \textbf{580 pt}&   \\\hline
     \caption{User Stories}
  \label{user-stories}
 \end{longtable}
@@ -247,6 +219,94 @@ Basierend auf den \hyperref[anforderungen]{Anforderungen} wurden die verschieden
 \end{longtable}
 
 \section{Benutzerhandbuch}\label{tutorial}
+
+\subsection{Konfiguration}
+
+Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als auch des Prototypen angepasst werden. Sie ist aufgeteilt in drei Bereicher:
+\begin{enumerate}
+    \item \textbf{MetaDataConfig} (\autoref{fig:meta-config}), enthält die Verbindungsinformationen für die Speicherung der Meta Daten des \gls{ikc-core}:
+    \begin{itemize}
+        \item \textbf{SFTP Url}, die Server URL des SFTP Servers.
+        \item \textbf{Path}, der Pfad zu den Meta Daten auf dem SFTP Server.
+        \item \textbf{User}, der Benutzer für die Verbindung.
+        \item \textbf{SSH-Key}, der Key um sich auf den SFTP Server zu verbinden. 
+    \end{itemize}
+    \item \textbf{GlobalConfig} (\autoref{fig:global-config}), enthält die folgenden Globalen Parameter:
+    \begin{itemize}
+        \item \textbf{Index Service Url}, die Url für die Verbindung zum \textit{Index-Service} via \textit{HTTPS} oder \textit{WSS}.
+        \item \textbf{Data Service Url}, die Url für die Verbindung zum \textit{Data-Service} via \textit{HTTPS} oder \textit{WSS}.
+        \item \textbf{Extraction Threshold}, definiert den Schwellwert für die Extraktion von Keyphrases.
+    \end{itemize}
+    \item \textbf{SFTPConfig} (\autoref{fig:sftp-config}), enthält die Verbindungsinformationen um auf den SFTP Server zuzugreifen um die externen Daten einzulesen. Dabei müssen die gleichen Parameter wie in \textbf{MetaDataConfig} definiert werden.
+\end{enumerate}
+
+\newpage
+\begin{landscape}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=1\linewidth]{Settings-Meta}
+    \caption{MetaData}
+    \label{fig:meta-config}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=1\linewidth]{Settings-Global}
+    \caption{Globale}
+    \label{fig:global-config}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=1\linewidth]{Settings-SFTP}
+    \caption{Datenquelle}
+    \label{fig:sftp-config}
+    \end{subfigure}
+    \caption{Applikationskonfiguration}
+\end{figure}
+\end{landscape}
+\newpage
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{AddTag}
+\caption{Keyphrase hinzufügen}
+\label{fig:addtag}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{TagAutocomplete}
+\caption{Keyphrase Autovervollständigung}
+\label{fig:addtagautocomplete}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{Search}
+\caption{Suche}
+\label{fig:external-search}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.6\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-1}
+    \caption{Schewllwert 0.04}
+    \label{fig:meta-config}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.6\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-2}
+    \caption{Schewllwert 0.1}
+    \label{fig:global-config}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.6\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-3}
+    \caption{Schewllwert 0.0}
+    \label{fig:sftp-config}
+    \end{subfigure}
+    \caption{Keyphrase Extraktion}
+\end{figure}
 
 \subsection{Tags}
 
@@ -279,7 +339,7 @@ Basierend auf den \hyperref[anforderungen]{Anforderungen} wurden die verschieden
 \begin{enumerate}
     \item Meta-Service
     \item Benutzerdefiniertes Tagging
-    \item Zentrales Suchinterface (Filterung) $\rightarrow$ direkter Zugriff auf die Datenquelle auf der jeweilgen Plattform
+    \item Zentrales Suchinterface (Filterung) $\rightarrow$ direkter Zugriff auf die Datenquelle auf der jeweiligen Plattform
     \item Intelligente Suche: Software lernt aus dem Suchverhalten eines Nutzers:
     \begin{enumerate}
         \item Automatische Priorisierung
