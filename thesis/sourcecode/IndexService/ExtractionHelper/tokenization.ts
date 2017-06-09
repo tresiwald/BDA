@@ -1,13 +1,13 @@
 ...
-let fragmentWords = contentFragments.map((fragment) => {
+let fragmentPhrases = contentFragments.map((fragment) => {
     return fragment.split(' ').map(
         (token) => {
             elasticlunr.trimmer(
                 token.replace("'s ", ' ')
             )
         }
-    ).filter((word) => {
-            word != ""
+    ).filter((phrase) => {
+            phrase != ""
         })
     }
 )

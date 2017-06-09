@@ -1,5 +1,5 @@
 ...
-let keywordPos = tagger.tag(keyword);
+let keyphrasePos = tagger.tag(keyphrase);
 ...
 properNGramPos(pos: any[]): boolean {
     let returnValue = false;

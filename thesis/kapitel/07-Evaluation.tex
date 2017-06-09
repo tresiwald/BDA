@@ -2,37 +2,103 @@
 \chapter{Evaluation}
 % ----------------------------------------------------------------
 
-Die entstandenen Resultate und die erworbenen Erkenntnisse gilt es nun zu evaluieren.
+Folgendes Kapitel hat zum Ziel die erarbeiteten Resulate kritisch zu bewerten. Dazu werden zunächst die Ergebnisse kurz zusammengefasst. Anschliessend wird anhand der zu Beginn definierten Anforderungen eine Gap-Analyse gemacht. Ein Experten-Workshop und eine SWOT-Analyse liefern neben weiteren Rückmeldungen auch Verbesserungen und Potential für eine Weiterentwicklung. Zum Schluss folgen erwähnenswerte Punkte, welche es zu beachten gilt, falls dieser Prototyp oder eine ähnliche Lösung für den Praxiseinsatz entwickelt wird.
 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{Audioslave}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{U2}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{Baseball}
+    \end{subfigure}
+    \caption{Keyphrase Extraktion Schwellwert}
+    \label{examples-keyphrase}
+\end{figure}
+
+
+\section{Ergebnisse}
+
+Der resultierende Prototyp ist in der Lage \gls{Keyphrase}[s] der Länge eins bis drei aus verschiedenen Dokumenten basierend auf einem Korpus zu extrahieren. Ebenfalls besteht die Möglichkeit, die zu einer \gls{Keyphrase} zugehörigen Dokumente zu extrahieren. \autoref{examples-keyphrase} zeigen verschiedene Beispiele von extrahierten \gls{Keyphrase}[s], dabei ist es möglich, diese in drei Gruppen zu einzuteilen:
+\begin{enumerate}
+    \item \textbf{Spezifische Keyphrases}, wie zum Beispiel eine Songtitel oder eine Abkürzung, haben eine sehr starke Kopplung mit dem jeweiligen Dokument. Je nach Korpus eignen sie sich sehr gut für eine Generalisierung. Jedoch können sie auch zu spezifisch sein und sind in zu wenigen Dokumenten enthalten, um Verknüpfungen automatisch zu erkennen. \textit{Bono} als Künstlername ist je nach Situation sinnvoll oder auch nicht.
+    \item \textbf{Generelle Keyphrases} sind ideal für die Generalisierung. Auch wenn sie spezifisch für das jeweilige Dokument sind, tauchen sie in ausreichend vielen anderen Dokumenten auf, um dadurch Verknüpfungen aufzeigen zu können. So zum Beispiel \textit{Pop} als Musikrichtung.
+    \item \textbf{Irrelevante Keyphrases} entstehen häufig durch \gls{Keyphrase}[s] der Länge vier und mehr. Sie werden nicht durch den Algorithmus abgedeckt, jedoch stückweise interpretiert. So zum Beispiel \textit{100 Greatest Artist}, welches der \gls{Keyphrase} \textit{100 Greatest Artists of All Time} entstammt.
+\end{enumerate}
+
+
+
+\subsection{Normalisierung}
+Die Extraktion von relevanten \gls{Keyphrase}[s] und die entsprechende Normalisierung stellen eine grosse Herausforderung dar. Besonders, weil eine Normalisierung auf mehreren Ebenen benötigt wird:
 \begin{itemize}
-    \item Idealer Lucene-Score ist nicht zwingend ideal für Tagging.
-    \item Mass für Generalität.
-    \item Tags nach Anzahl Dokumente klassifizieren
-    \item Gutes Tag
-    
-    \begin{longtable}{|p{4cm}| p{4cm}| p{4cm}|}
-  \hline
-    \textbf{Tag} & \textbf{\# Dokumente}& \textbf{\# Score}\\\hline
-        \caption{Definition: Gutes Tag}
-    \label{gutes-tag}
-\end{longtable}
-    \item Gewichtung der Dokument-Länge
-    \item Disambiguation: Beispiel Jaguar (Tier oder Automarke?)
-    
+    \item \textbf{Korpus-Ebene}: Der Korpus wächst und verändert sich mit der Zeit. Die Relevanz der \gls{Keyphrase}[s] kann sich daher über die Zeit ebenfalls ändern. Daher gibt es die Möglichkeit \gls{Keyphrase}[s] verschiedener Korpus-Grössen miteinander zu vergleichen.
+    \item \textbf{Dokument-Ebene}: Innerhalb eines Dokuments ist es wichtig, gleiche \gls{Keyphrase}[s] verschiedener Dokumente unterschiedlicher Längen vergleichen zu können. Daher sollte die Relevanz einer \gls{Keyphrase} pro Dokument normalisiert werden.
+    \item \textbf{Text-Ebene}: Ebenfalls ist die Verteilung einer \gls{Keyphrase}[s] innerhalb eines Dokumentes ist eine wichtige Metrik. Gewisse Wörter tauchen nur zu Beginn oder am Schluss auf, während andere gleichmässig über den ganzen Text verteilt sind. Durch die Normalisierung dieser Metrik wären Vergleiche auf dieser Ebene möglich.
+    \item \textbf{Keyphrase-Ebene}: Je länger ein \gls{Keyphrase} ist umso mehr unterscheidet sich auch der entsprechende Relevanz-Score. Tendenziell haben längere \gls{Keyphrase} einen höheren \gls{Score} als kürzere. Besonders bei der Extraktion von sowohl relevanten aber auch zum Teil generellen \gls{Keyphrase}[s] ist die Normalisierung wichtig, um verschiedene Längen vergleichen zu können.
 \end{itemize}
 
+Innerhalb des Prototypen wurde nur aufgrund der Länge eines einzelnen Dokuments normalisiert. Jedoch kann im \gls{ikc-core} sowohl der Schwellenwert als auch eine untere Limite der Anzahl Dokumente, welche die jeweilige \gls{Keyphrase}[s] enthalten, definiert werden. \autoref{threshold} zeigt als Beispiel, welche Auswirkungen die Anpassung des Schwellenwerts auf die Anzahl \gls{Keyphrase}[es] hat. Während \autoref{minidoc} die Auswirkung der Erhöhung der unteren Limite der verschiedenen Dokumenten pro \gls{Keyphrase} aufzeigt. Die beiden werden idealerweise miteinander kombiniert.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-3}
+    \caption{Schwellwert 0.0}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-1}
+    \caption{Schwellwert 0.04}
+    \end{subfigure}
+     \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{Keyphrase-2}
+    \caption{Schwellwert 0.1}
+    \end{subfigure}
+    \caption{Keyphrase Extraktion Schwellwert}
+    \label{threshold}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{MinDoc-0}
+    \caption{Limite 0}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{MinDoc-10}
+    \caption{Limite 10}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{MinDoc-50}
+    \caption{Limite 50}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\textwidth}
+    \includegraphics[width=1\linewidth]{MinDoc-100}
+    \caption{Limite 100}
+    \end{subfigure}
+    \caption{Keyphrase Extraktion Minimum Dokuments}
+    \label{minidoc}
+\end{figure}
+
+
+
+\subsection{Vergleich MoreLikeThis}
+\textit{MoreLikeThis} (MLT) ist eine Funkion aus der \textit{Lucene}-Bibliothek. Sie liefert relevante Wörter eines Textes, diese dienen einem Vergleich mit den im Projekt erhaltenen Resultate. Dabei fallen einige Unterschiede auf: Während \textit{MLT} auf Wörter beschränkt ist, liefert der Prototyp \gls{Keyphrase}[s] bis zur Länge drei. Jedoch sind die Wörter aus \textit{MLT} im Schnitt genereller als die resultierenden \gls{Keyphrase}[s] des Prototypen. Dafür sind die \gls{Keyphrase}[s] zum grössten Teil bereinigt von Duplikaten (z.b. \textit{band} und \textit{band\grq s}). Ein Vergleich dieser Art ist sehr wertvoll. Auf eine vertiefte Analyse der Ergebnisse auf dieser Basis musste aus Zeitgründen verzichtet werden.
 % ----------------------------------------------------------------
 \section{Soll-Ist Vergleich}
 % ----------------------------------------------------------------
 
-Durch einen Soll-Ist Vergleich anhand der definierten Anforderungen (\autoref{sec:anforderungen}) kann eine erste qualitative Evalutation vorgenommen werden. Die beiden Tabellen (\autoref{tab:funktionale-anforderungen-eval}, \autoref{tab:nicht-funktionale-anforderungen-eval}) geben eine Überblick über den Stand der Anforderungen. Wie zu sehen, bis auf zwei Ausnahmen sind alle Anforderungen erfüllt. 
+Durch einen Soll-Ist Vergleich anhand der definierten Anforderungen (\autoref{sec:anforderungen}) kann eine erste qualitative Evalutation vorgenommen werden. Die beiden Tabellen (\autoref{tab:funktionale-anforderungen-eval}, \autoref{tab:nicht-funktionale-anforderungen-eval}) geben eine Überblick über den Stand der Anforderungen. Wie zu sehen sind bis auf zwei Ausnahmen alle Anforderungen erfüllt. 
 
 Aufgrund des beschränkten Zeitrahmens und des agilen Projektmanagements wurde bewusst auf die Umsetzung dieser beiden Anforderungen verzichtet. Da die Datenquelle und Persistenzbasis mittels \gls{SFTP} bereits vollständig implementiert ist, ist die Anbindung eines weiteren Dienstes lediglich eine Frage der Zeit. Die Schnittstellen sind definiert und damit sind die Grundlagen gewährleistet. Die Anbindung einer weiteren Datenquelle bringt im Projektrahmen keinen eigentlichen Mehrwert, da der Fokus klar auf der Volltextsuche und der \gls{Keyphrase}-Extraktion liegt.
 
-Auf einen Teil der Anforderungen wurde zusätzlich ein besonderes Augenmerk gelegt. Diese Anforderungen sind in der nachfolgenden Aufstellung kurz mit den entsprechenden Gründen zusammengefasst.
+Auf einen Teil der Anforderungen wurde ein besonderes Augenmerk gelegt. Diese Anforderungen sind in der nachfolgenden Aufstellung kurz mit den entsprechenden Gründen zusammengefasst.
 
 \begin{itemize}
-    \item Die hohe Entkopplung zwischen den verschiedenen Klassen, Komponenten und Services ist ein wichtiger Architekturtreiber und gleichzeitig auch ein Teil der Ziele. Das Projekt dient in Zukunft als Basis für weitere Projekte, darum ist eine Wiederverwendbarkeit und eine einfache Erweiterbarkeit zentral. Während der Entwicklung hat sich weiter bewahrheitet, dass dies essentielle Bedingungen für eine erfolgreiche Entwicklung sind.
+    \item Die hohe Entkopplung zwischen den verschiedenen Klassen, Komponenten und Services ist ein wichtiger Architekturtreiber und gleichzeitig auch ein Teil der Ziele. Das Projekt dient in Zukunft als Basis für weitere Projekte, darum ist eine Wie\-der\-ver\-wend\-bar\-keit und eine leichte Erweiterbarkeit zentral. Während der Entwicklung hat sich weiter bewahrheitet, dass dies essentielle Bedingungen für eine erfolgreiche Entwicklung sind.
     \item In den Algorithmus wurde viel Zeit investiert. Dank dem bereits vorhandenem Wissen und diversen angeregten Diskussionen konnte das Projekt insbesondere auch im Bereich des Algorithmus enorm vorangetrieben werden. Dadurch konnte die anfänglich funktionierende Implementation bis in eine unerwartete technische Tiefe ausgearbeitet werden. Die solide Grundlage für zukünftige Forschung besteht.
     \item Die Anforderung A11 erwartet, dass Tags als Links dem Wissensnetzwerk hinzugefügt werden können. Der \texttt{ElementCache} ermöglicht schon in der aktuellen Version des Prototyps ein Traversieren des Wissensnetzwerks zusätzlich anhand von Tags.
     %urch die Anforderung A11 ist eine Navigation durch das Wissensnetzwerk mittels Tag-Links implizit vorausgesetzt. Zusätzlich ist es auch im Sinne des Projekts.
@@ -134,7 +200,6 @@ Mögliche Ideen und Ansätze für die Weiterentwicklung, welche wäh\-rend des W
 \begin{itemize}
     \item Die Integration der neuen Funktionen und die Benutzeroberfläche des \gls{ikc-core}[s] ganz generell (User Interface - und User Experience Design) ist benutzbar und in Ordnung. Allerdings gibt es dort sicherlich noch viel Optimierungspotential. Dies liegt in der Verantwortung von Folgeprojekten.
     \item Das automatische Tagging ist, wie gesehen, ein Wertangebot. Es gibt aber noch grossen Forschungsbedarf für einen Beweis, dass es wirklich funktioniert und auch diesen erwarteten Mehrwert bieten kann. Die Definition der Relevanz und dem Sinn (oder Unsinn) von extrahierten Inforamtionen ist nicht trivial.
-    \item Precision: Welche Tags sind relevant? Peak: Wieviele der relevanten Tags wurden gefunden?
     \item Ein Problem stellen wichtige Begriff dar, welche aber nur selten im Text oder Korpus auftauchen. Der Benutzer möchte diese Begriff aber inbesondere für das automatische Tagging nutzen. Ein Begriff dafür ist 'Named Entity Recognition'. Ein einfache und sehr effiziente Möglichkeit für die Umsetzung dieser Funktionalität ist die Einführung von White- beziehungsweise Blacklists. Enthält ein Dokument lediglich einmal ein Wort der Whitelist, wird es automatisch mit diesem getaggt. Die Blacklist funktioniert umgekehrt, egal wie viele Male ein Wort enthalten ist, es wird nie zum Tagging genutzt. Mit diesen Mitteln kann der Benutzer das automatisch Tagging leicht und schnell unterstützen.
     \item Die benutzerdefinierte und auch automatisch Priorisierung von Links, dem Inhalt und auch den Tags spielt eine wichtige Rolle für Benutzer. Dafür ist die Einführung eines Masses der Priorität notwendig. Eine gute Möglichkeit für Verknüpfungen und Tags wäre beispielsweise, dass die Position automatisch der Priorität entspricht. So könnte der Benutzer die Priorität selbstständig durch das Verschieben der Eigenschaft (Drag'n'Drop) festlegen.
     \item Das Konzept einer automatischen Suche mit selbstständigem Tagging treibt das Konzept der Whitelist weiter: Der Benutzer kann sein einges Regelwerk erstellen. Beispielsweise kann er mehrere Begriffe ($t_x$) zu einem Tag ($T_y$) hinterlegen: $t_1\wedge t_2 \wedge t_3 \Rightarrow T_1$ Sind diese Begriff nun in einem Dokument enthalten, wird dieses automatisch mit dem festgelegten Tag versehen. Die Konjunktion und die Disjunktion sind hier denkbar.
@@ -174,12 +239,12 @@ Die SWOT-Analyse als Instrument der strategischen Planung dient der Positionsbes
 % ----------------------------------------------------------------
 
 \begin{itemize}
-    \item \textbf{Wiederverwendbarkeit}: Der Prototyp ist modular aufgebaout, entwickelte Komponenten können darum wiederverwendet werden.
+    \item \textbf{Wiederverwendbarkeit}: Der Prototyp ist modular aufgebaout, entwickelte Komponenten können darum leicht wiederverwendet werden.
     \item \textbf{Skalierbarkeit}: Die verschiedenen Services sind entkoppelt von einander und können theoretisch beliebig repliziert werden.
     \item \textbf{Abstraktion der Anmeldenformationen}: Die Zugangsberechtigungen werden nur in abstrakter Form mittels Tokens weitergegeben. Der Zugriff berechtigt jeweils nur für eine benutzerdefinierte Ressource.
     %\item Schlanke Implementation der Auto-Indexierung
     \item \textbf{Search-Broker}: Die Abstraktion von Such-Services ermöglicht die Anbindung von beliebigen Quellen.
-    \item \textbf{Forschungsgrundlage}: Verschiedene Implementationen eines Sco\-ring-Algorithmus können auf Basis des entwickelten Prototypen ausgeführt und verglichen werden.
+    \item \textbf{Forschungsgrundlage}: Verschiedene Implementationen des Sco\-ring-Algorithmus können auf Basis des entwickelten Prototypen ausgeführt und verglichen werden.
     \item \textbf{Code-Sharing}: Sowohl client- als auch serverseitig wird Javascript eingesetzt. Deswegen ist es einfach erstellten Code wiederzuverwenden oder an einem anderen Ort auszuführen.
 \end{itemize}
 
@@ -188,11 +253,11 @@ Die SWOT-Analyse als Instrument der strategischen Planung dient der Positionsbes
 % ----------------------------------------------------------------
 
 \begin{itemize}
-    \item \textbf{Fehlende quantitative Evaluation}: Eine objektive Evaluation der Ergebnisse des Scoring-Algorithmus anhand von Testdaten vergleichbarer, renommierter Algorithmen sprengt den Zeitrahmen. Aufgrund dessen können lediglich subjektive Mutmassungen zur Qualität der Ergebnisse gemacht werden.
+    \item \textbf{Fehlende quantitative Evaluation}: Eine objektive Analyse der Ergebnisse des Scoring-Algorithmus anhand von Testdaten vergleichbarer Algorithmen sprengt den Zeitrahmen. Darum kön\-nen lediglich subjektive Mutmassungen zur Qualität der Ergebnisse gemacht werden.
     \item \textbf{Fehlende Sprachunabhängigkeit}: Der Prototyp funktioniert lediglich mit der englischen Sprache beziehungsweise wurde er nur entsprechend getestet.
     \item \textbf{Algorithmus}: Sowohl die Position eines Wortes innerhalb eines Satzes oder Textes und auch eine semantische Analyse des Kontextes eines Wortes bleiben aus.
 %    \item \textbf{Hohe Korpusgrösse}: 
-    \item \textbf{Garbage-Collector}: Wie in \cite[S.~1-3]{cohen2015data} und \cite[S.~1-2]{nguyen2016yak} beschrieben, haben Programmiersprachen, welche Garbage-Collector verwenden, nicht nur Stärken, sondenr auch Schwächen. Diese Schwächen treten insbesondere bei grossen, komplexen Datenstrukturen zu Tage.
+    \item \textbf{Garbage-Collector}: Wie in \cite[S.~1-3]{cohen2015data} und \cite[S.~1-2]{nguyen2016yak} beschrieben, haben Programmiersprachen, welche Garbage-Collector verwenden, nicht nur Stär\-ken, sondern auch Schwächen. Diese Schwächen treten insbesondere bei grossen, komplexen Datenstrukturen zu Tage.
     %\item \textbf{}: Die verwendete Grundlage für den Scoring-Algorithmus TF-IDF ist bekannt für die Suche nach ähnlichen Dokumenten. Hier wird er aber für die Bestimmung von relevanten Begriffen eines Textes genutzt.
     
 \end{itemize}
@@ -241,11 +306,11 @@ Die folgende Zusammenstellung zeigt, wie mit den verschiedenen ermittelten Fakto
 
 
 \begin{itemize}
-    \item \textbf{Stärke-Chancen}: Wie auch der \gls{ikc-core} ist auch der resultierende Prototypen zum grössten Teil modular aufgebaut. Dies ermöglicht es, einfach verschiedene Teile auszutauschen oder auch innerhalb dieses oder anderen Projekten wiederzuverwenden. Weiter bietet er dem Benutzter Möglichkeiten, um die Datenbasis seines Wissensnetzwerks besser zu verstehen beziehungsweise Beziehungen zu erkennen und abzubilden.
+    \item \textbf{Stärke-Chancen}: Wie auch der \gls{ikc-core} ist auch der resultierende Prototypen zum grössten Teils modular aufgebaut. Dies ermöglicht es, einfach verschiedene Teile auszutauschen oder auch innerhalb dieses oder anderen Projekten wiederzuverwenden. Weiter bietet er dem Benutzter Möglichkeiten, um die Datenbasis seines Wissensnetzwerks zu verstehen beziehungsweise Beziehungen zu erkennen und abzubilden.
     
     Da client- und serverseitig mit Javascript gearbeitet wird, ist es denkbar, dass Teile der aktuell auf dem Server laufenden Services auch clientseitig ausgeführt werden können. Eine Idee dazu wäre beispielsweise, dass ein clientseitiger \texttt{IndexService} sich um einen lokale Indizes kümmert. Auch die bestehenden Protokolle und Schnitstellen können problemlos wiederverwendet werden.
     \item \textbf{Stärke-Gefahren}: Die Modularisierung, die Skalierbarkeit und auch die Abstraktion im \gls{ikc-core} und im Prototypen macht die Nutzung aller Möglichkeiten zur Optimierung der Parallisierung möglich. Dank der Entkopplung können Services praktisch beliebig wiederverwendet und vervielfacht werden.
-    \item \textbf{Schwäche-Chancen}: Der fehlenden qualitiven Evaluation kann mit der grossen Flexibilität Abhilfe geschafft werden. Sobald eine Referenz mit Testdaten verfügbar ist, kann der Algoritmus schnell getestet und analysiert werden. Auch ist es einfach möglich verschiedene Algorithmen zu evaluieren.
+    \item \textbf{Schwäche-Chancen}: Der fehlenden qualitiven Evaluation kann mit der grossen Flexibilität Abhilfe geschafft werden. Sobald eine Referenz mit Testdaten verfügbar ist, kann der Algoritmus schnell getestet und analysiert werden. Auch ist es möglich, verschiedene Algorithmen zu evaluieren.
     \item \textbf{Schwäche-Gefahren}: Der Algorithmus arbeitet momentan zum grössten Teil mit statistischen Kennzahlen. Es werden zwar auch sprachwissenschaftliche Mitteln eingesetzt, jedoch ist rein theoretisch noch viel möglich. Allerdings gibt es dazu erst sehr wenige Ansätze.
 \end{itemize}
 
@@ -272,7 +337,7 @@ JSON ist dafür, insbesondere bei grossen Dateien, nicht performant genug. Msgpa
 \subsection{Persistenz}
 % ----------------------------------------------------------------
 
-Momentan werden die Indizes als herkömmliche Text-Dateien gespeichert. Dies funktioniert soweit auch. Allerdings steigt die Gefahr von fehlender Performance bei grösseren Dateien immer mehr. Die Struktur wird immer komplexer und unübersichtlicher. Für eine produktive Lösung wäre eine Datenbank zur Haltung der Inzizes denkbar. Mögliche Lösungen reichen von herkömmlichen MySQL- bis hin zu Redis\footnote{\url{https://redis.io/}}-Systemen. Auch Stor.j gilt es im Auge zu behalten. Insbesondere dezentralisierte Ansätze klingen sehr viel versprechend.
+Momentan werden die Indizes in Form von Binärdaten abgelegt. Dies funktioniert soweit auch. Allerdings steigt die Gefahr von fehlender Performance bei grösseren Dateien immer mehr. Die Struktur wird immer komplexer und unübersichtlicher. Für eine produktive Lösung wäre eine Datenbank zur Haltung der Inzizes denkbar. Mögliche Lös\-ung\-en reichen vom herkömmlichen MySQL- bis hin zu Redis\footnote{\url{https://redis.io/}}. Auch Stor.j gilt es im Auge zu behalten. Vor allem dezentralisierte Ansätze klingen sehr viel versprechend.
 
 % ----------------------------------------------------------------
 \subsection{Programmiersprache}

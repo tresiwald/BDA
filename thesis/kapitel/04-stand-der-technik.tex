@@ -25,7 +25,7 @@ Die Grundlage dieser Arbeit bilden die Daten eines Nutzers. Diese alleine sind a
  zeigen, beschäftigt man sich häufig mit der Übertragung und dem Empfang von Informationen. Viel weniger befasst man sich aber mit derselbigen mit der Grundlage von Wissen oder gar Verständnis. 
  
  Auch die Unterscheidung von Daten, Informationen und Wissen ist selten explizit festgelegt. Für ein tieferes Verständnis hilft folgendes Zitat  aus \cite{ackoff1989data}. Es stellt die Dimensionen zwischen den verschiedenen Ausdrücken her: Daten bilden die Grundlage. Informationen basieren auf Daten, besitzen aber bereits einen grossen Mehrwert. Der nächste Schritt ist der Aufbau von Wissen, und dieses basiert wiederum auf Informationen und somit Daten. Versteht man nun das Wissen zusätzlich, ist man am Ziel angelangt. Die Daten sind vollkommen genutzt, man erlangt den grössten Mehrwert. Eine Definition der Ausdrücke folgt im nächsten Absatz.
-
+\newpage
 \begin{quote}\label{wissen-zitat}
 \textit{An ounce of information is worth a pound of data.}\\
 \textit{An ounce of knowledge is worth a pound of information.}\\
@@ -196,7 +196,7 @@ Bei der Verwendung einem stochastischen Algorithmus werden als erstes Wörter in
 
 %---------------------------------------------------------------------
 
-Durch den Prozess der \gls{Textanalyse} (oder Text Mining nach \cite{tan1999text}) können Informationen aus einem Text extrahiert werden. Basierend auf diesen Informationen werden Anwendungen wie eine \gls{Volltextsuche} oder die Erkennung von Ähnlichkeiten oder wichtigen Stichworten ermöglicht. Je nach Anwendungsfall werden statistische Verfahren mit Techniken aus dem Feld von \gls{Natural Language Processing} (\autoref{natural-language-processing}) kombiniert. Ein Beispiel für \gls{Textanalyse} ist die \gls{Keyword Extraction} (\autoref{keyword-extraction}). 
+Durch den Prozess der \gls{Textanalyse} (oder Text Mining nach \cite{tan1999text}) können Informationen aus einem Text extrahiert werden. Basierend auf diesen Informationen werden Anwendungen wie eine \gls{Volltextsuche} oder die Erkennung von Ähnlichkeiten oder wichtigen Stichworten ermöglicht. Je nach Anwendungsfall werden statistische Verfahren mit Techniken aus dem Feld von \gls{Natural Language Processing} (\autoref{natural-language-processing}) kombiniert. Ein Beispiel für \gls{Textanalyse} ist die \gls{Keyphrase Extraction} (\autoref{Keyphrase-extraction}). 
 
 % Text Mining
 
@@ -213,18 +213,18 @@ Unter \gls{Volltextsuche} versteht man die Funktionalität eine Menge von Wörte
 
 %---------------------------------------------------------------------
 
-\subsection{\glsentrytext{Extraktion}}\label{keyword-extraction}
+\subsection{\glsentrytext{Extraktion}}\label{Keyphrase-extraction}
 
 %---------------------------------------------------------------------
 
-Ein mögliches Resultat der \gls{Textanalyse} stellen Schlüsselwörter (\gls{Keyword}[s]) dar. Sie fassen im Idealfall, wie gesehen in \cite[S.~85]{Zhang2006}, den zugrundeliegenden Text kurz und prägnant zusammen, stellen damit wichtige semantische Informationen dar. Weiter bilden sie eine fundamentale Grundlage für Dokumentenanalyse und -klassifizierung.
+Ein mögliches Resultat der \gls{Textanalyse} stellen Schlüsselwörter (\gls{Keyphrase}[s]) dar. Sie fassen im Idealfall, wie gesehen in \cite[S.~85]{Zhang2006}, den zugrundeliegenden Text kurz und prägnant zusammen, stellen damit wichtige semantische Informationen dar. Weiter bilden sie eine fundamentale Grundlage für Dokumentenanalyse und -klassifizierung.
 
 
-Für die Generierung dieser \gls{Keyword}[s] benutzt man Verfahren der \gls{Keyword Extraction}. Hierbei geht nach  es \cite{hulth2004} um die Auswahl einer kleinen Menge an Wörtern oder Begriffen aus einem Text, welche den Inhalt oder die Bedeutung möglichst gut widerspiegeln.
+Für die Generierung dieser \gls{Keyphrase}[s] benutzt man Verfahren der \gls{Keyphrase Extraction}. Hierbei geht nach  es \cite{hulth2004} um die Auswahl einer kleinen Menge an Wörtern oder Begriffen aus einem Text, welche den Inhalt oder die Bedeutung möglichst gut widerspiegeln.
 
-Diese \gls{Keyword}[s] bestehen aus einem oder mehreren \gls{Konzept}[en]. Konzepte beziehen sich auf Objekte, Entitäten, Ereignisse und Themen, welche für suchende Benutzer interessant sein könnten (\cite{dalvi2009web}). Die Definition ist bewusst offen gewählt, da sich eine genauere Eingrenzung schwierig gestaltet. Eine weiterführende Definition geht in Richtung Nutzen für Menschen: Sobald eine gewisse Anzahl von Personen etwas als Konzept erkennt, kann dieses als Konzept angesehen werden (\cite{parameswaran2010towards}). Das Nutzung von \gls{Konzept}[en] findet unter anderen bei Suchmaschinen, automatischem Tagging statt.
+Diese \gls{Keyphrase}[s] bestehen aus einem oder mehreren \gls{Konzept}[en]. Konzepte beziehen sich auf Objekte, Entitäten, Ereignisse und Themen, welche für suchende Benutzer interessant sein könnten (\cite{dalvi2009web}). Die Definition ist bewusst offen gewählt, da sich eine genauere Eingrenzung schwierig gestaltet. Eine weiterführende Definition geht in Richtung Nutzen für Menschen: Sobald eine gewisse Anzahl von Personen etwas als Konzept erkennt, kann dieses als Konzept angesehen werden (\cite{parameswaran2010towards}). Das Nutzung von \gls{Konzept}[en] findet unter anderen bei Suchmaschinen, automatischem Tagging statt.
 
-Nach der Auswahl aller potentiellen \gls{Keyword}[s] wird zunächst versucht, semantisch nicht wertvolle Begriffe auszuschliessen. Dies ist ein wichtiger Schritt, denn die anschliessende Berechnung der Relevanz ist ein sehr aufwändiger Prozess. 
+Nach der Auswahl aller potentiellen \gls{Keyphrase}[s] wird zunächst versucht, semantisch nicht wertvolle Begriffe auszuschliessen. Dies ist ein wichtiger Schritt, denn die anschliessende Berechnung der Relevanz ist ein sehr aufwändiger Prozess. 
 
 % https://people.dsv.su.se/~hulth/thesis_hulth.pdf
 % ähnliche Arbeit? http://ceur-ws.org/Vol-706/poster13.pdf 
@@ -233,39 +233,6 @@ Nach der Auswahl aller potentiellen \gls{Keyword}[s] wird zunächst versucht, se
 % Web of Concepts http://s3.amazonaws.com/academia.edu.documents/33513575/A_Web_of_Concepts.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1493217891&Signature=bpzInfxK7UR6S%2FFuOGsr4nJCdG8%3D&response-content-disposition=inline%3B%20filename%3DA_Web_of_Concepts.pdf
 
 Vorgeschlagene Methoden für diesen Vorgang nehmen nach \cite[S.~85]{Zhang2006} oftmals sogenannte globale Kontext-Informationen zum Gebrauch. Diese beinhalten unter anderem die Häufigkeit eines Begriffes innerhalb eines Dokuments und auch die Häufigkeit eines Begriffes innerhalb des gesamten Dokumentenkorpus. %
-
-%---------------------------------------------------------------------
-
-\subsubsection{TF-IDF}
-
-%---------------------------------------------------------------------
-
-
-%---------------------------------------------------------------------
-
-\subsubsection{Vektorspace}
-
-%---------------------------------------------------------------------
-
-
-%---------------------------------------------------------------------
-
-\subsubsection{Cosine Distance}
-
-%---------------------------------------------------------------------
-
-
-%---------------------------------------------------------------------
-
-\subsubsection{Okapi BM25}
-
-%---------------------------------------------------------------------
-
-%---------------------------------------------------------------------
-
-\subsubsection{Stanfordpaper}
-
-%---------------------------------------------------------------------
 
 % http://link.springer.com/chapter/10.1007%2F11775300_8
 % This kind of global information ignores the term's local context information and makes the extraction performance limited.
@@ -322,34 +289,21 @@ TF-IDF ist ein Gewichtungsalgorithmus zur Bestimmung der Relevanz eines Begriffe
 
 Der TF-IDF Wert ist hoch, wenn ein Begriff in einem Dokument oft, in allen anderen Dokumenten hingegen nicht vorkommt. Er ist tief, wenn der Begriff in vielen oder allen Dokumenten vorkommt.
 
-% https://nlp.stanford.edu/IR-book/pdf/irbookonlinereading.pdf
+%---------------------------------------------------------------------
 
-\textbf{Document Vector, Normalisierung, ..}
-
-\cite{manning2008introduction}
-
-%tf = term frequency, nr. of appearance of a term in a doc\\
-
-%idf = inverse document frequency, as rare the as higher the value, log(number all docs/number of docs with term)\\
-
-%tf-idf = tf x idf\\
-
+\subsubsection{Vector Space Model}
 
 %---------------------------------------------------------------------
 
-\subsubsection{Heuristik}
+Wie \cite{manning2008introduction} beschreibt nutzt das \textit{Vector Space Model} hochdimensionale Vektoren, um ein Wort zu repräsentieren. So kann eine \gls{Keyphrase} oder ein Dokument zum Beispiel durch die Häufigkeit der vorkommenden Wörter dargestellt werden. Mit Hilfe der \textit{Cosine Distance} kann nun der Winkel zwischen dem \gls{Keyphrase}-Vektor und einem Dokument-Vektor berechnet werden. Dadurch kann die Relevanz der \gls{Keyphrase} für das Dokument ausgedrückt werden. Weiter ist es möglich, Wörter als Vektor durch die Häufigkeit anderer Wörter in seiner Umgebung auszudrücken. 
 
 %---------------------------------------------------------------------
-
-\url{https://nlp.stanford.edu/IR-book/pdf/06vect.pdf}\\
 
 \subsubsection{Okapi BM25}
-based on tf-idf\\
-tunable params k1 and b to modulate term frequency saturation and field length normalization\\
-term frequency saturation, above a significant number of usage of a term, docs will get the same score neither the term appears 40 times or 100 times\\
-field length normalization, consider length of doc againts length of all docs, combine results of title and description
 
-%http://kak.tx0.org/IR/TFxIDF
+%---------------------------------------------------------------------
+
+\textit{Okapi BM25} ist, wie von \cite{robertson2009probabilistic} beschrieben, eine Weiterentwicklung von \textit{TF-IDF}. Es wurden verschiedene Steuerung-Parameter eingeführt, welche die Reduktion der Auswirkung von hohen \gls{Keyphrase}-Frequenzen als auch der Grad der Normalisierung regeln.
 
 
 %---------------------------------------------------------------------

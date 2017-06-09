@@ -14,7 +14,7 @@ Mit der Analyse dieser Inhalte werden zusätzliche Informationen Teil des Wissen
 
 %Die Auswertung der Datenquellen ermöglicht dem Benutzer eine plattformübergreifende Volltextsuche und präsentiert ihm, anhand des jeweiligen Inhalts, eine Auswahl der relevanten Begriffe. Dadurch wird aus einer reinen Verknüpfung von Datenquellen eine tatsächliche Integration der Informationen.
 
-Zum besseren Verständnis werden potentiell unbekannte oder pro\-jekt-spezifische Begriffe kursiv und fett dargestellt. Zu jedem Begriff ist eine kurze Beschreibung im Glossar (\hyperref[glossar]{Kapitel Glossar}) am Ende der Dokumentation zu finden. Im Anhang sind neben der Aufgabenstellung (\autoref{aufgabenstellung}) auch die wichtigsten Sitzungsprotokolle (\autoref{protokolle}) und das Arbeitsjounrnal (\autoref{arbeitsjournal}) beigelegt. Der dokumentierte Sourcecode\footnote{\url{https://gitlab.enterpriselab.ch/ikc}} ist auf dem entsprechenden Repository der Hochschule Luzern verfügbar.
+Zum besseren Verständnis werden potentiell unbekannte oder pro\-jekt-spezifische Begriffe kursiv und fett dargestellt. Zu jedem Begriff ist eine kurze Beschreibung im Glossar (\hyperref[glossar]{Kapitel Glossar}) am Ende der Dokumentation zu finden. Im Anhang sind neben der Aufgabenstellung (\autoref{aufgabenstellung}) auch das Arbeitsjounrnal (\autoref{arbeitsjournal}) beigelegt. Der dokumentierte Sourcecode\footnote{\url{https://gitlab.enterpriselab.ch/ikc}} ist auf dem entsprechenden Repository der Hochschule Luzern verfügbar.
 
 %---------------------------------------------------------------------
 
@@ -49,6 +49,7 @@ Zur Abgrenzung definiert der Scope den Inhalt und den Umfang eines Projektes. F�
     \item Um mögliche Schwierigkeiten und Hindernisse mit Dropbox von Beginn an auszuschliessen, wird eine neue Datenquelle und Persistenzbasis auf der Grundlage von \gls{SFTP} eingeführt.
     \item Der Projektpartner stellt die Testdaten auf Basis einer Sammlung von Wikipedia-Artikeln zur Verfügung. Möglicherweise muss die Auswahl aufgrund der grossen Datenmenge ein\-ge\-schränkt werden.
     \item Aufgrund der Anforderungsanalyse\footnote{{Protokoll der Anforderungsanalyse \autoref{anforderungsanalyse-mk}}} mit dem Projektpartner wurde das Projekt noch spezifischer auf die Schlüss\-el\-wort\-ex\-traktion fokussiert. Ein \gls{SFTP}-Service ersetzt dabei eine Anbindung an Dropbox und Evernote komplett.
+    \item Die Implementation beschränkt sich auf die herkömmliche Version des \gls{ikc-core}[s] ohne die Visualisierung. Dies hat den Grund, dass zum Zeitpunkt des Projektstarts die Visualisierung noch nich ausreichend stabil lauffähig war.
 \end{itemize}
 
 \section{Projektstrukturplan}
@@ -58,7 +59,7 @@ Die \autoref{fig:projektstrukturplan} gewährt einen Überblick über das Projek
     \item In der \textbf{Konzeption} werden neben den Anforderungen auch vorstellbare Lös\-ungs\-an\-sätz\-e in den Bereichen Architektur sowie Schnittstellen geprüft.
     \item Nach einer anfänglichen Recherchephase werden zu Testzwecken bereits erste Prototypen entwickelt. So sollen mögliche Optionen überprüft und gegebenenfalls später implementiert oder weiterentwickelt werden. Nach einer \textbf{Evaluation} werden die geeigneten Lösungen ausgewählt.
     \item In der \textbf{Entwicklung} werden die gesammelten Erkenntnisse gesammelt und analysiert. Grundsätzlich soll auf den zuvor entwickelten Prototypen aufgebaut werden. Zunächst wird ei\-gen\-stän\-dig, ohne Einbindung in den \gls{ikc-core} entwickelt.
-    \item Sobald die Implementierung die erforderlichen Anforderungen reibungslos erfüllt, wird sie in den bestehenden \gls{ikc-core} \textbf{integriert}. Nach letzten Optimierungen sind nun alle Anforderungen erfüllt und intensivere Tests können durchgeführt werden. Für die Entwicklung werden hauptsächlich Integrationstests verwendet.
+    \item Sobald die Implementierung die erforderlichen Anforderungen reibungslos erfüllt, wird sie in den bestehenden \gls{ikc-core} \textbf{integriert}. Nach letzten Optimierungen sind nun alle Anforderungen erfüllt und intensivere Tests können durchgeführt werden. Für die Entwicklung werden hauptsächlich Integrationstests verwendet. Für einen besseren Überblick ist das Testkonzept in der \autoref{tab:testkonzept-detail} zu finden. Anhand dieses wurde die Funktionalität während der Entwicklung laufend getestet.
     \item Nachdem die Entwicklungsarbeit abgeschlossen ist, folgt der \textbf{Projektabschluss}. Dabei wird die endgültige Version des Projektreports erstellt und die Abschlusspräsentation gehalten.
 \end{enumerate}
 
@@ -68,6 +69,7 @@ Die Rahmenplanung, basierend auf dem Projektstrukturplan (\autoref{fig:rahmenpla
 
 Ein wichtiger Teil der Rahmenplanung sind die Meilensteine. Sie unterteilen das Projekt in Phasen, welche dadurch klar voneinander getrennt sind. Ebenfalls sind sie eine wichtige Orientierungshilfe im Projekt und weisen den Weg zu einem erfolgreichen Abschluss. Sie werden in \autoref{tab:meilensteine} aufgelistet.
 
+\newpage
 \section{Projektziele} \label{projektziele}
 Projektziele werden definiert, um den Erfolg an ausgewählten Punkten zu überprüfen und sicherstellen. Sie wurden in Absprache mit dem Projektpartner definiert. Die Ziele sind in der folgenden \autoref{tab:projekt-ziele} aufgelistet und anschliessend genauer ausgeführt.
 

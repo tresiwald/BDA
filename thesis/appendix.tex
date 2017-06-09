@@ -2,25 +2,21 @@
 
 \section{Testfälle} \label{tests}
 
-\begin{longtable}{|p{1cm} | p{10cm} |p{1.2cm} |}
+\begin{longtable}{|p{1cm} | p{10cm} |p{1.2cm}|}
   \hline
     ID & Ablauf & Erfüllt \\\hline
     T1 & \gls{ikc-core} starten ohne das ein Index existiert. Anschliessend müssen alle Daten eingelesen werden, der Index generiert und gespeichert werden& \\\hline
-    T2 & \gls{ikc-core} starten während eine Index existiert jedoch nicht eingelesen ist. Nun muss der Indexgeladen werden und allfällige Änderungen (neue oder geänderte Dateien) nach getragen werden.\\\hline
-    T3 & \gls{ikc-core} starten und der Index ist aktuell und initialisiert. In diesem Fall muss nach kurzer Zeit die Rückmeldung kommen, dass der Index bereit ist.\\\hline
-    T4 & Innerhalb der Suche, müssen neben lokalen Suchresultate auch solche aus dem Volltext Index erscheinen. \\\hline
-    T5 & Sobald ein externes Dokument geladen wird, müssen die \gls{Keyphrase}[s] abgefragt und dargestellt werden.\\\hline
-    T6 & Wird ein \gls{Keyphrase} ausgewählt müssen alle dazugehörigen Dokumente abgefragt und angezeigt werden.\\\hline
-    T7 & Wenn ein neues Text Dokument innerhalb der externen Datenquelle erstellt wurde muss dieses beim nächsten Abgleich mit dem generierten Index verarbeitet werden.\\\hline
-    T8 & Wenn ein neues Text Dokument innerhalb der externen Datenquelle geändert wurde muss dieses beim nächsten Abgleich mit dem generierten Index verarbeitet werden.\\\hline
+    T2 & \gls{ikc-core} starten während eine Index existiert jedoch nicht eingelesen ist. Nun muss der Indexgeladen werden und allfällige Änderungen (neue oder geänderte Dateien) nach getragen werden.&\\\hline
+    T3 & \gls{ikc-core} starten und der Index ist aktuell und initialisiert. In diesem Fall muss nach kurzer Zeit die Rückmeldung kommen, dass der Index bereit ist.&\\\hline
+    T4 & Innerhalb der Suche, müssen neben lokalen Suchresultate auch solche aus dem Volltext Index erscheinen. &\\\hline
+    T5 & Sobald ein externes Dokument geladen wird, müssen die \gls{Keyphrase}[s] abgefragt und dargestellt werden.&\\\hline
+    T6 & Wird ein \gls{Keyphrase} ausgewählt müssen alle dazugehörigen Dokumente abgefragt und angezeigt werden.&\\\hline
+    T7 & Wenn ein neues Text Dokument innerhalb der externen Datenquelle erstellt wurde muss dieses beim nächsten Abgleich mit dem generierten Index verarbeitet werden.&\\\hline
+    T8 & Wenn ein neues Text Dokument innerhalb der externen Datenquelle geändert wurde muss dieses beim nächsten Abgleich mit dem generierten Index verarbeitet werden.&\\\hline
     \caption{Testfälle Beschreibung}
   \label{tab:testkonzept-detail}
 \end{longtable}
 
-
-
-\section{Wichtigste Protokolle}
-\label{protokolle}
 
 
 \section{Arbeitsjournal}
@@ -33,6 +29,11 @@
 
 \section{Aufgabenstellung}
 \label{aufgabenstellung}
+
+\includegraphics[page=1,scale=0.8]{bilder/Aufgabenstellung.pdf}
+\includegraphics[page=2,scale=0.8]{bilder/Aufgabenstellung.pdf}
+\includegraphics[page=3,scale=0.8]{bilder/Aufgabenstellung.pdf}
+\includegraphics[page=4,scale=0.8]{bilder/Aufgabenstellung.pdf}
 
 
 \section{Anforderungsanalyse}\label{anforderungsanalyse-mk}
@@ -60,16 +61,15 @@
 
 \begin{longtable}{|p{1cm}|p{2cm}|p{8.5cm}|}
   \hline
-    ID & Datum &  Beschreibung \\\hline
-    M1 & 19.09.2016 & Administrativer Meilenstein: Kickoff\\\hline
-    M2 & 09.10.2016 & Administrativer Meilenstein: Projektplanung abgeschlossen\\\hline1
-    M3 & 16.10.2016 & Entwicklung Meilenstein: Schnittstellen definiert\\\hline
-    M4 & 06.11.2016 & Entwicklung Meilenstein: Evaluation Entscheid\\\hline
-    M5 & 25.12.2016 & Entwicklung Meilenstein: Funktionsfähige Oberfläche umgesetzt\\\hline
-    M6 & 15.01.2017 & Entwicklung Meilenstein: Integration in \gls{ikc-core} abgeschlossen\\\hline
-    M7 & 22.01.2017 & Administrativer Meilenstein: 95\% erreicht\\\hline
-    M8 & 30.01.2017 & Administrativer Meilenstein: PAWI Bericht Abgabe\\\hline
-    M9 & 31.01.2017 & Administrativer Meilenstein: Präsentation\\\hline
+    ID & Kalenderwoche &  Beschreibung \\\hline
+    M1 & KW11 & Projektsetup erstellt\\\hline
+    M2 & KW13 & Sprint 2 abgeschlossen\\\hline
+    M3 & KW15 & Sprint 3 abgeschlossen\\\hline
+    M4 & KW17 & Sprint 4 abgeschlossen\\\hline
+    M5 & KW19-20 & Sprint 5 abgeschlossen\\\hline
+    M6 & KW22 & Sprint 6 abgeschlossen\\\hline
+    M1' & KW17-18 & Zwischenpräsentation\\\hline
+    M2' & KW25-26 & Abschlusspräsentation\\\hline
     \caption{Meilensteine}
   \label{tab:meilensteine}
 \end{longtable}
@@ -79,7 +79,7 @@
 \begin{landscape}
 \begin{figure}[ht]
 \centering
-\includegraphics[width=1.7\textwidth]{Rahmenplan}
+\includegraphics[width=1.7\textwidth]{Rahmenplan-sw}
 \caption{Rahmenplan}
 \label{fig:rahmenplan}
 \end{figure}
@@ -152,10 +152,7 @@ In folgender \autoref{tab:risikoanalyse} werden mögliche Risiken behandelt. Die
   \hline
     ID & Datum &  Beschreibung \\\hline
     L1 & 26.04.2017 & Zwischenpräsentation.\\\hline
-    L2 & 09.06.2017 & Funktionsfähige Software mit folgenden Eigenschaften:
-    \begin{itemize}
-        \item ...
-    \end{itemize}
+    L2 & 09.06.2017 & Funktionsfähige Software gemäss den Anforderungen
     \\\hline
     L3 & 09.06.2017 & Dokumentierter Sourcecode (für Methoden und Parameter).\\\hline
     L4 & 09.06.2017 & \gls{BDA}-Bericht.\\\hline
@@ -177,7 +174,8 @@ In folgender \autoref{tab:risikoanalyse} werden mögliche Risiken behandelt. Die
 
 
 \subsection{Stories}
-Die User-Stories repräsentieren alle Arbeitspakete, welche über die gesamte Projektdauer geplant wurden. Diese werden nicht nur im klassischen Sinne für die Klassifizierung von Applikationsfunktionen, sondern auch für konzeptionelle Aufgaben verwendet. Insgesamt wurde der Aufwand mit \textbf{256} Punkte beziffert, wobei ein Punkt circa einer Stunde entspricht. Dies entspricht auch etwa dem resultierenden Aufwand von \textbf{276} Punkten. Der Mehraufwand konnte dank einiger Reserven gut kompensiert werden. Dieser entstand vor allem in der Umsetzung der \gls{Drag'n'Drop} Gesten und dem Datenaustausch zwischen \gls{ikc-core} und Visualisierung. Alle User-Stories sind in der \autoref{user-stories} detailliert aufgelistet und die weiterführenden Beschreibungen sind in der \autoref{user-stories-desc} zu finden.
+Die User-Stories repräsentieren alle Arbeitspakete, welche über die gesamte Projektdauer geplant wurden. Diese werden nicht nur im klassischen Sinne für die Klassifizierung von Applikationsfunktionen, sondern auch für konzeptionelle Aufgaben verwendet. Insgesamt wurde der Aufwand mit \textbf{560} Punkte beziffert, wobei ein Punkt circa einer Stunde entspricht. Dies entspricht auch etwa dem resultierenden Aufwand von \textbf{580} Punkten. Der Mehraufwand konnte dank einiger Reserven gut kompensiert werden. Dieser entstand vor allem in der Umsetzung der \gls{Drag'n'Drop} Gesten und dem Datenaustausch zwischen \gls{ikc-core} und Visualisierung. Alle User-Stories sind in der \autoref{user-stories} detailliert aufgelistet.
+
 \begin{longtable}{|p{0.6cm}|P{4.5cm}|p{1.4cm}|p{1.4cm}|p{2.4cm}|}
 \hline
 ID  & Name & Geplant & Effektiv &Sprint\\ \hline
@@ -222,22 +220,23 @@ Basierend auf den \hyperref[anforderungen]{Anforderungen} wurden die verschieden
 
 \subsection{Konfiguration}
 
-Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als auch des Prototypen angepasst werden. Sie ist aufgeteilt in drei Bereicher:
+Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core}[s] als auch des Prototypen angepasst werden. Sie ist aufgeteilt in drei Bereiche:
 \begin{enumerate}
-    \item \textbf{MetaDataConfig} (\autoref{fig:meta-config}), enthält die Verbindungsinformationen für die Speicherung der Meta Daten des \gls{ikc-core}:
+    \item Die \textbf{MetaDataConfig} (\autoref{fig:meta-config}) enthält die Verbindungsinformationen für die Speicherung der Metadaten des \gls{ikc-core}[s]:
     \begin{itemize}
-        \item \textbf{SFTP Url}, die Server URL des SFTP Servers.
-        \item \textbf{Path}, der Pfad zu den Meta Daten auf dem SFTP Server.
-        \item \textbf{User}, der Benutzer für die Verbindung.
-        \item \textbf{SSH-Key}, der Key um sich auf den SFTP Server zu verbinden. 
+        \item \textbf{SFTP Url}: die Adresse des \gls{SFTP} Servers.
+        \item \textbf{Path}, der Pfad zu den Metadaten auf dem \gls{SFTP}-Server.
+        \item \textbf{User}: der Benutzer für die Verbindung.
+        \item \textbf{SSH-Key}: der Schlüssel, um sich auf den \gls{SFTP}-Server zu verbinden. 
     \end{itemize}
-    \item \textbf{GlobalConfig} (\autoref{fig:global-config}), enthält die folgenden Globalen Parameter:
+    \item Die \textbf{GlobalConfig} (\autoref{fig:global-config}) enthält die folgenden globalen Parameter:
     \begin{itemize}
-        \item \textbf{Index Service Url}, die Url für die Verbindung zum \textit{Index-Service} via \textit{HTTPS} oder \textit{WSS}.
-        \item \textbf{Data Service Url}, die Url für die Verbindung zum \textit{Data-Service} via \textit{HTTPS} oder \textit{WSS}.
-        \item \textbf{Extraction Threshold}, definiert den Schwellwert für die Extraktion von Keyphrases.
+        \item \textbf{Index Service Url}: die Url für die Verbindung zum \textit{IndexService} (via \textit{HTTPS} oder \textit{WSS}).
+        \item \textbf{Data Service Url}: die Url für die Verbindung zum \textit{DataService} (ebenfalls via \textit{HTTPS} oder \textit{WSS}).
+        \item \textbf{Extraction Threshold}: definiert den Schwellenwert für die Extraktion von \gls{Keyphrase}[s].
+        \item \textbf{Minimum Documents}: definiert, in wie vielen Dokumenten eine relevante \gls{Keyphrase} mindestens vorkommen muss.
     \end{itemize}
-    \item \textbf{SFTPConfig} (\autoref{fig:sftp-config}), enthält die Verbindungsinformationen um auf den SFTP Server zuzugreifen um die externen Daten einzulesen. Dabei müssen die gleichen Parameter wie in \textbf{MetaDataConfig} definiert werden.
+    \item \textbf{SFTPConfig} (\autoref{fig:sftp-config}): enthält die Verbindungsinformationen, um auf den \gls{SFTP}-Server zuzugreifen und die externen Daten einzulesen. Dabei müssen die gleichen Parameter, wie in \textbf{MetaDataConfig}, definiert werden.
 \end{enumerate}
 
 \newpage
@@ -250,7 +249,7 @@ Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als
     \caption{MetaData}
     \label{fig:meta-config}
     \end{subfigure}
-     \begin{subfigure}[b]{0.5\textwidth}
+     \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=1\linewidth]{Settings-Global}
     \caption{Globale}
     \label{fig:global-config}
@@ -264,6 +263,14 @@ Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als
 \end{figure}
 \end{landscape}
 \newpage
+
+\subsection{Keyphrase hinzufügen}
+\autoref{fig:addtag} beschreibt den Vorgang, um einem Node eine \gls{Keyphrase} hinzuzufügen:
+\begin{enumerate}
+    \item Gewünschte \gls{Keyphrase} eingeben. 
+    \item Mit der \textit{Tab}-Taste bestätigen.
+\end{enumerate}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{AddTag}
@@ -271,6 +278,13 @@ Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als
 \label{fig:addtag}
 \end{figure}
 
+
+\subsection{Keyphrase Vorschlag}
+Beim Hinzufügen einer \gls{Keyphrase} werden Vorschläge gemacht. \autoref{fig:addtagautocomplete} beschreibt diesen Vorgang:
+\begin{enumerate}
+    \item Sobald eine Eingabe existiert, werden bestehende \gls{Keyphrase}[s] vorgeschlagen. Die Liste beschränkt sich jedoch auf bereits verwendete \gls{Keyphrase}[s].
+    \item Nach der Auswahl der gewünschten \gls{Keyphrase} wird sie dem Node hinzugefügt.
+\end{enumerate}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{TagAutocomplete}
@@ -279,6 +293,13 @@ Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als
 \end{figure}
 
 
+\subsection{Suche}
+Die Suche innerhalb des Volltext-Index ist in die bereits bestehende Suche integriert. \autoref{fig:external-search} beschreibt diesen Vorgang:
+\begin{enumerate}
+    \item Der Suchbegriff kann in der Suchmaske eingegeben werden. Falls Ergebnisse innerhalb des \gls{ikc-core}[s] gefunden werden, erscheinen diese unmittelbar.
+    \item Sobald die Suchanfrage abgearbeitet wurde, werden die Resultate dargestellt. Diese beinhalten, falls existent, auch externe Ergebnisse.
+\end{enumerate}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{Search}
@@ -286,113 +307,47 @@ Mit Hilfe der Konfiguration können verschiedenen Aspekte des \gls{ikc-core} als
 \label{fig:external-search}
 \end{figure}
 
+\subsection{Dokument auswählen}
+\autoref{fig:select-doc} beschreibt, wie ein Dokument ausgewählt und angezeigt werden kann:
+\begin{enumerate}
+    \item Ein Dokument kann über die Suche oder durch einen Klick auf eine Verknüpfung ausgewählt werden: Beispiel: \textit{U2}.
+    \item Zusammen mit dem Dokument werden relevante \gls{Keyphrase}[s] angezeigt.
+\end{enumerate}
 
-
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.6\textwidth}
-    \includegraphics[width=1\linewidth]{Keyphrase-1}
-    \caption{Schewllwert 0.04}
-    \label{fig:meta-config}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.6\textwidth}
-    \includegraphics[width=1\linewidth]{Keyphrase-2}
-    \caption{Schewllwert 0.1}
-    \label{fig:global-config}
-    \end{subfigure}
-     \begin{subfigure}[b]{0.6\textwidth}
-    \includegraphics[width=1\linewidth]{Keyphrase-3}
-    \caption{Schewllwert 0.0}
-    \label{fig:sftp-config}
-    \end{subfigure}
-    \caption{Keyphrase Extraktion}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.2\textwidth]{SelectDocument}
+\caption{Dokument auswählen}
+\label{fig:select-doc}
 \end{figure}
 
-\subsection{Tags}
+\subsection{Keyphrase auswählen}
 
-\subsection{Suche}
-
-\subsection{Keyphrase Auswahl}
-
-\subsection{Dokument Auswahl}
-
-\section{Experten-Workshop}
-
-\subsection{Problemstellung BDA}
-
-
-
-\subsection{BDA Kevin Stadelmann}
-
-\subsubsection{Problemstellung}
-
+Der Vorgang, der Anzeige einer \gls{Keyphrase} mit zugehörigen Dokumenten, wird \autoref{fig:select-keyphrase} aufgezeigt:
 \begin{enumerate}
-    \item Big Data, verteilte Cloud-Services, verteilte Informationsquellen $\rightarrow$ einfache Verknüpfung erschwert
-    \item Komplexes Wissensmanagement
-    \item Zugriffsberechtigung
-    \item Heterogene Arbeitskulter im Informationsmanagement
-    \item Kollaboration
+    \item Das entsprechende \gls{Keyphrase} auswählen. Beispiel: \textit{Bono}.
+    \item Anschliessend wird die \gls{Keyphrase} als Node dargestellt und mit allen Dokumenten verlinkt, welche diese enthalten. 
 \end{enumerate}
 
-\subsubsection{Lösung}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.2\textwidth]{SelectKeyphrase}
+\caption{Keyphrase auswählen}
+\label{fig:select-keyphrase}
+\end{figure}
 
+\subsection{Keyphrase abfragen}
+\gls{Keyphrase}[s] können auch über die Suche abgefragt werden. \autoref{fig:query-keyphrase} zeigt diesen Vorgang:
 \begin{enumerate}
-    \item Meta-Service
-    \item Benutzerdefiniertes Tagging
-    \item Zentrales Suchinterface (Filterung) $\rightarrow$ direkter Zugriff auf die Datenquelle auf der jeweiligen Plattform
-    \item Intelligente Suche: Software lernt aus dem Suchverhalten eines Nutzers:
-    \begin{enumerate}
-        \item Automatische Priorisierung
-        \item Automatische Hervorhebung
-        \item Ähnliche, passende Dokumente vorschlagen
-        \item Zuletzt geänderte Dokumente vorschlagen
-    \end{enumerate}
-    \item Vernetzung der Informationen zu einem Wissensnetzwerk
-    \item Automatisierte Verknüpfung durch einen Algorithmus
+    \item Die gewünschte \gls{Keyphrase} eingeben und auswählen. Beispiel: \textit{Bono}
+    \item Nun wird es zusammen mit den Dokumenten, welche es enthalten dargestellt.
 \end{enumerate}
 
-\subsection{Überblick Funktionalität}
-
-\begin{itemize}
-    \item Volltextsuche über alle Dokumente der angegebenen Quellen (Autoindexierung)
-    \item Automatische Einbindung relevanter Begriffe eines Dokumentes (Extraktion relevanter Schlüsselwörter)
-\end{itemize}
-
-Wo werden die Funktionen erwartungshalber innerhalb des \gls{ikc-core}[s] eingebunden?
-
-\subsection{Erwartungen der Experten}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.2\textwidth]{QueryKeyphrase}
+\caption{Keyphrase auswählen}
+\label{fig:query-keyphrase}
+\end{figure}
 
 
-\subsection{Demonstration}
-
-Umsetzung, Funtionalität
-
-\begin{itemize}
-    \item Volltextsuche über verknüpfte Dokumente und Nodes im Wissensnetzwerk.
-    \item Auto-Indexierung aller verknüpften Dokumente.
-    \item Automatische Zusammenfassung von Dokumenten anhand wichtigster Wörter (Keyword-Extraction).
-    \item Die gefundenen Wörter werden automatisch Teil des Wissensnetzwerks.
-    \item Auffinden ähnlicher Dokumente mithilfe der automatisch ermittelten wichtigsten Wörter im Wissensnetzwerk.
-    \item Benutzerdefiniertes und automatisches Tagging.
-\end{itemize}
-
-\subsection{Fragen \& Diskussion}
-
-Allgemein
-
-\begin{itemize}
-    \item Potential
-    \item Mehrwert
-    \item Chancen
-    \item Gefahren
-    \item Risiken
-\end{itemize}
-
-
-\begin{itemize}
-    \item Welche Probleme könnten durch die Erweiterungen abgedeckt werden?
-    \item Wo gibt es Verbesserungsmöglichkeiten?
-    \item Allfällige Unklarheiten?
-    \item Möglicher Einsatz in der Praxis?
-    \item Kundenbezogen: B2B, B2C, Handelsbeziehung
-\end{itemize}

@@ -1,13 +1,13 @@
 ...
-for (var doc in this.freqIndex[keyword].docs){
-    let keywordDocFreq = this.freqIndex[keyword].f
+for (var doc in this.freqIndex[keyphrase].docs){
+    let keyphraseDocFreq = this.freqIndex[keyphrase].f
     let indexLength = this.index.documentStore.length
 
-    let keywordIdf = 1 + Math.log((1 + indexLength) / (1 + keywordDocFreq))
-    let keywordTf = this.freqIndex[keyword].docs[doc] 
+    let keyphraseIdf = 1 + Math.log((1 + indexLength) / (1 + keyphraseDocFreq))
+    let keyphraseTf = this.freqIndex[keyphrase].docs[doc] 
     let lengthNorm = 1 / Math.pow(document.length, (1/3))
 
-    let score = keywordTf * keywordIdf * lengthNorm 
+    let score = keyphraseTf *keyphraseIdf * lengthNorm 
     ...
 }
 ...

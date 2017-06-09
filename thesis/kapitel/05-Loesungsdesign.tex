@@ -90,7 +90,7 @@ Vor der Bildung der eigentlichen Kandidaten werden nun die Textfragmente durch \
 
 % ----------------------------------------------------------------
 
-\subsection{Generierung möglicher Keywords (3)}
+\subsection{Generierung möglicher Keyphrases (3)}
 
 % ----------------------------------------------------------------
 
@@ -229,7 +229,7 @@ Die gegenteilige Operation der \gls{Keyphrase}-Extraktion ist die Extraktion all
 
 % ----------------------------------------------------------------
 
-Basierend auf der ausgeführten Architektur (\autoref{architecture}) werden im folgenden Abschnitt die wichtigsten Software-Konzepte erläutert. Diese werden kurz erläutert, anschliessend folgt eine Beschreibung der Integration des Prototyps in den bestehenden \gls{ikc-core}.
+Basierend auf der ausgeführten Architektur (\autoref{architecture}) werden im folgenden Abschnitt die wichtigsten Software-Konzepte erläutert. Diese werden kurz zusammengefasst, anschliessend folgt eine Beschreibung der Integration des Prototyps in den bestehenden \gls{ikc-core}.
 
 % ----------------------------------------------------------------
 
@@ -240,14 +240,14 @@ Basierend auf der ausgeführten Architektur (\autoref{architecture}) werden im f
 
 Im Klassendiagramm auf \autoref{fig:prototypeClassDiagram-easy} sieht man einen Überblick über den zu entwickelnden Prototypen. Abgebildet sind die wichtigsten Klassen und deren Beziehungen untereinander. Zunächst liegen die zwei Teile \gls{ikc-core} und \texttt{Prototype} vor. Der \gls{ikc-core} ist der aus dem Forschungsprojekt \gls{IKC} herausgehende bestehende Prototyp. Dieser nimmt Gebrauch von den beiden vom \texttt{Prototypen} zur Verfügung gestellten Schnittstellen des \texttt{Index-} und des \texttt{DataServices}.
 
-Grundsätzlich besteht der \texttt{Prototyp} aus den Komponenten \texttt{Index-} und \texttt{DataService}. Diese verwenden die von ausserhalb ver\-füg\-bar\-en Models, das \texttt{In\-dex-} und das \texttt{DataModel}. Diese enthalten die Protokolle für die jeweilige Kommunikation und werden somit auch vom \gls{ikc-core} in Anspruch genommen.
+Grundsätzlich besteht der \texttt{Prototyp} aus den Komponenten \texttt{Index-} und \texttt{DataService}. Diese verwenden das von ausserhalb ver\-füg\-bar\-e \texttt{MessageModel}. Es enthält die Protokolle für die jeweilige Kommunikation und wird somit auch vom \gls{ikc-core} in Anspruch genommen.
 
 Die genauen Abläufe und auch die Implementation des \texttt{Index-} beziehungsweise \texttt{DataServices} ist unter dem Abschnitt der technischen Umsetzung (\autoref{implementation}) zu finden.
 
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{ClassDiagrammGeneral}
-    \caption{Prototype Klassendiagramm}
+    \caption{Klassendiagramm: Prototype}
     \label{fig:prototypeClassDiagram-easy}
     \end{figure}
 
@@ -259,11 +259,11 @@ Der Kern der Software bildet der Algorithmus. Dieser ist, neben der Suchfunktion
 
 % ----------------------------------------------------------------
 
-Der Prototyp soll sich möglichst nahtlos in den \gls{ikc-core} integrieren. Um dies zu erreichen sollen in keiner Situation Funktionen des \gls{ikc-core} blockiert werden durch den Prototyp. 
+Der Prototyp soll sich möglichst nahtlos in den \gls{ikc-core} integrieren. Um dies zu erreichen sollen in keiner Situation Funktionen des \gls{ikc-core}[s] blockiert werden durch den Prototyp. 
 
-So werden Suchresultate des Index innerhalb der bestehenden Suche integriert und bei Bedarf aktualisiert. Die verschiedenen Resultate der unterschiedlichen Quellen sollen in Echtzeit nach ihrem Eintreffen dargestellt werden. Somit wird sich die Liste mit Resultaten trotz gleichem Suchbegriff über die Zeit verändern, da weitere Resultate von entfernten Quellen eintreffen. Bei der Auswahl eines Resultats wird es normaler Node dargestellt. 
+So werden Suchresultate des Index innerhalb der bestehenden Suche integriert und bei Bedarf aktualisiert. Die verschiedenen Resultate der unterschiedlichen Quellen sollen in Echtzeit nach ihrem Eintreffen dargestellt werden. Somit wird sich die Liste mit Resultaten trotz gleichem Suchbegriff über die Zeit verändern, da weitere Resultate von entfernten Quellen eintreffen. Bei der Auswahl eines Resultats wird es herkömmlicher Node dargestellt. 
 
-Weiter sollen extrahierte \gls{Keyphrase}[s] klar getrennt von den bestehenden Properties des Nodes als \textit{Chips} oberhalb des Titels dargestellt werden. Sowohl ein Dokument mit entsprechenden \gls{Keyphrase}[s] als auch eine \gls{Keyphrase} mit den verknüpften Dokumenten werden als Node dargestellt. \autoref{fig:bda-integration} zeigt einen Entwurf dieser Integration. 
+Weiter werden extrahierte \gls{Keyphrase}[s] klar getrennt von den bestehenden Eigenschaften des Nodes als \textit{Chips} oberhalb des Titels dargestellt werden. Sowohl ein Dokument mit entsprechenden \gls{Keyphrase}[s] als auch eine \gls{Keyphrase} mit den verknüpften Dokumenten werden als Node dargestellt. \autoref{fig:bda-integration} zeigt einen Entwurf dieser Integration. 
 
     \begin{figure}[H]
     \centering
@@ -311,7 +311,7 @@ Für den Auftraggeber ist eine sichere Kommunikation, stetige Transparenz und Ko
 
 % ----------------------------------------------------------------
 
-Durch die Auto-Indexierung der externen Datenquellen, wird die Volltext-Suche möglich und bietet die Grundlage für die \gls{Keyphrase}-Extraktion. Die Indexierung der Datenquellen, wird durchgeführt sobald der Benutzer die entsprechenden Berechtigungen hinterlegt hat. Dazu werden sämtliche Elemente geladen und Verarbeitet. Falls schon ein Index existiert wird dieser eingelesen und mit den ge\-än\-der\-ten oder neuen Elemente aktualisiert. Der Index ist aufgeteilt in zwei Bereiche. Zum einen der Suche-Index, welcher mit Hilfe der Bibliothek \gls{elasticlunr} erstellt wird. Zum anderen hält der Frequenz-Index die möglichen \gls{Keyphrase} zusammen mit Ihrer Frequenz im Korpus und den jeweilig Dokumente welche das \gls{Keyphrase} enthalten.
+Durch die Auto-Indexierung der externen Datenquellen, wird die Volltext-Suche möglich und bietet die Grundlage für die \gls{Keyphrase}-Extraktion. Die Indexierung der Datenquellen, wird durchgeführt sobald der Benutzer die entsprechenden Berechtigungen hinterlegt hat. Dazu werden sämtliche Elemente geladen und verarbeitet. Falls schon ein Index existiert, wird dieser eingelesen und mit den ge\-än\-der\-ten oder neuen Elemente aktualisiert. Der Index ist aufgeteilt in zwei Bereiche: Zum einen der Suche-Index, welcher mit Hilfe der Bibliothek \gls{elasticlunr} erstellt wird. Zum anderen hält der Frequenz-Index die möglichen \gls{Keyphrase}[s] zusammen mit Ihrer Frequenz im Korpus und den jeweilig Dokumente, welche das \gls{Keyphrase} enthalten.
 
 % ----------------------------------------------------------------
 

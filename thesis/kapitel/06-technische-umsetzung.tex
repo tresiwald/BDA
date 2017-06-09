@@ -60,7 +60,7 @@ Innerhalb des \texttt{IndexService} werden die primären Funktionen des Prototyp
 % ----------------------------------------------------------------
 
 
-Der vorgestellte Algorithmus wird innerhalb des \texttt{IndexService} in der Klasse \texttt{ExtractionHelper} implementiert. Sie stellt zwei Methoden, mit denen relevante \gls{Keyphrase}[s] (\texttt{getKeywordsForDocument}) oder relevante Dokumente (\texttt{getDocumentsForKeyword}) berechnet werden können, bereit. Da sie Funktionen bereit stellt, jedoch selbst keine Eigenschaften beispielsweise in Form von Variablen hält, muss ihr der benötigte Index mit der aufgerufenen Funktion zur Verfügung gestellt werden. 
+Der vorgestellte Algorithmus wird innerhalb des \texttt{IndexService} in der Klasse \texttt{ExtractionService} implementiert. Sie stellt zwei Methoden, mit denen relevante \gls{Keyphrase}[s] (\texttt{getKeyphraseForDocument}) oder relevante Dokumente (\texttt{getDocumentsForKeyphrase}) berechnet werden können, bereit. Da sie Funktionen bereit stellt, jedoch selbst keine Eigenschaften beispielsweise in Form von Variablen hält, muss ihr der benötigte Index mit der aufgerufenen Funktion zur Verfügung gestellt werden. 
 Im Folgenden wird die Implementation der verschiedenen Schritte des Algorithmus genauer erläutert.
 
 % ----------------------------------------------------------------
@@ -119,12 +119,12 @@ breaklines=true
 
 % ----------------------------------------------------------------
 
-Für die Generierung möglicher \gls{Keyphrase}[s] werden drei verschachtelte Schleifen verwendet. Die äusserste (Zeile 2) iteriert über die einzelnen Fragemente, die mittlere (Zeile 4) über die einzelnen Wörter innerhalb eines Textfragments und die innere (Zeile 12) über die Länge der \gls{N-Gramm}[e] von eins bis \texttt{n}.
+Für die Generierung wird eine maximale Länge von drei definiert, längere \gls{Keyphrase}[s] sind oft zu spezifisch sind. Die \gls{Keyphrase}[s] werden in drei verschachtelten Schleifen verwendet. Die äusserste (Zeile 2) iteriert über die einzelnen Fragmente, die mittlere (Zeile 4) über die einzelnen Wörter innerhalb eines Textfragments und die innere (Zeile 12) über die Länge der \gls{N-Gramm}[e] von eins bis \texttt{n}.
 \autoref{generatekeywords} zeigt den genaueren Ablauf und in \autoref{fig:exampleloop} (Zeile 2 $\rightarrow$ \textit{\textbf{rot}}, Zeile 4 $\rightarrow$ \textit{\textbf{grün}}, Zeile 12 $\rightarrow$ \textit{\textbf{blau}}) ist ein genaueres Beispiel der drei Schleifen ersichtlich :
 \begin{itemize}
      \item Falls ein \gls{N-Gramm} länger als die verbliebene Anzahl Wörter innerhalb des Fragments ist, muss die maximale Länge reduziert werden. Wenn zum Beispiel noch zwei Wörter übrig bleiben, können nur noch \textit{2-Gramme} und \textit{1-Gramme} gebildet werden. Die Länge muss zusätzlich auf \texttt{length = 2} reduziert werden (Zeile 6-9).
      \item Um die \gls{N-Gramm}[e] zu generieren, wird nun eine Liste von Wört\-ern aus dem Fragment ausgelesen. Dies geschieht mithilfe der Methode \texttt{slice}. Anschliessend werden diese mit \texttt{join} zu einer \gls{Keyphrase} zusammengeführt. Beide Methoden sind Teil der standardmässigen \texttt{Array}-Klasse von Typescript (Zeile 13-14).
-     \item Schlussendlich werden nun die generierten \gls{N-Gramm}[e] (\gls{Keyword}[s]) in einer Map zusammen mit ihrer Häufigkeit abgelegt.
+     \item Schlussendlich werden nun die generierten \gls{N-Gramm}[e] (\gls{Keyphrase}[s]) in einer Map zusammen mit ihrer Häufigkeit abgelegt.
 \end{itemize}
 
 \begin{listing}[H]
@@ -135,7 +135,7 @@ baselinestretch=1.2,
 linenos,
 breaklines=true
 ]{js}{sourcecode/IndexService/ExtractionHelper/generate-keywords.ts}
-\caption{Keywords Generierung}
+\caption{Keyphrase Generierung}
 \label{generatekeywords}
 \end{listing}
 
@@ -156,7 +156,7 @@ breaklines=true
 Bevor die Relevanz der \gls{Keyphrase}[s] berechnet werden kann, werden sie ein weiteres Mal reduziert. Dies passiert mithilfe eines Filters basierend auf dem POS-Tagger. Dieser Filter wird direkt auf jedes einzelne mögliche \gls{Keyphrase} angewendet, innerhalb der äussersten Schleife in \autoref{generatekeywords} (Zeile Dazu zeigt \autoref{filter} die nötigen Schritte auf.
 \begin{itemize}
     \item Für jede mögliche \gls{Keyphrase} werden die Wortarten der einzelnen Wörter berechnet. Dies wird mittels der Methode \texttt{tag} aus der externen Bibliothek \textit{pos-js}\footnote{\url{https://github.com/dariusk/pos-js}} durchgeführt. Als Resultat wird ein \texttt{Array} zurückgegeben, welches für jedes Wort wiederum ein \texttt{Array} enthält. Dieses enthält einen Eintrag mit dem Wort und der zugehörigen Wortart. Neben der Wortart wird zum Beispiel auch die Zeit eines Verbs oder der Numerus eines Nomens erkannt. Innerhalb der Dokumentation der Bibliothek ist eine Liste mit allen möglichen Resultaten angefügt. Anschliessend wird die jeweilige \gls{Keyphrase} mithilfe der drei Methoden \texttt{properNGramPos}, \texttt{properNGramStart} und \texttt{properNGramEnd} auf ihre Gültigkeit geprüft. Dies geschieht aufgrund der definierten Vorgaben (\autoref{algo}) (Zeile 2). 
-    \item Als erstes wird überprüft, ob das \gls{Keyword} ein Nomen oder ein fremdes Wort enthält (Zeile 4-13).
+    \item Als erstes wird überprüft, ob das \gls{Keyphrase} ein Nomen oder ein fremdes Wort enthält (Zeile 4-13).
     \item Weiter muss die \gls{Keyphrase} entweder mit einem Nomen, einem Adjektiv, einem fremden Wort oder in Grosschreibung starten (Zeile 15-24).
     \item Schlussendlich muss eine gültiges \gls{Keyphrase} auch mit einem Nomen, einem Adjektiv oder einem fremden Wort enden (Zeile 26-32).
 \end{itemize}
@@ -182,8 +182,8 @@ breaklines=true
 
 Der wichtigste Schritt für die Bewertung der einzelnen \gls{Keyphrase}[s] ist der berechnete Wert, dieser folgt aus der entsprechenden Formel (\autoref{algo}). Die verschiedenen Schritte werden im \autoref{calc} genauer erläutert:
 \begin{itemize}
-    \item Als erstes muss die Länge des Korpus \texttt{indexLength} berechnet werden. Diese kann direkt aus dem Volltext-Index abgefragt werden. Dazu wird die Länge des \texttt{documentStore} berechnet. Anschliessend wird die Anzahl Dokumente \texttt{keywordDocFreq} mit diesem \gls{Keyphrase} berechnet. Dieser Wert kann direkt aus dem Frequenz-Index gelesen werden. Zum Schluss muss noch die Anzahl Wörter innerhalb des Dokuments der \gls{Keyphrase} berechnet werden (Zeile 2-6). 
-    \item Basierend auf der Anzahl Dokumente (\texttt{indexLength}) und der Anzahl Dokumente mit dem \gls{Keyword} (texttt{keywordDocFreq}) wird als nächstes nun der \textit{IDF}-Wert (\texttt{keywordIdf}) berechnet (Zeile 8). \item Den \textit{TF}-Wert (\texttt{keywordTf}) wird bereits mit der \gls{Keyphrase} mitgeliefert (Zeile 10).
+    \item Als erstes muss die Länge des Korpus \texttt{indexLength} berechnet werden. Diese kann direkt aus dem Volltext-Index abgefragt werden. Dazu wird die Länge des \texttt{documentStore} berechnet. Anschliessend wird die Anzahl Dokumente \texttt{KeyphraseDocFreq} mit diesem \gls{Keyphrase} berechnet. Dieser Wert kann direkt aus dem Frequenz-Index gelesen werden. Zum Schluss muss noch die Anzahl Wörter innerhalb des Dokuments der \gls{Keyphrase} berechnet werden (Zeile 2-6). 
+    \item Basierend auf der Anzahl Dokumente (\texttt{indexLength}) und der Anzahl Dokumente der \gls{Keyphrase}[s] (\texttt{KeyphraseDocFreq}) wird als nächstes nun der \textit{IDF}-Wert (\texttt{KeyphraseIdf}) berechnet (Zeile 8). \item Den \textit{TF}-Wert (\texttt{KeyphraseTf}) wird bereits mit der \gls{Keyphrase} mitgeliefert (Zeile 10).
     \item Anhand der Dokumentenlänge wird nun eine entsprechende Normierung (\texttt{lengthNorm}) für den \gls{Score} berechnet (Zeile 12).
     \item Schlussendlich werden die verschiedenen Werte untereinander multipliziert, um den entsprechenden \gls{Score} zu erhalten (Zeile 14).
 \end{itemize}
@@ -206,13 +206,34 @@ breaklines=true
 
 % ----------------------------------------------------------------
 
-Nach der Berechnung des \gls{Score}[s] wird die Liste mit \gls{Keyphrase}[s] absteigend sortiert und mit Hilfe eines Schwellwertes begrenzt.
+Nach der Berechnung des \gls{Score}[s] wird die Liste der \gls{Keyphrase}[s] weiter reduziert. Dazu werden die \gls{Keyphrase}[s] durch einen Schwellwert begrenzt. Anschliessend schliesst folgender Code \autoref{selection} weitere \gls{Keyphrase}[s] aus:
+\begin{enumerate}
+    \item Zu Beginn wird eine Objekt \texttt{elements} initialisiert, welches alle potentiellen \gls{Keyphrase}[s] als Eigenschaften enthält. Dies geschieht mit Hilfe der \textit{reduce} Methode der \textit{Array} Klasse (Zeile 2-5).\\
+    \item Anschliessend wird jede \gls{Keyphrase} mit möglichen Sub-\gls{Keyphrase}[s] (N-1-Gramm, N-2-Gramm, ...,1-Gramm) verglichen. Beispiel: \textit{The Joshua Tree} mit \textit{Joshua Tree} und \textit{The Joshua} (Zeile 6-31).\\
+    \item Dazu wird die \gls{Keyphrase} in seine einzelnen Wörter aufgeteilt (Zeile 7) und seine Länge berechnet (Zeile 8). Bei der Länge eins kann es ignoriert werden (Zeile 9), ansonsten wird es zusammen mit seinen Sub-\gls{Keyphrase}[s] in dem \textit{Array} \texttt{bag} abgelegt (Zeile 10-20).\\
+    \item Im nächsten Schritt wird der maximale \gls{Score} aller \gls{Keyphrase}[s] innerhalb des Objekts \texttt{bag} ermittelt. Dabei wird bei gleichem \gls{Score}, das \gls{Keyphrase} mit der grösseren Länge weiter verwendet.\\
+    \item Nun werden alle \gls{Keyphrase}[s] innerhalb des Objekts \texttt{bag} aus dem Objekt \texttt{elements} entfernt, welche tiefer sind als der maximale \gls{Score}. Dies geschieht durch die Verwendung des Schlüs\-sel\-wort\-es \texttt{delete}. Damit können Eigenschaften von Objekten gelöscht werden. (Zeile 25-29)\\
+    \item Zum Schluss bleiben nur noch \gls{Keyphrase}[s] übrig, von welchen es keine Sub-\gls{Keyphrase}[s] mit einem höheren \gls{Score} gibt. Diese sind im Objekt \textit{elements} gespeichert und können nun zu\-rück\-ge\-ge\-ben werden (Zeile 33).
+\end{enumerate}
 
-\subsubsection{Dokument Extraktion}
+
+\begin{listing}[H]
+\inputminted[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+linenos,
+breaklines=true
+]{js}{sourcecode/IndexService/ExtractionHelper/selection.ts}
+\caption{Auswahl}
+\label{selection}
+\end{listing}
+
+\subsubsection{Dokument-Extraktion}
 Die entsprechenden Dokumente, welche eine bestimmte \gls{Keyphrase} beinhalten, können direkt aus dem Frequenz-Index ausgelesen werden. Dies geschieht durch die folgenden Schritte (\autoref{doc-extraction}):
 \begin{itemize}
     \item Mithilfe der \gls{Keyphrase} kann innerhalb des Frequenz-Index eine Liste mit passenden Dokumente abgefragt werden (Zeile 2).
-    \item Anschliessend werden die gleichen Berechnungen wie in \autoref{calc} durchgeführt, um die Relevanz der einzelnen Dokumente für die \gls{Keyphrase} zu berechnen. Die Anzahl der Vorkommnisse innerhalb des einzelnen Dokuments kommt zusammen mit dem Dokument aus dem Frequenz-Index (Zeile 3-10).
+    \item Anschliessend werden die gleichen Berechnungen wie in \autoref{calc} durchgeführt, um die Relevanz der einzelnen Dokumente für die \gls{Keyphrase} zu berechnen. Die Anzahl der Vorkommnisse innerhalb eines einzelnen Dokuments kommt zusammen mit dem Dokument aus dem Frequenz-Index (Zeile 3-10).
 \end{itemize}
 
 \begin{listing}[H]
@@ -271,7 +292,7 @@ breaklines=true
 
 % ----------------------------------------------------------------
 
-Die Berechnung des Index ist eine der prozessorintensiven Aufgaben, sie ist Zeit- und Ressourcen-intensiv. Dies insbesondere aufgrund der vielen Lese-Zugriffe. Darum wird der Index, wann immer möglich zwischengespeichert, sodass eine erneute Berechnung erspart bleibt. Sie bildet die Grundlage für die zentralen Funktionen (\gls{Keyword}-Ex\-trak\-tion und Suche) des Prototyps. Um den Index zu initialisieren werden drei verschiedenen Szenarien unterschieden, der Ausgang diese Szenarien ist dabei immer der \gls{ikc-core}:
+Die Berechnung des Index ist eine der prozessorintensiven Aufgaben, sie ist Zeit- und Ressourcen-intensiv. Dies insbesondere aufgrund der vielen Lese-Zugriffe. Darum wird der Index, wann immer möglich zwischengespeichert, sodass eine erneute Berechnung erspart bleibt. Sie bildet die Grundlage für die zentralen Funktionen (\gls{Keyphrase}-Ex\-trak\-tion und Suche) des Prototyps. Um den Index zu initialisieren werden drei verschiedenen Szenarien unterschieden, der Ausgang diese Szenarien ist dabei immer der \gls{ikc-core}:
 \begin{itemize}
     \item \textbf{Index berechnen}: Es wurde noch kein Index berechnet, daher muss er von Grund auf neu berechnet werden.
     \item \textbf{Index einlesen}: Der Index wurde bereits berechnet, jedoch noch nicht eingelesenen und ist darum noch nicht bereit für die Verwendung. Dazu müssen die nötigen Daten abgefragt und eingelesen werden.
@@ -296,7 +317,7 @@ Folgend werden die verschiedenen Szenarien genauer erklärt.
     \begin{enumerate}
         \item Das entsprechende Dokument wird dem \texttt{searchIndex} mithilfe der Methode \texttt{addDoc} hinzugefügt. Pro Dokument werden die drei Felder \texttt{body} (Inhalt), \texttt{title} (Title) und \texttt{length} (Anzahl Wörter) verwendet. Neben dem Dokument-Objekt muss \texttt{addDoc} auch noch eine eindeutige Identifikation mitgegeben werden, hier die \texttt{doc.id}. Die Anzahl der Wörter wird später für die Berechnung der relevanten Dokumente für eine bestimmte \gls{Keyphrase} verwendet (Zeile 2-6). 
         \item Nun werden für das entsprechende Dokument die mög\-lich\-en \gls{Keyphrase}[s] extrahiert. Dazu werden gleiche Berechnungen verwendet, wie in \autoref{listing:tokenization}, \autoref{generatekeywords} und \autoref{filter} (Zeile 8).
-        \item Nun werden zum Abschluss die \gls{Keyphrase}[s] nach dem beschriebenen Schema (\autoref{indexstructure} dem Frequenz-Index hinzugefügt (Zeile 10-21).
+        \item Zum Abschluss werden die \gls{Keyphrase}[s] nach dem beschriebenen Schema (\autoref{indexstructure}) dem Frequenz-Index hinzugefügt (Zeile 10-28). Hierbei spielt es keine Rolle, ob es sich um ein neues Dokument oder ein geändertes handelt. Hierzu wird in Zeile 14 erkannt, ob sich die Frequenz der \gls{Keyphrase} verändert hat.
     \end{enumerate}
     \item \texttt{saveIndex}: Sobald der Index berechnet wurde, wird er im \texttt{In\-dex\-Store} gespeichert.
     \item \texttt{indexReady}: Dem \gls{ikc-core} wird gemeldet, dass der Index bereit ist.
@@ -425,12 +446,12 @@ Die \autoref{fig:seqindexloadalreadydone} hingegen zeigt den Ablauf, falls der I
  
 % ----------------------------------------------------------------
      
-\subsection{Keyword-Extraktion}
+\subsection{Keyphrase-Extraktion}
 
 % ----------------------------------------------------------------
 
 
-Die \gls{Keyword}-Extraktion ist eine der wichtigsten Funktionen des Prototypen. Dabei werden die vorgestellten Abläufe und auch die Code-Ausschnitte aus dem \autoref{impalgo} verwendet. In der nachfolgenden \autoref{fig:seqkeywordextraction} wird der Ablauf genauer erläutert:
+Die \gls{Keyphrase}-Extraktion ist eine der wichtigsten Funktionen des Prototypen. Dabei werden die vorgestellten Abläufe und auch die Code-Ausschnitte aus dem \autoref{impalgo} verwendet. In der nachfolgenden \autoref{fig:seqkeywordextraction} wird der Ablauf genauer erläutert:
 \begin{itemize}
     \item Initiiert wird die Extraktion von \gls{Keyphrase}[s] durch die \texttt{Key\-word\-Re\-qu\-est}-Nachricht, welche der \gls{ikc-core} an den \texttt{IndexService} sendet. Anschliessend wir das entsprechende Dokument vom \texttt{Da\-ta\-Ser\-vi\-ce} bezogen und für die Verarbeitung aufbereitet. 
     \item Innerhalb des \texttt{IndexService} werden die relevanten \gls{Keyphrase}[s] durch den \texttt{ExtractionService} berechnet und zurückgegeben.
@@ -440,7 +461,7 @@ Die \gls{Keyword}-Extraktion ist eine der wichtigsten Funktionen des Prototypen.
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{SeqGetKeyword}
-    \caption{Ablauf: \gls{Keyword}-Extraktion}
+    \caption{Ablauf: \gls{Keyphrase}-Extraktion}
     \label{fig:seqkeywordextraction}
     \end{figure}
 
@@ -533,7 +554,7 @@ Der \texttt{DataService} versorgt den \gls{ikc-core} und den \texttt{IndexServic
 
 \subsection{Grundaufbau}
 
-Die Grundlage des DataServices bildet der Server. Dieser ist verantwortlich für die Netzwerkverbindungen zum IndexService und dem \gls{ikc-core}. Der \autoref{server.ts} zeigt die Initialisierung des Sockets und die Delegation von Anfragen. Auf Zeile 26 wird ein stan\-dard\-mäs\-siger HTTP-Server instanziiert. Dieser wird auf Zeile 27 als Basis für von Socket.io zur Verfügung gestellten Server benutzt. Der Server nimmt Anfrage auf einem bestimmten Port (Zeile 28) entgegen. Die Methode \verb|waitForConnection| (Zeile 32) nimmmt eingehende Anfragen entgegen. Haben diese Anfragen eine bestimmte Route als Ziel (Zeile 34), werden diese zur Methode \verb|processRequest| weitergeleitet. \verb|ss| ist eine Instanz von socket.io-stream. Die Anfragen werden somit direkt als \gls{Stream} entgegengenommen.
+Die Grundlage des DataServices bildet der Server. Dieser ist verantwortlich für die Netzwerkverbindungen zum IndexService und dem \gls{ikc-core}. Der \autoref{server.ts} zeigt die Initialisierung des Sockets und die Delegation von Anfragen. Auf Zeile 26 wird ein stan\-dard\-mäs\-siger HTTP-Server instanziiert. Dieser wird auf Zeile 27 als Basis für von Socket.io zur Verfügung gestellten Server benutzt. Der Server nimmt Anfrage auf einem bestimmten Port (Zeile 28) entgegen. Die Methode \verb|waitForConnection| (Zeile 32) nimmmt eingehende Anfragen entgegen. Haben diese Anfragen eine bestimmte Route als Ziel (Zeile 34), werden diese zur Methode \texttt{pro\-cess\-Re\-quest} weitergeleitet. \verb|ss| ist eine Instanz von socket.io-stream. Die Anfragen werden somit direkt als \gls{Stream} entgegengenommen.
 
 \begin{listing}[H]
 \inputminted[
@@ -549,7 +570,7 @@ lastline=38
 \label{server.ts}
 \end{listing}
 
-Nun beginnt die eigentliche Verarbeitung der Anfrage (siehe \autoref{server2.ts}). Der \autoref{server2.ts} zeigt die weiteren Schritte: \verb|processRequest| (Zeile 40) nimmt den \gls{Stream} und die \gls{Websocket} entgegen. Weiter konvertiert die Funktion \texttt{stream\-To\-Da\-ta} des Moduls \verb|StreamingHelper| den \gls{Stream} zur weiteren Verarbeitung zu Daten. Ist diese Arbeit getan, wird das \gls{Callback} aufgerufen, worin der \gls{Stream}, die Daten und der \gls{Websocket} an die Methode \verb|processPayload| weitergegeben werden. Hier (Zeile 47) wird der \texttt{MessageMangager} (siehe \autoref{s-message-manager}) genutzt, um die eingetroffene Nachricht entsprechend weiter zu verarbeiten. Kurz erklärt, der \texttt{MessageManager} entkoppelt die Kommunikation von der eigentlichen Verarbeitung der jeweiligen Nachricht. Das Resultat wird mittels \texttt{prepareMessage} auf Zeile 52 weiter verarbeitet. Der \texttt{Stream\-ing\-Help\-er} kümmert sich wiederum um das Verpacken der Daten in einen \gls{Stream}. Schlussendlich wird die Nachricht auf Zeile 59 verschickt. Dies geschieht über den socket.io-stream mittels der Methode \texttt{emit} und wiederum über den Bezeichner \verb|'route'|.
+Nun beginnt die eigentliche Verarbeitung der Anfrage (siehe \autoref{server2.ts}). Der \autoref{server2.ts} zeigt die weiteren Schritte: \texttt{pro\-cess\-Re\-quest} (Zeile 40) nimmt den \gls{Stream} und die \gls{Websocket} entgegen. Weiter konvertiert die Funktion \texttt{stream\-To\-Da\-ta} des Moduls \verb|StreamingHelper| den \gls{Stream} zur weiteren Verarbeitung zu Daten. Ist diese Arbeit getan, wird das \gls{Callback} aufgerufen, worin der \gls{Stream}, die Daten und der \gls{Websocket} an die Methode \verb|processPayload| weitergegeben werden. Hier (Zeile 47) wird der \texttt{MessageMangager} (siehe \autoref{s-message-manager}) genutzt, um die eingetroffene Nachricht entsprechend weiter zu verarbeiten. Kurz erklärt, der \texttt{MessageManager} entkoppelt die Kommunikation von der eigentlichen Verarbeitung der jeweiligen Nachricht. Das Resultat wird mittels \texttt{prepareMessage} auf Zeile 52 weiter verarbeitet. Der \texttt{Stream\-ing\-Help\-er} kümmert sich wiederum um das Verpacken der Daten in einen \gls{Stream}. Schlussendlich wird die Nachricht auf Zeile 59 verschickt. Dies geschieht über den socket.io-stream mittels der Methode \texttt{emit} und wiederum über den Bezeichner \verb|'route'|.
 
 
 \begin{listing}[H]
@@ -601,6 +622,19 @@ lastline=48
 ]{js}{sourcecode/dataservice/AccessSession.ts}
 \caption{PathDescription}
 \label{path-desc}
+\end{listing}
+
+
+\begin{listing}[H]
+\inputminted[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+linenos,
+breaklines=true
+]{js}{sourcecode/dataservice/auto-index.ts}
+\caption{Beispiel: PathDescription}
+\label{auto-indexierung}
 \end{listing}
 
 
@@ -696,18 +730,22 @@ Im obigen Abschnitt (\autoref{section:protokoll}) wurde der Grundaufbau einer Na
 \begin{longtable}{|p{4cm}| p{8cm}|}
   \hline
     \textbf{Bezeichnung} & \textbf{Beschreibung}\\\hline
-    \texttt{TokenRequest} & Hierbei geht es um die Anfrage für eine Freigabe einer Datei oder eines Verzeichnisses. Für diesen Zweck gibt es das \texttt{Interface} \texttt{AccessSession}. Es enthält alle nötigen Zugangsdaten zur Verbindung mit einer externen Datenquelle. \newline
+    \textbf{Token} & \textbf{Request}:\newline 
+    Hierbei geht es um die Anfrage für eine Freigabe einer Datei oder eines Verzeichnisses. Für diesen Zweck gibt es das \texttt{Interface} \texttt{AccessSession}. Es enthält alle nötigen Zugangsdaten zur Verbindung mit einer externen Datenquelle. \newline
     
-    Im Diagramm (\autoref{fig:seqdataprotocol}) ist die Klasse \texttt{SFTPAccessSession} enthalten. Diese regelt als Beispiel den Zugriff auf einen SFTP-Server.
-    \\\hline
-    \texttt{TokenResponse} &    
+    Im Diagramm (\autoref{fig:seqdataprotocol}) ist die Klasse \texttt{SFTPAccessSession} enthalten. Diese regelt als Beispiel den Zugriff auf einen SFTP-Server.\newline
+    \\
+     &    
+    \textbf{Request:}\newline
     Hat der \texttt{DataService} die Anfrage erhalten, schickt dieser bei Erfolg einen Token zurück. Dies geschieht in Form der \texttt{TokenResponse}. Diese enthält einen \gls{Token}. Er ist eine einmalige Zugriffsfreigabe für eine Datei oder einen Ordner von der jeweiligen Datenquelle.\newline
     
     
     Der \gls{Token} ist ein zufälliger generierter String, welcher auf dem \texttt{DataService} mit der jeweiligen \texttt{AccessSession} abgelegt ist.\\\hline
-    \texttt{DataRequest} & Auf eine \texttt{TokenResponse} folgt ein \texttt{DataRequest}. Ist ein \gls{Token} auf dem \texttt{DataService} hinterlegt, kann mit Hilfe dieses innerhalb eines \texttt{DataRequests} die jeweilige Datei oder das jeweilige Verzeichnis angefragt werden. \\\hline
-    \texttt{DataResponse} & Die Antwort auf einen \texttt{DataRequest} ist im besten Fall eine \texttt{DataResponse}. Diese enthält den angefragten Dateiinhalt. \\\hline
-    \texttt{ErrorResponse} & Schlägt bei einer der obigen Anfragen etwas fehl, wird eine \texttt{ErrorResponse} mit dem jeweiligen Fehler zurückgegeben. Fehlerursachen können von sehr unterschiedlicher Natur sein, beispielsweise sind Netzwerkprobleme oder falsche Zugangsdaten vorstellbar.\\\hline
+    \textbf{Data} & \textbf{Request:}\newline Auf eine \texttt{TokenResponse} folgt ein \texttt{DataRequest}. Ist ein \gls{Token} auf dem \texttt{DataService} hinterlegt, kann mit Hilfe dieses innerhalb eines \texttt{DataRequests} die jeweilige Datei oder das jeweilige Verzeichnis angefragt werden.\newline \\
+     & \textbf{Response:}\newline Die Antwort auf einen \texttt{DataRequest} ist im besten Fall eine \texttt{DataResponse}. Diese enthält den angefragten Dateiinhalt. \\\hline
+     \textbf{Write} & \textbf{Request:}\newline Auf eine \texttt{TokenResponse} kann auch ein \texttt{WriteRequest} folgen. Dieser Request dient zum Schreiben von Dateien auf eine externe Datenquelle.\newline \\
+     & \textbf{Response:}\newline Die \texttt{WriteResponse} ist die Antwort auf einen \texttt{WriteRequest}.  \\\hline
+    \textbf{Error} & \textbf{Response:}\newline Schlägt bei einer der obigen Anfragen etwas fehl, wird eine \texttt{ErrorResponse} mit dem jeweiligen Fehler zurückgegeben. Fehlerursachen können von sehr unterschiedlicher Natur sein, beispielsweise sind Netzwerkprobleme oder falsche Zugangsdaten vorstellbar.\\\hline
         \caption{DataService: Message-Klassen}
     \label{dataservice-bodies}
 \end{longtable}
@@ -745,17 +783,19 @@ Vom Aufbau her ähnlich wie das \texttt{DataService}-Protokoll sieht auch das \t
 
 Die Grundlage für die weiteren Vorgänge ist der Volltextindex. Dieser kann gelesen und persistiert werden. Ist diese Voraussetzung gegeben, können Schlüsselwörter für ein Dokument angefragt, zu einem Schlüsselwort passende Dokumente gefunden und Suchresultate für einen bestimmten Begriff ermittelt werden. Die Abläufe sind in der \autoref{fig:seqindexprotocol} ersichtlich. Die Vorgänge werden in folgender Tabelle genauer erläutert.
 
+\newpage
+
 \begin{longtable}{|p{4cm}| p{8cm}|}
   \hline
     \textbf{Bezeichnung} & \textbf{Beschreibung}\\\hline
-    \texttt{IndexRequest} & Der \texttt{IndexRequest} dient zum Anfragen des Volltextindex. Für diesen Vorgang wird zunächst der \gls{Token}, welcher zuvor beim \texttt{DataService} angefragt wurde, mitgeliefert. Zusätzlich dazu liegt der \texttt{Host} des anzufragenden \texttt{DataService}. Die \texttt{indexId} ist die Identifikationsnummer des Index, falls dieser schon zuvor angefragt wurde.\\\hline
-    \texttt{IndexResponse} & Nach der vorgängigen Anfrage für einen Index, folgt die Antwort in Form einer \texttt{IndexResponse}. Einziger Inhalt ist die \texttt{indexId} in Form eines Strings, welche den Index eindeutig identifizierbar macht.\\\hline
-    \texttt{KeywordRequest} & Für die Schlüsselwort-Extraktion werden die Schlüsselwörter eines jeden Dokuments benötigt. Dafür gibt es den Vorgang \texttt{KeywordRequest}. Für die Verarbeitung werden ein \texttt{token} und ein \texttt{indexId} mitgeliefert. Der \texttt{token} hat seinen Ursprung wiederum im \texttt{DataService}. Er dient dazu den Volltext der jeweiligen Datei anzufragen. Die \texttt{indexId} ist wiederum dazu da, den gewünschten Index zu identifizieren.\\\hline
-    \texttt{KeywordResponse} & Nach der obigen Anfrage folgt die Antwort in Form einer \texttt{KeywordResponse}. Diese beinhaltet ein Array von Strings, welches die extrahierten Schlüsselwörter des Dokumentes beinhaltet und die Identifikationsnummer des jeweiligen Dokumentes.\\\hline
-    \texttt{DocumentRequest} & Sollen zu einem Schlüsselwort passende Dokumente angefragt werden, wird der \texttt{DocumentRequest} benutzt. Diese Anfrage beinhaltet das gesuchte Schlüsselwort und die Identifikationsnummer des jeweiligen Index.\\\hline
-    \texttt{DocumentResponse} & Die Antwort beinhaltet wiederum das zuvor gesuchte Schlüsselwort und die Resultate als Array von Resultaten. Ein Resultat enthält den Titel, den Pfad, die Identifikationsnummer und den Inhalt des Dokumentes im Volltext.\\\hline
-    \texttt{SearchRequest} & Eine weitere Funktionalität ist die Volltextsuche. Auch für diesen Zweck gibt es wiederum eine eigene Klasse. Um eine Suchanfrage abzusetzen, wird der Suchbegriff, eine Suchanfrage-Identifikationsnummer und wiederum eine \texttt{indexId} benötigt.\\\hline
-    \texttt{SearchResponse} & Als Antwort auf eine Suchanfrage folgt ein Array von Suchresultaten. Ein Suchresultat enthält die Identifikationsnummer, den Pfad, den Titel und den Inhalt des gefundenen Dokuments.\\\hline
+    \textbf{Index} & \textbf{Request:} \newline Der \texttt{IndexRequest} dient zum Anfragen des Volltextindex. Für diesen Vorgang wird zunächst der \gls{Token}, welcher zuvor beim \texttt{DataService} angefragt wurde, mitgeliefert. Zusätzlich dazu liegt der \texttt{Host} des anzufragenden \texttt{DataService}. Die \texttt{indexId} ist die Identifikationsnummer des Index, falls dieser schon zuvor angefragt wurde.\newline\\
+     &\textbf{Response:} \newline Nach der vorgängigen Anfrage für einen Index, folgt die Antwort in Form einer \texttt{IndexResponse}. Einziger Inhalt ist die \texttt{indexId} in Form eines Strings, welche den Index eindeutig identifizierbar macht.\\\hline
+    \textbf{Keyword} &\textbf{Request:}\newline Für die Schlüsselwort-Extraktion werden die Schlüsselwörter eines jeden Dokuments benötigt. Dafür gibt es den Vorgang \texttt{KeywordRequest}. Für die Verarbeitung werden ein \texttt{token}, eine \texttt{indexId}, ein \texttt{extractionThreshold} und ein \texttt{minimumDoc} mitgeliefert. Der \texttt{token} hat seinen Ursprung wiederum im \texttt{DataService}. Er dient dazu, den Volltext der jeweiligen Datei anzufragen. Die \texttt{indexId} ist wiederum für die Identifikation des gewünschten Indizes verantwortlich. Mit Hilfe des \texttt{extractionThreshold} kann der Schwellenwert gesteuert werden. Durch \texttt{minimumDoc} wird die minimale Anzahl an Dokumenten, in welchen ein \gls{Keyphrase} enthalten ist, definiert. \newline\\
+     & \textbf{Response:}\newline Nach der obigen Anfrage folgt die Antwort in Form einer \texttt{KeywordResponse}. Diese beinhaltet ein Array von Strings, welches die extrahierten Schlüsselwörter des Dokuments und die Identifikationsnummer des jeweiligen Dokumentes beinhaltet.\\\hline
+    \textbf{Document} & \textbf{Request:}\newline Sollen zu einem Schlüsselwort passende Dokumente angefragt werden, wird der \texttt{DocumentRequest} benutzt. Diese Anfrage beinhaltet das gesuchte Schlüsselwort und die Identifikationsnummer des jeweiligen Index. Witer sind die beiden Algorithmus-Parameter  \texttt{extractionThreshold} und \texttt{minimumDoc} ebenfalls Teil der Anfrage.\newline\\
+     & \textbf{Response:} \newline Die Antwort beinhaltet wiederum das zuvor gesuchte Schlüsselwort und die Resultate als Array von Resultaten. Ein Resultat enthält den Titel, den Pfad, die Identifikationsnummer und den Inhalt des Dokumentes im Volltext.\\\hline
+    \textbf{Search} & \textbf{Request:} \newline Eine weitere Funktionalität ist die Volltextsuche. Auch für diesen Zweck gibt es wiederum eine eigene Klasse. Um eine Suchanfrage abzusetzen, wird der Suchbegriff, eine Suchanfrage-Identifikationsnummer und wiederum eine \texttt{indexId} benötigt.\newline\\
+     & \textbf{Response:} \newline Als Antwort auf eine Suchanfrage folgt ein Array von Suchresultaten. Ein Suchresultat enthält die Identifikationsnummer, den Pfad, den Titel und den Inhalt des gefundenen Dokuments.\\\hline
         \caption{IndexService: Message-Klassen}
     \label{indexservice-bodies}
 \end{longtable}
@@ -867,10 +907,10 @@ Die Bibliothek liefert nach dem Aufbau der \gls{SSH}-Verbindung zum Server ein \
 
 % ----------------------------------------------------------------
 
-Um Daten abzufragen oder zu senden sind unterschiedliche Operationen definiert, welche entweder direkt \gls{SSH}-Befehle absetzten oder die \gls{SFTP} Verbindung nutzen.
-Der \autoref{ssh-operations} zeigen die drei verwendeten \gls{SSH}-Befehle und deren Zweck:
+Um Daten abzufragen oder zu senden sind unterschiedliche Operationen definiert, welche entweder direkt \gls{SSH}-Befehle absetzen oder die \gls{SFTP} Verbindung nutzen.
+Der \autoref{ssh-operations} zeigt die drei verwendeten \gls{SSH}-Befehle und deren Zweck:
 \begin{itemize}
-    \item Der Befehl \texttt{mkdir} mit dem Parameter \textit{-p} erstellt die komplette Ordnerstruktur welche mitgegeben wird. So wird als Beispiel durch \verb|mkdir -p ./folder/subfolder| sowohl der Ordner \textit{folder} als auch den Ordner \textit{subfolder} erstellt, falls diese nicht bereits existieren. Der Befehl wird genutzt, um sicherzustellen, dass die notwendige Struktur vorhanden ist, bevor eine Datei hochgeladen wird (Zeile 2-4).
+    \item Der Befehl \texttt{mkdir} mit dem Parameter \textit{-p} erstellt die komplette Ordnerstruktur, welche mitgegeben wird. So wird als Beispiel durch \verb|mkdir -p ./folder/subfolder| sowohl der Ordner \textit{folder} als auch den Ordner \textit{subfolder} erstellt, falls diese nicht bereits existieren. Der Befehl wird genutzt, um sicherzustellen, dass die notwendige Struktur vorhanden ist, bevor eine Datei hochgeladen wird (Zeile 2-4).
     \item Um eine Liste aller Dateien in einem Ordner und allen Unterordner zu erhalten, kann der Befehl \texttt{ls} verwendet werden. \verb|ls ./**/*.txt| gibt eine Liste aller Text-Dateien in sämt\-lich\-en Unterordner zurück. Mit Hilfe der Methode \verb|split("\n")| wird die obige Liste bei einer Zeilenschaltung aufgesplittet und in ein \textit{String-Array} abgefüllt (Zeile 6-16).
     \item Mit Hilfe von \texttt{find} ist es möglich, eine Liste von Dateien zu generieren, welche neuer sind als eine Referenz-Datei. Dazu werden die Parameter \texttt{-newer -type f} verwendet. Als Beispiel findet \texttt{find -newer index.json -type f} eine Liste aller Dateien, die neuer sind als die Datei \texttt{index.json}. Anschliessend kann die Liste erneut mittels der Methode \verb|split(\"\n\")| bei einer Zeilenschaltung aufgespalten und in ein \textit{String-Array} abgefüllt (Zeile 18-28) .
 \end{itemize}
@@ -1045,15 +1085,6 @@ breaklines=true
 
 % ----------------------------------------------------------------
 
-
-
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Keyphrase-2}
-    \caption{Ausschnitt Integration }
-    \label{fig:partintegration}
-    \end{figure}
-
 \autoref{fig:partintegration} zeigt einen Auschnitt der Integration des Prototypen in den \gls{ikc-core}, dafür sind einige Anpassungen nötig. Diese setzten die Konzeption der Integration (\autoref{Integration}) um. Der Prototyp wird dabei in den folgenden Situtation verwendet:
 \begin{itemize}
     \item \textbf{Suche}: Innerhalb der Suche werden Resultate aus dem \gls{ikc-core}, als auch aus den  externen Datenquellen kombiniert. Diese werden vom \textit{IndexService} auf Anfrage berechnet und geliefert. 
@@ -1061,15 +1092,23 @@ breaklines=true
     \item \textbf{Auswahl einer \gls{Keyphrase}}: Bei der Auswahl einer \gls{Keyphrase} aus dem Index wird diese zusammen mit allen verbunden Dokumenten dargestellt. Die Dokumente werden vom \textit{IndexService} berechnet und zurückgegeben.
 \end{itemize}
 
-\subsubsection{Strukturelle Integration}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Keyphrase-2}
+    \caption{Ausschnitt Integration}
+    \label{fig:partintegration}
+    \end{figure}
+
+\subsection{Strukturelle Integration}
 
 Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore}) zeigt die strukturellen Integration des Prototypen in den \gls{ikc-core}: 
 
 \begin{itemize}
-    \item Um lokale Suchresultate mit denen des Volltext-Indexes zu kombinieren, wird die \texttt{SearchBroker}-Klasse verwendet. Darin werden Resultate beider Quellen entgegengenommen und für die Darstellung verarbeitet. Mit Hilfe des Interfaces \texttt{SearchResult} und dessen beiden Implementationen \texttt{IndexSearchResult} und \texttt{LocalSearchResult} kann für den jeweiligen Umgang unterschieden werden. Sobald die ersten Suchresultate eintreffen, werden diese verarbeitet und der Benutzeroberfläche weitergegeben. Mit Hilfe der Generalisierung durch das Interface ist es möglich, beliebige Suchquellen in unbegrenzter Anzahl zu integrieren.\\ 
+    \item Um lokale Suchresultate mit denen des Volltext-Indexes zu kombinieren, wird die \texttt{SearchBroker}-Klasse verwendet. Darin werden Resultate beider Quellen entgegengenommen und für die Darstellung verarbeitet. Mit Hilfe des Interfaces \texttt{SearchResult} und dessen beiden Implementationen \texttt{IndexSearchResult} und \texttt{LocalSearchResult} können für den jeweiligen Umgang un\-ter\-schied\-en werden. Sobald erste Suchresultate eintreffen, werden sie verarbeitet und der Benutzeroberfläche weitergegeben. Mit Hilfe der Generalisierung durch das Interface ist es möglich, beliebige Suchquellen in unbegrenzter Anzahl zu integrieren.\\ 
     \item Der \texttt{IndexSearchService} ist verantwortlich für die Kommunikation mit dem \texttt{IndexService} als auch dem \texttt{DataService}. Dazu werden die vorgestellten Protokolle (\autoref{section:protokoll}) verwendet.\\
-    \item Um dem Benutzer entfernte Nodes zu präsentieren wird der \texttt{ElementCache} verwendet. Darin werden temporäre Nodes des Indexes (Dokument oder \gls{Keyword}) gespeichert und bei Bedarf für die Benutzeroberfläche bereitgestellt.
-    \item Der \texttt{IndexResultProcessor} bildet das Bindeglied zwischen Resultaten des \texttt{IndexService} und dem \texttt{ElementCache}. Er nimmt Resultate des \texttt{IndexService} vom \texttt{IndexSearchService} entgegen, verarbeitet sie und sendet sie weiter an den \texttt{ElementCache}, wo sie anschliessend der Benutzeroberfläche zur Verfügung stehen.\\
+    \item Um dem Benutzer entfernte Nodes zu präsentieren, wird der \texttt{ElementCache} verwendet. Darin werden temporäre Nodes des Indexes (Dokument oder \gls{Keyphrase}) gespeichert und bei Bedarf für die Benutzeroberfläche bereitgestellt.
+    \item Der \texttt{IndexResultProcessor} bildet das Bindeglied zwischen Resultaten des \texttt{IndexService} und dem \texttt{ElementCache}. Er nimmt Resultate des \texttt{IndexService} vom \texttt{IndexSearchService} entgegen, verarbeitet sie und sendet sie weiter an den \texttt{ElementCache}. Dieser stellt sie anschliessend der Benutzeroberfläche bereit.\\
 
 \end{itemize}
 
@@ -1089,16 +1128,16 @@ Das Klassendiagramm (\autoref{fig:classDiagrammIkcCore}) zeigt die strukturellen
 
 % ----------------------------------------------------------------
 
-Insbesondere für die Erweiterung des \gls{ikc-core} mit der Möglichkeit der Kategorisierung von Nodes, mussten einige grundlegende Anpassungen gemacht werden. Die folgenden Zeilen beschreiben diese Änderungen, jedoch werden Kenntnisse des \gls{ikc-core}[s] vorausgesetzt:
+Insbesondere für die Erweiterung des \gls{ikc-core} mit der Möglichkeit der Kategorisierung von Nodes mussten einige grundlegende Anpassungen gemacht werden. Die folgenden Zeilen beschreiben diese Änderungen, jedoch werden Kenntnisse des \gls{ikc-core}[s] vorausgesetzt:
 \begin{itemize}
-    \item Da es neue Arten von Nodes gibt, wurde der Enumerator \verb|NODE_TYPE| mit folgenden Einträge erweitert:
+    \item Da es neue Arten von Nodes gibt, wurde der Enumerator \verb|NODE_|\\\verb|TYPE| um folgende Einträge erweitert:
     \begin{itemize}
         \item \verb|INDEX_DOCUMENT|\\
         \item \verb|INDEX_CONCEPT|\\
         \item \verb|DOCUMENT|\\
         \item \verb|CONCEPT|\\
     \end{itemize}
-    \item Ebenfalls musste der Enumerator \verb|PROPERTY_TYPE| erweitert werden, um die Verbindung neuer Arten von Nodes verbinden zu ermöglichen:
+    \item Um die Verbindung neuer Arten von Nodes zu  ermöglichen, musste ebenfalls der Enumerator \verb|PROPERTY_TYPE| erweitert werden:
     \begin{itemize}
         \item \verb|INDEX_DOCUMENT|\\
         \item \verb|INDEX_CONCEPT|\\
@@ -1120,9 +1159,9 @@ Insbesondere für die Erweiterung des \gls{ikc-core} mit der Möglichkeit der Ka
 
 Um Nodes, welche Informationen aus dem externen Index enthalten zu organisieren, wird ein Cache verwendet. Dieser ist innerhalb der Klasse \texttt{ElementCache} implementiert. Darin werden Nodes mit dem Typ \verb|INDEX_DOCUMENT| und \verb|INDEX_CONCEPT| gespeichert. Ein Node durchläuft dabei die folgenden Schritte:
 \begin{itemize}
-    \item Es werden entweder \gls{Keyphrase}[s] für ein Dokument oder die Dokumente für ein \gls{Keyphrase} bei dem \texttt{IndexService} angefragt. 
-    \item Das Resultat wird nun durch den \texttt{Index\-Result\-Pro\-cessor} verarbeitet, in \verb|INDEX_DOCUMENT|- und \verb|INDEX_CONCEPT|-Nodes abgefüllt und im \texttt{ElementCache} gespeichert.
-    \item Innerhalb der \texttt{Main}-Komponente des \gls{ikc-core}[s] wird der \texttt{Ele\-ment\-Cache} berücksichtigt, falls der Node im \texttt{NodeModel} nicht gefunden wird (\autoref{main}).
+    \item Beim \texttt{IndexService} werden entweder \gls{Keyphrase}[s] für ein Dokument oder die Dokumente für eine \gls{Keyphrase} angefragt. 
+    \item Das Resultat wird nun durch den \texttt{Index\-Result\-Pro\-ces\-sor} verarbeitet, in \verb|INDEX_DOCUMENT|- und \verb|INDEX_CONCEPT|-Nodes abgefüllt und im \texttt{ElementCache} gespeichert.
+    \item Innerhalb der \texttt{Main}-Komponente des \gls{ikc-core}[s] wird der \texttt{Ele\-ment\-Cache} nur berücksichtigt, falls der Node im \texttt{NodeModel} nicht gefunden wird (\autoref{main}).
     
     \begin{listing}[H]
     \inputminted[
@@ -1136,7 +1175,7 @@ Um Nodes, welche Informationen aus dem externen Index enthalten zu organisieren,
     \label{main}
     \end{listing}
     
-    \item Bei Änderungen an Nodes an einem der Typen \verb|INDEX_DOCUMENT| und \verb|INDEX_CONCEPT|, werden diese in das \texttt{NodeModel} übertragen und aus dem \texttt{ElementCache} gelöscht.
+    \item Bei Änderungen an Nodes der Typen \verb|INDEX_DOCUMENT| und \verb|INDE|\newline\verb|X_CONCEPT|, werden die selbigen in das \texttt{NodeModel} übertragen und aus dem \texttt{ElementCache} gelöscht.
 
 \end{itemize}
 
@@ -1147,7 +1186,7 @@ Um Nodes, welche Informationen aus dem externen Index enthalten zu organisieren,
 % ----------------------------------------------------------------
 Um dem Benutzer die Möglichkeit zu geben eine Kategorisierung von Nodes vorzunehmen, wurde eine neue \gls{React}-Komponente namens \texttt{NodeTag} erstellt. Sie ist oberhalb des Node-Titels platziert, siehe \autoref{fig:nodetag}, und bietet folgende Funktionalitäten:
 \begin{itemize}
-    \item Vorhandene Begriffe werden dargestellt, dabei handelt es sich um \texttt{NodeProperties} mit dem Typ \texttt{CONCEPT} oder \verb|INDEX_CONCEPT|.\\
+    \item Vorhandene Begriffe werden dargestellt. Dabei handelt es sich um \texttt{NodeProperties} mit dem Typ \texttt{CONCEPT} oder \verb|INDEX_CONCEPT|.\\
     \item Beliebige Begriffe können als Input definiert werden, diese werden jeweils mit der Tab-Taste bestätigt und hinzugefügt.\\ 
     \item Während der Eingabe neuer Begriffe werden bestehende vorgeschlagen. Die Vorschläge basieren auf der Eingabe. Diese kön\-nen direkt aus der Liste ausgewählt und hinzugefügt werden. (In \autoref{fig:nodetag} Tag4)\\
     \item Bestehende Begriffe können durch einen Klick auf das Kreuz gelöscht werden.\\
@@ -1163,12 +1202,30 @@ Um dem Benutzer die Möglichkeit zu geben eine Kategorisierung von Nodes vorzune
 Für die Bereitstellung von benötigten Informationen und die Abarbeitung von spezifischen Operationen wurden die beiden Klassen \texttt{TagModel} und \texttt{TagService} erstellt. \texttt{TagModel} ist eine Sammlung von bestehenden Begriffen. Diese befüllt die Komponente mit ver\-füg\-bar\-en Vorschlägen anhand einer Liste. Die Aufgabe spezifische Tag-\-Op\-er\-a\-tion\-en durchzuführen erledigt der \texttt{TagService}. Er übernimmt die Aufgabe den entsprechende Tag-Node mit dem geladenen Node zu verknüpfen. Dabei gibt es drei unterschiedliche Szenarien:
 \begin{itemize}
     \item Der Tag-Node hat den Type \texttt{CONCEPT} und ist bereits Teil des \texttt{NodeModel}. Somit müssen noch die entsprechenden Ver\-knüpf\-ung\-en erstellt und gespeichert werden.
-    \item Der Tag-Node hat den Type \verb|INDEX_CONCEPT| und ist im \texttt{Ele\-ment\-Cache} zwischengespeichert. In diesem Fall muss der Typ des Tag-Node auf \texttt{CONCEPT} geändert werden. Anschliessend wird er im \texttt{NodeModel} gespeichert. 
-    \item Der Tag-Node ist weder im \texttt{NodeModel} noch im \texttt{ElementCache} vorhanden und muss komplett neu erstellt werden. Dazu wird ein neuer Node des Typs \texttt{CONCEPT} erstellt, gespeichert und die benötigten Verbindungen erstellt.
+    \item Der Tag-Node hat den Type \verb|INDEX_CONCEPT| und ist im \texttt{Ele\-ment\-Cache} zwischengespeichert. In diesem Fall muss der Typ des Tag-Nodes auf \texttt{CONCEPT} geändert werden. Anschliessend wird er im \texttt{NodeModel} gespeichert. 
+    \item Der Tag-Node ist weder im \texttt{NodeModel} noch im \texttt{ElementCache} vorhanden und muss komplett neu erstellt werden. Dazu werden ein neuer Node des Typs \texttt{CONCEPT} und die benötigten Verbindungen erstellt
 \end{itemize}
     
     
 \subsection{Konfiguration}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Config}
+    \caption{Konfiguration Komponente}
+    \label{fig:config-comp}
+    \end{figure}
+
+Mit Hilfe der Komponenten \texttt{GlobalParameterConfig} und \texttt{SFTP\-Con\-fig} (\autoref{fig:config-comp}) können verschiedene Parameter des \gls{ikc-core} als auch des Prototyps konfiguriert werden. Änderungen werden direkt in die bestehende Klasse \texttt{GlobalConfig} geschrieben und im \texttt{Lo\-cal\-Stor\-age} des Browsers persistiert. \autoref{tutorial} bietet weiter Informationen und Beispiele zu den einzelnen Parameter. Die Konfiguration ist dabei in drei Komponenten unterteilt:
+\begin{enumerate}
+    \item \textbf{MetaDataConfig} hält die Verbindungsinformationen des \gls{SFTP}-Servers. Auf diesem sind die Meta-Daten des \gls{ikc-core} gespeichert. Dazu gehören \texttt{SFTP-Url}, \texttt{Path}, \texttt{User} und \texttt{SSH Key}.
+    \item Die \textbf{GlobalConfig} hält die allgemeinen Parameter \texttt{In\-dex Ser\-vice Url}, \texttt{Data Service Url}, \texttt{Extraction Threshold} und \texttt{Mi\-ni\-mum Docu\-ments}.
+    \item Die \textbf{SFTPConfig} enthält die Verbindungsinformationen für den \gls{SFTP}-Server auf welchem die externen-Daten gespeichert sind. Dazu gehören \texttt{SFTP-Url}, \texttt{Path}, \texttt{User} und \texttt{SSH Key}.
+\end{enumerate}
+
+
+
+
 
 
 
@@ -1179,7 +1236,7 @@ Für die Bereitstellung von benötigten Informationen und die Abarbeitung von sp
 % ----------------------------------------------------------------
 
 
-Die \autoref{fig:deployment-diagramm} zeigt das Deployment des \texttt{Prototypen} und des \texttt{Index}- und \texttt{DataServices} auf in den entsprechenden Umgebungen und Services.
+Die \autoref{fig:deployment-diagramm} zeigt das Deployment des \texttt{Prototypen} und des \texttt{Index}- und \texttt{DataServices} im entsprechenden Kontext auf.
 
     \begin{figure}[H]
     \centering
@@ -1195,6 +1252,23 @@ Prinzipiell laufen die Projekte in \gls{Docker}-Container. \gls{Dokku} erleichte
 
 Der \texttt{Prototyp} ist Teil vom bestehenden \gls{ikc-core} und wird clientseitig im Browser ausgeführt. Der \texttt{DataService} nimmt via \gls{SFTP} zusätzlich Gebrauch von einer externen Datenquelle.
 
+\subsection{Continuous Integration / Deployment}
+
+Für die Verteilung der Software auf die \gls{Dokku}-Umgebung wird \textit{Continuous Integration} (CI) des \gls{gitlab}[s] verwendet. Die Pipeline ist in zwei Schritte unterteilt, welche im  \gls{YAML}-Skript \autoref{gitlabci} definiert werden:
+\begin{enumerate}
+    \item Innerhalb der \textbf{Vorbereitung} wird sichergestellt, dass alle not\-wend\-ig\-en Tools installiert sind:
+        \begin{itemize}
+            \item Die Installation des SSH-Agents wird überprüft. Falls er fehlt, wird nachinstalliert (Zeile 2). 
+            \item Anschliessend wird sichergestellt, dass der SSH-Agent aus\-ge\-führt wird (Zeile 4).
+            \item Nun wird der benötigte \gls{SSH}-Key für die Verbindung auf die \gls{Dokku}-Umgebung geladen und in der \gls{SSH}-Kon\-fi\-gu\-ra\-tion gespeichert (Zeile 6-9).
+            \item Zum Schluss wird die \gls{git}-Installation und deren Konfiguration überprüft (Zeile 14-21).
+        \end{itemize}
+    \item Die \textbf{Verteilung} sendet das Repository zur Installation an die \gls{Dokku}-Umgebung:
+    \begin{itemize}
+        \item Dazu wird das Repository mittels des \textit{push} Kommandos gesendet.
+        \item Dies wird jedoch nur auf dem Master-Branch ausgeführt. So kann zum Beispiel für einen anderen Branch ein anderes Ziel angegeben werden. 
+    \end{itemize}
+\end{enumerate}
 
     \begin{listing}[H]
     \inputminted[
@@ -1207,7 +1281,15 @@ Der \texttt{Prototyp} ist Teil vom bestehenden \gls{ikc-core} und wird clientsei
     \caption{Continuous Integration Pipeline}
     \label{gitlabci}
     \end{listing}
-    
+
+Mithilfe eines \textit{Docker}-Skripts wird die Software nach der Verteilung auf die \gls{Dokku}-Umgebung in einen eigenständigen Container installiert. \autoref{dockerfile} enthält die verschiedenen Schritte:
+\begin{enumerate}
+    \item Zu Beginn wird die benötigte \textit{NodeJS}-Version des zu ladenden Images angegeben (Zeile 1).
+    \item Anschliessend wird die Ordnerstruktur vorbereitet (Zeile 3-6).
+    \item Um die Pakete aus dem HSLU-internen Repository zu laden, werden die benötigten SSH-Keys via \textit{Shell}-Skript geladen (Zeile 8-10) .
+    \item Mittels des \textit{Node} Paket Managers (npm) werden die benötigten Pakete heruntergeladen und installiert.
+    \item Schlussendlich wird der benötigte Port geöffnet und die Applikation gestartet.
+\end{enumerate}
     
     \begin{listing}[H]
     \inputminted[
@@ -1227,5 +1309,4 @@ Der \texttt{Prototyp} ist Teil vom bestehenden \gls{ikc-core} und wird clientsei
 
 % ----------------------------------------------------------------
 
-
-erwähnen und in Anhang
+Im \autoref{tutorial} ist ein detailliertes Benutzerhandbuch zu finden. Diese beschreibt alle möglichen Vorgänge zur Interaktion mit dem Prototypen und beschreibt diese anhand von Beispielen.
